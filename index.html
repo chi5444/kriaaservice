@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kriaa Service Portfolio | ملف قريعة سرفس</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #6C63FF;
+    --secondary: #FF6584;
+    --dark: #1a1a2e;
+    --light: #f8f9fa;
+    --accent: #00d4ff;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Header with Animation */
+header {
+    background: rgba(26, 26, 46, 0.95);
+    color: white;
+    padding: 30px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    animation: slideDown 0.8s ease-out;
+    transform: translateY(0) !important;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    background: linear-gradient(45deg, var(--accent), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+/* Language Switcher */
+.language-switcher {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.lang-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    font-size: 0.9em;
+}
+
+.lang-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.lang-btn.active {
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    border-color: transparent;
+}
+
+html[dir="rtl"] nav a {
+    direction: rtl;
+}
+
+html[dir="rtl"] .contact-item i {
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+html[dir="rtl"] button::after {
+    right: auto;
+    left: 20px;
+}
+
+html[dir="rtl"] button:hover::after {
+    right: auto;
+    left: 15px;
+}
+
+@keyframes glow {
+    from {
+        filter: drop-shadow(0 0 5px rgba(0, 212, 255, 0.5));
+    }
+    to {
+        filter: drop-shadow(0 0 20px rgba(255, 101, 132, 0.8));
+    }
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 25px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+nav a:hover::before {
+    left: 100%;
+}
+
+nav a:hover {
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+}
+
+/* Sections */
+section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+section h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: inline-block;
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--secondary));
+    border-radius: 2px;
+}
+
+/* About Section */
+#about {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    margin: 40px auto;
+}
+
+#about h2 {
+    color: var(--dark);
+}
+
+#about p {
+    font-size: 1.2em;
+    color: #555;
+    max-width: 800px;
+    margin: 20px auto;
+    line-height: 1.8;
+}
+
+/* Skills Section */
+.skills {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.skill {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.skill:hover {
+    transform: scale(1.1) rotate(2deg);
+    box-shadow: 0 10px 25px rgba(108, 99, 255, 0.5);
+}
+
+/* Projects Section */
+#projects {
+    text-align: center;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.project {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.project::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+}
+
+.project:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(108, 99, 255, 0.3);
+}
+
+.project h3 {
+    color: var(--dark);
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+.project p {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+
+.project-icon {
+    font-size: 3em;
+    margin-bottom: 15px;
+}
+
+/* Button */
+button {
+    padding: 12px 35px;
+    border: none;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    color: white;
+    cursor: pointer;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+button::after {
+    content: '→';
+    position: absolute;
+    right: 20px;
+    transition: all 0.3s ease;
+}
+
+button:hover::after {
+    right: 15px;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(108, 99, 255, 0.4);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Contact Section */
+#contact {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    margin: 40px auto;
+}
+
+#contact h2 {
+    color: var(--dark);
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.contact-item {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 20px 40px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.contact-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.contact-item a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.contact-item a:hover {
+    text-decoration: none;
+}
+
+.contact-item i {
+    font-size: 1.5em;
+    margin-left: 10px;
+}
+
+/* Particles Background */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: float 15s infinite ease-in-out;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+    }
+    25% {
+        transform: translateY(-50px) translateX(30px);
+    }
+    50% {
+        transform: translateY(-100px) translateX(-30px);
+    }
+    75% {
+        transform: translateY(-50px) translateX(20px);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+    
+    section h2 {
+        font-size: 2em;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Custom Alert */
+.custom-alert {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    z-index: 2000;
+    text-align: center;
+    animation: popIn 0.3s ease-out forwards;
+}
+
+@keyframes popIn {
+    to {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.custom-alert.show {
+    display: block;
+}
+
+.custom-alert h3 {
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: 1.8em;
+}
+
+.custom-alert p {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1999;
+}
+
+.overlay.show {
+    display: block;
+}
+</style>
+</head>
+<body>
+
+<!-- Particles Background -->
+<div class="particles" id="particles"></div>
+
+<!-- Custom Alert -->
+<div class="overlay" id="overlay" onclick="closeAlert()"></div>
+<div class="custom-alert" id="customAlert">
+    <h3 data-en="🚀 Coming Soon!" data-ar="🚀 قريباً!" data-fr="🚀 Bientôt disponible!">🚀 Coming Soon!</h3>
+    <p data-en="Project link will be available soon..." data-ar="رابط المشروع سيكون متاحاً قريباً..." data-fr="Le lien du projet sera bientôt disponible...">Project link will be available soon...</p>
+    <button onclick="closeAlert()" data-en="OK" data-ar="حسناً" data-fr="D'accord">OK</button>
+</div>
+
+<header>
+    <h1 data-en="✨ Kriaa Service Portfolio ✨" data-ar="✨ ملف قريعة سرفس ✨" data-fr="✨ Portfolio Kriaa Service ✨">✨ Kriaa Service Portfolio ✨</h1>
+    
+    <div class="language-switcher">
+        <button class="lang-btn active" onclick="switchLanguage('en', event)">English 🇬🇧</button>
+        <button class="lang-btn" onclick="switchLanguage('ar', event)">العربية 🇸🇦</button>
+        <button class="lang-btn" onclick="switchLanguage('fr', event)">Français 🇫🇷</button>
+    </div>
+    
+    <nav>
+        <a href="#about" data-en="About" data-ar="من أنا" data-fr="À propos">About</a>
+        <a href="#projects" data-en="Projects" data-ar="المشاريع" data-fr="Projets">Projects</a>
+        <a href="#contact" data-en="Contact" data-ar="تواصل معي" data-fr="Contact">Contact</a>
+    </nav>
+</header>
+
+<section id="about">
+    <h2 data-en="👨‍💻 About Me" data-ar="👨‍💻 من أنا" data-fr="👨‍💻 À Propos de Moi">👨‍💻 About Me</h2>
+    <p data-en="Hello! I'm a passionate web developer who creates distinctive digital experiences. I use the latest technologies to build professional Kriaa Service websites and interactive applications that combine beauty with functionality." 
+       data-ar="مرحباً! أنا مطور ويب شغوف بإنشاء تجارب رقمية مميزة. أستخدم أحدث التقنيات لبناء مواقع ويب احترافية وتطبيقات تفاعلية تجمع بين الجمال والأداء الوظيفي."
+       data-fr="Bonjour! Je suis un développeur web passionné qui crée des expériences numériques distinctives. J'utilise les dernières technologies pour créer des sites web professionnels et des applications interactives qui allient beauté et fonctionnalité.">
+       Hello! I'm a passionate web developer who creates distinctive digital experiences. I use the latest technologies to build professional Kriaa Service websites and interactive applications that combine beauty with functionality.
+    </p>
+    
+    <div class="skills">
+        <div class="skill">HTML5</div>
+        <div class="skill">CSS3</div>
+        <div class="skill">JavaScript</div>
+        <div class="skill">React</div>
+        <div class="skill">UI/UX</div>
+    </div>
+</section>
+
+<section id="projects">
+    <h2 data-en="💼 My Projects" data-ar="💼 مشاريعي" data-fr="💼 Mes Projets">💼 My Projects</h2>
+    <div class="projects-grid">
+        <div class="project">
+            <div class="project-icon">💪</div>
+            <h3 data-en="Gym Website" data-ar="موقع صالة رياضية" data-fr="Site Web de Gym">Gym Website</h3>
+            <p data-en="Professional gym website with modern design, membership plans, and interactive features"
+               data-ar="موقع صالة رياضية احترافي بتصميم عصري، خطط العضوية، ومميزات تفاعلية"
+               data-fr="Site web de gym professionnel avec un design moderne, plans d'adhésion et fonctionnalités interactives">
+               Professional gym website with modern design, membership plans, and interactive features
+            </p>
+            <button onclick="window.open('https://chi5444.github.io/world/', '_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir le Projet">View Project</button>
+        </div>
+        
+        <div class="project">
+            <div class="project-icon">⚡</div>
+            <h3 data-en="Interactive App" data-ar="تطبيق تفاعلي" data-fr="Application Interactive">Interactive App</h3>
+            <p data-en="Interactive JavaScript application with smooth UI and advanced features"
+               data-ar="تطبيق JavaScript تفاعلي مع واجهة مستخدم سلسة ومميزات متقدمة"
+               data-fr="Application JavaScript interactive avec une interface fluide et des fonctionnalités avancées">
+               Interactive JavaScript application with smooth UI and advanced features
+            </p>
+            <button onclick="showCustomAlert()" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir le Projet">View Project</button>
+        </div>
+        
+        <div class="project">
+            <div class="project-icon">🚀</div>
+            <h3 data-en="Dashboard" data-ar="لوحة تحكم" data-fr="Tableau de Bord">Dashboard</h3>
+            <p data-en="Kriaa Service dashboard with interactive charts and dynamic content management"
+               data-ar="لوحة تحكم احترافية مع رسوم بيانية تفاعلية وإدارة محتوى ديناميكي"
+               data-fr="Tableau de bord Kriaa Service avec des graphiques interactifs et gestion de contenu dynamique">
+               Kriaa Service dashboard with interactive charts and dynamic content management
+            </p>
+            <button onclick="showCustomAlert()" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir le Projet">View Project</button>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2 data-en="📬 Contact Me" data-ar="📬 تواصل معي" data-fr="📬 Contactez-moi">📬 Contact Me</h2>
+    <div class="contact-info">
+        <div class="contact-item">
+            <a href="mailto:your@email.com">
+                <span data-en="📧 Email: your@email.com" data-ar="📧 البريد الإلكتروني: your@email.com" data-fr="📧 Email: your@email.com">📧 Email: your@email.com</span>
+            </a>
+        </div>
+        <div class="contact-item">
+            <a href="https://www.linkedin.com/in/yourprofile" target="_blank">
+                <span data-en="💼 LinkedIn: /yourprofile" data-ar="💼 لينكد إن: /yourprofile" data-fr="💼 LinkedIn: /yourprofile">💼 LinkedIn: /yourprofile</span>
+            </a>
+        </div>
+        <div class="contact-item">
+            <a href="https://github.com/yourusername" target="_blank">
+                <span data-en="🐙 GitHub: /yourusername" data-ar="🐙 جيتهاب: /yourusername" data-fr="🐙 GitHub: /yourusername">🐙 GitHub: /yourusername</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<script>
+// Language Switching
+let currentLang = 'en';
+
+function switchLanguage(lang, event) {
+    currentLang = lang;
+    const html = document.documentElement;
+    
+    // Update direction for Arabic
+    if (lang === 'ar') {
+        html.setAttribute('dir', 'rtl');
+        html.setAttribute('lang', 'ar');
+    } else {
+        html.setAttribute('dir', 'ltr');
+        html.setAttribute('lang', lang);
+    }
+    
+    // Update all elements with data attributes
+    document.querySelectorAll('[data-en]').forEach(element => {
+        if (element.hasAttribute(`data-${lang}`)) {
+            element.textContent = element.getAttribute(`data-${lang}`);
+        }
+    });
+    
+    // Update active language button
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    if (event && event.target) {
+        event.target.classList.add('active');
+    }
+    
+    // Save preference
+    localStorage.setItem('preferredLanguage', lang);
+}
+
+// Load saved language preference
+window.addEventListener('load', () => {
+    const savedLang = localStorage.getItem('preferredLanguage');
+    if (savedLang && savedLang !== 'en') {
+        const langBtn = document.querySelector(`.lang-btn[onclick*="${savedLang}"]`);
+        if (langBtn) {
+            langBtn.click();
+        }
+    }
+});
+
+// Create floating particles
+function createParticles() {
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.width = Math.random() * 5 + 2 + 'px';
+        particle.style.height = particle.style.width;
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.animationDuration = Math.random() * 10 + 10 + 's';
+        particlesContainer.appendChild(particle);
+    }
+}
+
+// Custom alert
+function showCustomAlert() {
+    document.getElementById('customAlert').classList.add('show');
+    document.getElementById('overlay').classList.add('show');
+}
+
+function closeAlert() {
+    document.getElementById('customAlert').classList.remove('show');
+    document.getElementById('overlay').classList.remove('show');
+}
+
+// Smooth scroll
+document.querySelectorAll('nav a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    });
+});
+
+// Intersection Observer for animations
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.animation = 'fadeInUp 1s ease-out forwards';
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('section').forEach(section => {
+    observer.observe(section);
+});
+
+// Skills animation on hover
+document.querySelectorAll('.skill').forEach(skill => {
+    skill.addEventListener('mouseenter', function() {
+        this.style.animation = 'none';
+        setTimeout(() => {
+            this.style.animation = '';
+        }, 10);
+    });
+});
+
+// Initialize particles
+createParticles();
+</script>
+
+</body>
+</html>
