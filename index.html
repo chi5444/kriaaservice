@@ -63,11 +63,11 @@ body.dark {
     100% { transform: rotate(360deg); }
 }
 
-/* Header with Animation */
+/* Compact Header */
 header {
     background: rgba(26, 26, 46, 0.95);
     color: white;
-    padding: 30px 20px;
+    padding: 8px 15px;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -88,8 +88,8 @@ header {
 }
 
 header h1 {
-    font-size: 2.5em;
-    margin-bottom: 15px;
+    font-size: 1.3em;
+    margin-bottom: 5px;
     background: linear-gradient(45deg, var(--accent), var(--secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -111,8 +111,8 @@ header h1 {
 .header-controls {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin: 15px 0;
+    gap: 6px;
+    margin: 4px 0;
     flex-wrap: wrap;
 }
 
@@ -120,11 +120,12 @@ header h1 {
     background: rgba(255, 255, 255, 0.1);
     color: white;
     border: 2px solid rgba(255, 255, 255, 0.3);
-    padding: 8px 20px;
+    padding: 5px 14px;
     border-radius: 20px;
     cursor: pointer;
     font-weight: bold;
     transition: all 0.3s ease;
+    font-size: 0.8em;
 }
 
 .dark-toggle-btn:hover {
@@ -136,8 +137,8 @@ header h1 {
 .language-switcher {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin-top: 15px;
+    gap: 6px;
+    margin-top: 5px;
     flex-wrap: wrap;
 }
 
@@ -145,12 +146,12 @@ header h1 {
     background: rgba(255, 255, 255, 0.1);
     color: white;
     border: 2px solid rgba(255, 255, 255, 0.3);
-    padding: 8px 20px;
+    padding: 4px 14px;
     border-radius: 20px;
     cursor: pointer;
     font-weight: bold;
     transition: all 0.3s ease;
-    font-size: 0.9em;
+    font-size: 0.75em;
 }
 
 .lang-btn:hover {
@@ -169,19 +170,20 @@ nav {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 15px;
-    margin-top: 20px;
+    gap: 6px;
+    margin-top: 5px;
 }
 
 nav a {
     color: white;
     text-decoration: none;
     font-weight: bold;
-    padding: 10px 25px;
+    padding: 5px 12px;
     border-radius: 25px;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    font-size: 0.8em;
 }
 
 nav a::before {
@@ -720,8 +722,28 @@ html[dir="rtl"] .contact-item i {
 
 /* Responsive */
 @media (max-width: 768px) {
+    header {
+        padding: 6px 12px;
+    }
+    
     header h1 {
-        font-size: 1.8em;
+        font-size: 1.1em;
+        margin-bottom: 3px;
+    }
+    
+    .dark-toggle-btn {
+        padding: 4px 12px;
+        font-size: 0.75em;
+    }
+    
+    .lang-btn {
+        padding: 3px 10px;
+        font-size: 0.7em;
+    }
+    
+    nav a {
+        padding: 4px 10px;
+        font-size: 0.75em;
     }
     
     section h2 {
@@ -866,7 +888,7 @@ html[dir="rtl"] .contact-item i {
 
 <section id="contact">
     <h2 data-en="📬 Contact Me" data-ar="📬 تواصل معي" data-fr="📬 Contactez-moi">📬 Contact Me</h2>
-    <p data-en="WhatsApp: +216 96 672 771" data-ar="واتساب: +216 96 672 771" data-fr="WhatsApp: +216 96 672 771" style="text-align: center; font-size: 1.2em; margin-bottom: 20px;">WhatsApp: +216 96 672 771</p>
+    <p data-en="WhatsApp: +216 96 672 771" data-ar="واتساب: +216 96 672 771" data-fr="WhatsApp: +216 96 672 771" style="text-align: center; font-size: 1.2em; margin-bottom: 20px; color: white;">WhatsApp: +216 96 672 771</p>
     <div class="contact-info">
         <div class="contact-item">
             <a href="mailto:abdelazizkriaa@icloud.com">
