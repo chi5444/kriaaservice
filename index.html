@@ -17,6 +17,7 @@
     --dark: #1a1a2e;
     --light: #f8f9fa;
     --accent: #00d4ff;
+    --whatsapp: #25D366;
 }
 
 body {
@@ -25,6 +26,41 @@ body {
     color: #333;
     line-height: 1.6;
     overflow-x: hidden;
+    transition: all 0.4s ease;
+}
+
+body.dark {
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+}
+
+/* LOADER */
+#loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    font-size: 1.5em;
+}
+
+.loader-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-top: 5px solid var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* Header with Animation */
@@ -38,7 +74,6 @@ header {
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     animation: slideDown 0.8s ease-out;
-    transform: translateY(0) !important;
 }
 
 @keyframes slideDown {
@@ -60,6 +95,41 @@ header h1 {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: glow 2s ease-in-out infinite alternate;
+    text-align: center;
+}
+
+@keyframes glow {
+    from {
+        filter: drop-shadow(0 0 5px rgba(0, 212, 255, 0.5));
+    }
+    to {
+        filter: drop-shadow(0 0 20px rgba(255, 101, 132, 0.8));
+    }
+}
+
+/* Control Buttons */
+.header-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+.dark-toggle-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.dark-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
 }
 
 /* Language Switcher */
@@ -94,40 +164,13 @@ header h1 {
     border-color: transparent;
 }
 
-html[dir="rtl"] nav a {
-    direction: rtl;
-}
-
-html[dir="rtl"] .contact-item i {
-    margin-left: 0;
-    margin-right: 10px;
-}
-
-html[dir="rtl"] button::after {
-    right: auto;
-    left: 20px;
-}
-
-html[dir="rtl"] button:hover::after {
-    right: auto;
-    left: 15px;
-}
-
-@keyframes glow {
-    from {
-        filter: drop-shadow(0 0 5px rgba(0, 212, 255, 0.5));
-    }
-    to {
-        filter: drop-shadow(0 0 20px rgba(255, 101, 132, 0.8));
-    }
-}
-
 /* Navigation */
 nav {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 15px;
+    margin-top: 20px;
 }
 
 nav a {
@@ -209,8 +252,16 @@ section h2::after {
     margin: 40px auto;
 }
 
+body.dark #about {
+    background: rgba(30, 30, 46, 0.95);
+}
+
 #about h2 {
     color: var(--dark);
+}
+
+body.dark #about h2 {
+    color: white;
 }
 
 #about p {
@@ -219,6 +270,10 @@ section h2::after {
     max-width: 800px;
     margin: 20px auto;
     line-height: 1.8;
+}
+
+body.dark #about p {
+    color: #ccc;
 }
 
 /* Skills Section */
@@ -245,6 +300,37 @@ section h2::after {
     box-shadow: 0 10px 25px rgba(108, 99, 255, 0.5);
 }
 
+/* Services Section */
+#services .services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.service {
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    width: 250px;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+body.dark .service {
+    background: rgba(30, 30, 46, 0.95);
+    color: white;
+}
+
+.service:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(108, 99, 255, 0.3);
+}
+
 /* Projects Section */
 #projects {
     text-align: center;
@@ -265,6 +351,10 @@ section h2::after {
     transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
+}
+
+body.dark .project {
+    background: rgba(30, 30, 46, 0.95);
 }
 
 .project::before {
@@ -288,15 +378,93 @@ section h2::after {
     margin-bottom: 15px;
 }
 
+body.dark .project h3 {
+    color: white;
+}
+
 .project p {
     color: #666;
     margin-bottom: 20px;
     font-size: 1.1em;
 }
 
+body.dark .project p {
+    color: #ccc;
+}
+
 .project-icon {
     font-size: 3em;
     margin-bottom: 15px;
+}
+
+/* Pricing Section */
+#pricing {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    margin: 40px auto;
+}
+
+body.dark #pricing {
+    background: rgba(30, 30, 46, 0.95);
+}
+
+#pricing h2 {
+    color: var(--dark);
+}
+
+body.dark #pricing h2 {
+    color: white;
+}
+
+.pricing-item {
+    font-size: 1.3em;
+    margin: 20px 0;
+    color: #555;
+}
+
+body.dark .pricing-item {
+    color: #ccc;
+}
+
+.price {
+    font-size: 1.5em;
+    color: var(--primary);
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+/* Testimonials Section */
+#testimonials {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    margin: 40px auto;
+}
+
+body.dark #testimonials {
+    background: rgba(30, 30, 46, 0.95);
+}
+
+#testimonials h2 {
+    color: var(--dark);
+}
+
+body.dark #testimonials h2 {
+    color: white;
+}
+
+.testimonial {
+    text-align: center;
+    font-style: italic;
+    font-size: 1.3em;
+    color: #555;
+    margin: 30px 0;
+    min-height: 60px;
+}
+
+body.dark .testimonial {
+    color: #ccc;
 }
 
 /* Button */
@@ -321,8 +489,19 @@ button::after {
     transition: all 0.3s ease;
 }
 
+html[dir="rtl"] button::after {
+    content: '←';
+    right: auto;
+    left: 20px;
+}
+
 button:hover::after {
     right: 15px;
+}
+
+html[dir="rtl"] button:hover::after {
+    right: auto;
+    left: 15px;
 }
 
 button:hover {
@@ -342,8 +521,16 @@ button:active {
     margin: 40px auto;
 }
 
+body.dark #contact {
+    background: rgba(30, 30, 46, 0.95);
+}
+
 #contact h2 {
     color: var(--dark);
+}
+
+body.dark #contact h2 {
+    color: white;
 }
 
 .contact-info {
@@ -374,13 +561,56 @@ button:active {
     display: block;
 }
 
-.contact-item a:hover {
+/* WhatsApp Float Button */
+.whatsapp {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background: var(--whatsapp);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 50px;
     text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5);
+    transition: all 0.3s ease;
+    z-index: 999;
 }
 
-.contact-item i {
-    font-size: 1.5em;
-    margin-left: 10px;
+html[dir="rtl"] .whatsapp {
+    right: auto;
+    left: 20px;
+}
+
+.whatsapp:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.7);
+}
+
+/* Back to Top Button */
+.top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--primary);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2em;
+    box-shadow: 0 5px 20px rgba(108, 99, 255, 0.5);
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+html[dir="rtl"] .top {
+    right: auto;
+    left: 20px;
+}
+
+.top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(108, 99, 255, 0.7);
 }
 
 /* Particles Background */
@@ -417,21 +647,6 @@ button:active {
     }
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 1.8em;
-    }
-    
-    section h2 {
-        font-size: 2em;
-    }
-    
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
 /* Custom Alert */
 .custom-alert {
     display: none;
@@ -446,6 +661,10 @@ button:active {
     z-index: 2000;
     text-align: center;
     animation: popIn 0.3s ease-out forwards;
+}
+
+body.dark .custom-alert {
+    background: rgba(30, 30, 46, 0.98);
 }
 
 @keyframes popIn {
@@ -470,6 +689,10 @@ button:active {
     font-size: 1.1em;
 }
 
+body.dark .custom-alert p {
+    color: #ccc;
+}
+
 .overlay {
     display: none;
     position: fixed;
@@ -484,9 +707,45 @@ button:active {
 .overlay.show {
     display: block;
 }
+
+/* RTL Support */
+html[dir="rtl"] nav a {
+    direction: rtl;
+}
+
+html[dir="rtl"] .contact-item i {
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+    
+    section h2 {
+        font-size: 2em;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-info {
+        flex-direction: column;
+        align-items: center;
+    }
+}
 </style>
 </head>
 <body>
+
+<!-- Loader -->
+<div id="loader">
+    <div class="loader-spinner"></div>
+    <span data-en="Loading..." data-ar="جاري التحميل..." data-fr="Chargement...">Loading...</span>
+</div>
 
 <!-- Particles Background -->
 <div class="particles" id="particles"></div>
@@ -502,6 +761,10 @@ button:active {
 <header>
     <h1 data-en="✨ Kriaa Service Portfolio ✨" data-ar="✨ ملف قريعة سرفس ✨" data-fr="✨ Portfolio Kriaa Service ✨">✨ Kriaa Service Portfolio ✨</h1>
     
+    <div class="header-controls">
+        <button class="dark-toggle-btn" onclick="toggleDark()" data-en="🌙 Dark Mode" data-ar="🌙 الوضع الليلي" data-fr="🌙 Mode Sombre">🌙 Dark Mode</button>
+    </div>
+    
     <div class="language-switcher">
         <button class="lang-btn active" onclick="switchLanguage('en', event)">English 🇬🇧</button>
         <button class="lang-btn" onclick="switchLanguage('ar', event)">العربية 🇸🇦</button>
@@ -510,17 +773,20 @@ button:active {
     
     <nav>
         <a href="#about" data-en="About" data-ar="من أنا" data-fr="À propos">About</a>
+        <a href="#services" data-en="Services" data-ar="الخدمات" data-fr="Services">Services</a>
         <a href="#projects" data-en="Projects" data-ar="المشاريع" data-fr="Projets">Projects</a>
+        <a href="#pricing" data-en="Pricing" data-ar="الأسعار" data-fr="Tarifs">Pricing</a>
+        <a href="#testimonials" data-en="Testimonials" data-ar="آراء العملاء" data-fr="Témoignages">Testimonials</a>
         <a href="#contact" data-en="Contact" data-ar="تواصل معي" data-fr="Contact">Contact</a>
     </nav>
 </header>
 
 <section id="about">
     <h2 data-en="👨‍💻 About Me" data-ar="👨‍💻 من أنا" data-fr="👨‍💻 À Propos de Moi">👨‍💻 About Me</h2>
-    <p data-en="Hello! I'm a passionate web developer who creates distinctive digital experiences. I use the latest technologies to build professional Kriaa Service websites and interactive applications that combine beauty with functionality." 
+    <p data-en="Hello! I'm a passionate web developer who creates distinctive digital experiences. I use the latest technologies to build professional websites and interactive applications that combine beauty with functionality." 
        data-ar="مرحباً! أنا مطور ويب شغوف بإنشاء تجارب رقمية مميزة. أستخدم أحدث التقنيات لبناء مواقع ويب احترافية وتطبيقات تفاعلية تجمع بين الجمال والأداء الوظيفي."
        data-fr="Bonjour! Je suis un développeur web passionné qui crée des expériences numériques distinctives. J'utilise les dernières technologies pour créer des sites web professionnels et des applications interactives qui allient beauté et fonctionnalité.">
-       Hello! I'm a passionate web developer who creates distinctive digital experiences. I use the latest technologies to build professional Kriaa Service websites and interactive applications that combine beauty with functionality.
+       Hello! I'm a passionate web developer who creates distinctive digital experiences. I use the latest technologies to build professional websites and interactive applications that combine beauty with functionality.
     </p>
     
     <div class="skills">
@@ -529,6 +795,15 @@ button:active {
         <div class="skill">JavaScript</div>
         <div class="skill">React</div>
         <div class="skill">UI/UX</div>
+    </div>
+</section>
+
+<section id="services">
+    <h2 data-en="🔧 Services" data-ar="🔧 الخدمات" data-fr="🔧 Services">🔧 Services</h2>
+    <div class="services">
+        <div class="service" data-en="🌐 Website Design" data-ar="🌐 تصميم المواقع" data-fr="🌐 Conception Web">🌐 Website Design</div>
+        <div class="service" data-en="🛒 Online Stores" data-ar="🛒 المتاجر الإلكترونية" data-fr="🛒 Boutiques en ligne">🛒 Online Stores</div>
+        <div class="service" data-en="📊 Dashboards" data-ar="📊 لوحات التحكم" data-fr="📊 Tableaux de bord">📊 Dashboards</div>
     </div>
 </section>
 
@@ -560,38 +835,80 @@ button:active {
         <div class="project">
             <div class="project-icon">🚀</div>
             <h3 data-en="Dashboard" data-ar="لوحة تحكم" data-fr="Tableau de Bord">Dashboard</h3>
-            <p data-en="Kriaa Service dashboard with interactive charts and dynamic content management"
+            <p data-en="Professional dashboard with interactive charts and dynamic content management"
                data-ar="لوحة تحكم احترافية مع رسوم بيانية تفاعلية وإدارة محتوى ديناميكي"
-               data-fr="Tableau de bord Kriaa Service avec des graphiques interactifs et gestion de contenu dynamique">
-               Kriaa Service dashboard with interactive charts and dynamic content management
+               data-fr="Tableau de bord professionnel avec des graphiques interactifs et gestion de contenu dynamique">
+               Professional dashboard with interactive charts and dynamic content management
             </p>
             <button onclick="showCustomAlert()" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir le Projet">View Project</button>
         </div>
     </div>
 </section>
 
+<section id="pricing">
+    <h2 data-en="💰 Pricing" data-ar="💰 الأسعار" data-fr="💰 Tarifs">💰 Pricing</h2>
+    <div class="pricing-item">
+        <span data-en="Basic Website" data-ar="موقع أساسي" data-fr="Site Web de Base">Basic Website</span>
+        <span class="price">300 DT</span>
+    </div>
+    <div class="pricing-item">
+        <span data-en="Store Website" data-ar="موقع متجر" data-fr="Site E-commerce">Store Website</span>
+        <span class="price">600 DT</span>
+    </div>
+</section>
+
+<section id="testimonials">
+    <h2 data-en="⭐ Testimonials" data-ar="⭐ آراء العملاء" data-fr="⭐ Témoignages">⭐ Testimonials</h2>
+    <div class="testimonial" id="testimonial">
+        "Very professional developer 👍"
+    </div>
+</section>
+
 <section id="contact">
     <h2 data-en="📬 Contact Me" data-ar="📬 تواصل معي" data-fr="📬 Contactez-moi">📬 Contact Me</h2>
+    <p data-en="WhatsApp: +216 96 672 771" data-ar="واتساب: +216 96 672 771" data-fr="WhatsApp: +216 96 672 771" style="text-align: center; font-size: 1.2em; margin-bottom: 20px;">WhatsApp: +216 96 672 771</p>
     <div class="contact-info">
         <div class="contact-item">
-            <a href="/cdn-cgi/l/email-protection#dda4b2a8af9db8b0bcb4b1f3beb2b0">
-                <span data-en="📧 Email: abdelazizkriaa@icloud.com" data-ar="📧 البريد الإلكتروني: abdelazizkriaa@icloud.com" data-fr="📧 Email: abdelazizkriaa@icloud.com">📧 Email: <span class="__cf_email__" data-cfemail="e990869c9ba98c84888085c78a8684">[email&#160;protected]</span></span>
+            <a href="mailto:abdelazizkriaa@icloud.com">
+                <span data-en="📧 Email" data-ar="📧 البريد الإلكتروني" data-fr="📧 Email">📧 Email</span>
             </a>
         </div>
         <div class="contact-item">
             <a href="https://www.linkedin.com/in/soon" target="_blank">
-                <span data-en="💼 LinkedIn: /soon" data-ar="💼 لينكد إن: /soon" data-fr="💼 LinkedIn: /soon">💼 LinkedIn: /soon</span>
+                <span data-en="💼 LinkedIn" data-ar="💼 لينكد إن" data-fr="💼 LinkedIn">💼 LinkedIn</span>
             </a>
         </div>
         <div class="contact-item">
             <a href="https://github.com/soon" target="_blank">
-                <span data-en="🐙 GitHub: /soon" data-ar="🐙 جيتهاب: /soon" data-fr="🐙 GitHub: /soon">🐙 GitHub: /soon</span>
+                <span data-en="🐙 GitHub" data-ar="🐙 جيتهاب" data-fr="🐙 GitHub">🐙 GitHub</span>
             </a>
         </div>
     </div>
 </section>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<!-- WhatsApp Float Button -->
+<a class="whatsapp" href="https://wa.me/21696672771" data-en="💬 WhatsApp" data-ar="💬 واتساب" data-fr="💬 WhatsApp">💬 WhatsApp</a>
+
+<!-- Back to Top Button -->
+<div class="top" onclick="scrollToTop()">↑</div>
+
+<script>
+// Loader
+window.onload = () => {
+    document.getElementById("loader").style.display = "none";
+};
+
+// Dark Mode Toggle
+function toggleDark() {
+    document.body.classList.toggle("dark");
+    localStorage.setItem("dark", document.body.classList.contains("dark"));
+}
+
+// Load saved dark mode preference
+if (localStorage.getItem("dark") === "true") {
+    document.body.classList.add("dark");
+}
+
 // Language Switching
 let currentLang = 'en';
 
@@ -628,15 +945,49 @@ function switchLanguage(lang, event) {
 }
 
 // Load saved language preference
-window.addEventListener('load', () => {
-    const savedLang = localStorage.getItem('preferredLanguage');
-    if (savedLang && savedLang !== 'en') {
-        const langBtn = document.querySelector(`.lang-btn[onclick*="${savedLang}"]`);
-        if (langBtn) {
-            langBtn.click();
-        }
+const savedLang = localStorage.getItem('preferredLanguage');
+if (savedLang && savedLang !== 'en') {
+    const langBtn = document.querySelector(`.lang-btn[onclick*="${savedLang}"]`);
+    if (langBtn) {
+        setTimeout(() => langBtn.click(), 100);
     }
-});
+}
+
+// Back to Top
+function scrollToTop() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// Testimonial Slider
+const testimonials = [
+    {
+        en: "Very professional developer 👍",
+        ar: "مطور محترف جداً 👍",
+        fr: "Développeur très professionnel 👍"
+    },
+    {
+        en: "Fast delivery and great design 🔥",
+        ar: "تسليم سريع وتصميم رائع 🔥",
+        fr: "Livraison rapide et excellent design 🔥"
+    },
+    {
+        en: "Best website service 💯",
+        ar: "أفضل خدمة مواقع 💯",
+        fr: "Meilleur service de site web 💯"
+    }
+];
+let testimonialIndex = 0;
+
+function updateTestimonial() {
+    const testimonialElement = document.getElementById("testimonial");
+    const currentTestimonial = testimonials[testimonialIndex];
+    testimonialElement.textContent = currentTestimonial[currentLang] || currentTestimonial.en;
+}
+
+setInterval(() => {
+    testimonialIndex = (testimonialIndex + 1) % testimonials.length;
+    updateTestimonial();
+}, 3000);
 
 // Create floating particles
 function createParticles() {
@@ -693,16 +1044,6 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('section').forEach(section => {
     observer.observe(section);
-});
-
-// Skills animation on hover
-document.querySelectorAll('.skill').forEach(skill => {
-    skill.addEventListener('mouseenter', function() {
-        this.style.animation = 'none';
-        setTimeout(() => {
-            this.style.animation = '';
-        }, 10);
-    });
 });
 
 // Initialize particles
