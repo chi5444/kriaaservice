@@ -3,362 +3,1275 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kriaa Service Portfolio | ملف قريعة سرفس</title>
+<title>Kriaa Service - Premium Web Development</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
+
 :root {
-    --primary: #6C63FF; --secondary: #FF6584; --dark: #1a1a2e;
-    --light: #f8f9fa; --accent: #00d4ff; --whatsapp: #25D366;
+    --gold: #D4AF37;
+    --gold-light: #F4D03F;
+    --gold-dark: #B8860B;
+    --black: #0a0a0a;
+    --dark-gray: #1a1a1a;
+    --gray: #2a2a2a;
+    --light-gray: #888;
+    --white: #ffffff;
+    --cream: #faf8f3;
 }
-body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #333; line-height: 1.6; overflow-x: hidden; transition: all 0.4s ease; }
-body.dark { background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%); }
-#loader { position: fixed; width: 100%; height: 100%; background: #000; color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; font-size: 1.5em; }
-.loader-spinner { width: 50px; height: 50px; border: 5px solid rgba(255,255,255,0.3); border-top: 5px solid var(--accent); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px; }
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-header { background: rgba(26,26,46,0.95); color: white; padding: 8px 15px; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px); box-shadow: 0 4px 30px rgba(0,0,0,0.3); animation: slideDown 0.8s ease-out; }
-@keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-header h1 { font-size: 1.3em; margin-bottom: 5px; background: linear-gradient(45deg, var(--accent), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: glow 2s ease-in-out infinite alternate; text-align: center; }
-@keyframes glow { from { filter: drop-shadow(0 0 5px rgba(0,212,255,0.5)); } to { filter: drop-shadow(0 0 20px rgba(255,101,132,0.8)); } }
-.header-controls { display: flex; justify-content: center; gap: 6px; margin: 4px 0; flex-wrap: wrap; }
-.dark-toggle-btn { background: rgba(255,255,255,0.1); color: white; border: 2px solid rgba(255,255,255,0.3); padding: 5px 14px; border-radius: 20px; cursor: pointer; font-weight: bold; transition: all 0.3s ease; font-size: 0.8em; }
-.dark-toggle-btn:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
-.language-switcher { display: flex; justify-content: center; gap: 6px; margin-top: 5px; flex-wrap: wrap; }
-.lang-btn { background: rgba(255,255,255,0.1); color: white; border: 2px solid rgba(255,255,255,0.3); padding: 4px 14px; border-radius: 20px; cursor: pointer; font-weight: bold; transition: all 0.3s ease; font-size: 0.75em; }
-.lang-btn:hover { background: rgba(255,255,255,0.2); border-color: var(--accent); transform: translateY(-2px); }
-.lang-btn.active { background: linear-gradient(45deg, var(--primary), var(--secondary)); border-color: transparent; }
-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; margin-top: 5px; }
-nav a { color: white; text-decoration: none; font-weight: bold; padding: 5px 12px; border-radius: 25px; transition: all 0.3s ease; position: relative; overflow: hidden; font-size: 0.8em; }
-nav a::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.5s; }
-nav a:hover::before { left: 100%; }
-nav a:hover { background: linear-gradient(45deg, var(--primary), var(--secondary)); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(108,99,255,0.4); }
-section { padding: 60px 20px; max-width: 1200px; margin: 0 auto; animation: fadeInUp 1s ease-out; }
-@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-section h2 { font-size: 2.5em; margin-bottom: 30px; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); position: relative; display: inline-block; }
-section h2::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--accent), var(--secondary)); border-radius: 2px; }
-#about { background: rgba(255,255,255,0.95); border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); margin: 40px auto; }
-body.dark #about { background: rgba(30,30,46,0.95); }
-#about h2 { color: var(--dark); }
-body.dark #about h2 { color: white; }
-#about p { font-size: 1.2em; color: #555; max-width: 800px; margin: 20px auto; line-height: 1.8; }
-body.dark #about p { color: #ccc; }
-.skills { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
-.skill { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 15px 30px; border-radius: 30px; font-weight: bold; transition: all 0.3s ease; cursor: pointer; }
-.skill:hover { transform: scale(1.1) rotate(2deg); box-shadow: 0 10px 25px rgba(108,99,255,0.5); }
-#services .services { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 30px; }
-.service { padding: 30px; background: white; border-radius: 15px; width: 250px; text-align: center; font-size: 1.2em; font-weight: bold; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-body.dark .service { background: rgba(30,30,46,0.95); color: white; }
-.service:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(108,99,255,0.3); }
-#projects { text-align: center; }
-.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
-.project { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); transition: all 0.4s ease; position: relative; overflow: hidden; }
-body.dark .project { background: rgba(30,30,46,0.95); }
-.project::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent)); }
-.project:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(108,99,255,0.3); }
-.project h3 { color: var(--dark); font-size: 1.8em; margin-bottom: 15px; }
-body.dark .project h3 { color: white; }
-.project p { color: #666; margin-bottom: 20px; font-size: 1.1em; }
-body.dark .project p { color: #ccc; }
-.project-icon { font-size: 3em; margin-bottom: 15px; }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--black);
+    color: var(--cream);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+        radial-gradient(ellipse at 20% 30%, rgba(212,175,55,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 70%, rgba(212,175,55,0.06) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ═══ LOADER ═══ */
+#loader {
+    position: fixed;
+    inset: 0;
+    background: var(--black);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+#loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-logo {
+    width: 200px;
+    height: auto;
+    animation: fadeInScale 1.5s ease-out;
+    filter: drop-shadow(0 10px 40px rgba(212,175,55,0.4));
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.loader-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5em;
+    color: var(--gold);
+    margin-top: 30px;
+    letter-spacing: 4px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+/* ═══ HEADER ═══ */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(212,175,55,0.1);
+    padding: 20px 60px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+header.scrolled {
+    padding: 12px 60px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-decoration: none;
+}
+
+.logo-img {
+    height: 60px;
+    width: auto;
+    filter: drop-shadow(0 5px 20px rgba(212,175,55,0.3));
+    transition: transform 0.3s ease;
+}
+
+.logo-header:hover .logo-img {
+    transform: scale(1.05);
+}
+
+.logo-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+.logo-text span {
+    font-size: 0.65em;
+    color: var(--light-gray);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+nav {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+nav a {
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.95em;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    transition: width 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--gold);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+.lang-switcher {
+    display: flex;
+    gap: 10px;
+    margin-left: 20px;
+}
+
+.lang-btn {
+    background: transparent;
+    border: 1px solid rgba(212,175,55,0.3);
+    color: var(--cream);
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.lang-btn:hover,
+.lang-btn.active {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--black);
+    border-color: transparent;
+    box-shadow: 0 4px 20px rgba(212,175,55,0.4);
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--gold);
+    font-size: 1.8em;
+    cursor: pointer;
+}
+
+/* ═══ HERO SECTION ═══ */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 120px 60px 80px;
+}
+
+.hero-content {
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.hero-text {
+    animation: slideInLeft 1s ease-out 0.3s both;
+}
+
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.hero-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4em;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-text .subtitle {
+    font-size: 1.3em;
+    color: var(--light-gray);
+    margin-bottom: 30px;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.hero-text p {
+    font-size: 1.1em;
+    color: var(--light-gray);
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 16px 40px;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--black);
+    box-shadow: 0 10px 40px rgba(212,175,55,0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 50px rgba(212,175,55,0.5);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--gold);
+    border: 2px solid var(--gold);
+}
+
+.btn-secondary:hover {
+    background: var(--gold);
+    color: var(--black);
+    transform: translateY(-3px);
+}
+
+.hero-image {
+    position: relative;
+    animation: slideInRight 1s ease-out 0.5s both;
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 20px 60px rgba(212,175,55,0.4));
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* ═══ SECTIONS ═══ */
+section {
+    padding: 100px 60px;
+    position: relative;
+    z-index: 1;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.section-label {
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5em;
+    font-weight: 700;
+    color: var(--cream);
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* ═══ ABOUT ═══ */
+#about {
+    background: linear-gradient(135deg, var(--dark-gray), var(--gray));
+}
+
+.about-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-content p {
+    font-size: 1.2em;
+    line-height: 2;
+    color: var(--light-gray);
+    margin-bottom: 50px;
+}
+
+.skills-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.skill-tag {
+    background: linear-gradient(135deg, rgba(212,175,55,0.15), rgba(212,175,55,0.05));
+    border: 1px solid rgba(212,175,55,0.3);
+    color: var(--gold);
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.skill-tag:hover {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--black);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(212,175,55,0.3);
+}
+
+/* ═══ SERVICES ═══ */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.service-card {
+    background: linear-gradient(135deg, var(--dark-gray), var(--gray));
+    padding: 50px 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(212,175,55,0.1);
+    transition: all 0.4s ease;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(212,175,55,0.3);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.service-icon {
+    font-size: 3.5em;
+    margin-bottom: 25px;
+    filter: drop-shadow(0 5px 20px rgba(212,175,55,0.3));
+}
+
+.service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    color: var(--gold);
+    margin-bottom: 15px;
+}
+
+.service-card p {
+    color: var(--light-gray);
+    line-height: 1.8;
+    font-size: 1.05em;
+}
+
+/* ═══ PROJECTS ═══ */
+#projects {
+    background: linear-gradient(135deg, var(--dark-gray), var(--gray));
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.project-card {
+    background: var(--gray);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(212,175,55,0.1);
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    border-color: rgba(212,175,55,0.3);
+}
+
+.project-content {
+    padding: 40px;
+}
+
+.project-icon {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.project-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    color: var(--gold);
+    margin-bottom: 15px;
+}
+
 .live-badge {
     display: inline-block;
-    background: linear-gradient(135deg, #00d4ff, #6C63FF);
-    color: white;
-    font-size: 0.5em;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--black);
+    font-size: 0.45em;
     font-weight: 800;
-    padding: 3px 10px;
+    padding: 4px 12px;
     border-radius: 20px;
     vertical-align: middle;
-    margin-left: 8px;
+    margin-left: 10px;
     letter-spacing: 1px;
     text-transform: uppercase;
     animation: pulseBadge 2s ease-in-out infinite;
-    position: relative;
-    top: -4px;
 }
+
 @keyframes pulseBadge {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(0,212,255,0.5); }
-    50% { box-shadow: 0 0 0 6px rgba(0,212,255,0); }
+    0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.5); }
+    50% { box-shadow: 0 0 0 8px rgba(212,175,55,0); }
 }
-#pricing { background: rgba(255,255,255,0.95); border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); margin: 40px auto; }
-body.dark #pricing { background: rgba(30,30,46,0.95); }
-#pricing h2 { color: var(--dark); }
-body.dark #pricing h2 { color: white; }
-.pricing-item { font-size: 1.3em; margin: 20px 0; color: #555; }
-body.dark .pricing-item { color: #ccc; }
-.price { font-size: 1.5em; color: var(--primary); font-weight: bold; margin-left: 10px; }
-#testimonials { background: rgba(255,255,255,0.95); border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); margin: 40px auto; }
-body.dark #testimonials { background: rgba(30,30,46,0.95); }
-#testimonials h2 { color: var(--dark); }
-body.dark #testimonials h2 { color: white; }
-.testimonial { text-align: center; font-style: italic; font-size: 1.3em; color: #555; margin: 30px 0; min-height: 60px; }
-body.dark .testimonial { color: #ccc; }
-button { padding: 12px 35px; border: none; background: linear-gradient(45deg, var(--primary), var(--secondary)); color: white; cursor: pointer; border-radius: 30px; font-weight: bold; font-size: 1em; transition: all 0.3s ease; position: relative; overflow: hidden; }
-button::after { content: '→'; position: absolute; right: 20px; transition: all 0.3s ease; }
-html[dir="rtl"] button::after { content: '←'; right: auto; left: 20px; }
-button:hover::after { right: 15px; }
-html[dir="rtl"] button:hover::after { right: auto; left: 15px; }
-button:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(108,99,255,0.4); }
-button:active { transform: scale(0.98); }
-#contact { background: rgba(255,255,255,0.95); border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); margin: 40px auto; }
-body.dark #contact { background: rgba(30,30,46,0.95); }
-#contact h2 { color: var(--dark); }
-body.dark #contact h2 { color: white; }
-.contact-info { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 30px; }
-.contact-item { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 20px 40px; border-radius: 15px; transition: all 0.3s ease; cursor: pointer; }
-.contact-item:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(102,126,234,0.4); }
-.contact-item a { color: white; text-decoration: none; display: block; }
-.whatsapp { position: fixed; bottom: 80px; right: 20px; background: var(--whatsapp); color: white; padding: 15px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 5px 20px rgba(37,211,102,0.5); transition: all 0.3s ease; z-index: 999; }
-html[dir="rtl"] .whatsapp { right: auto; left: 20px; }
-.whatsapp:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(37,211,102,0.7); }
-.top { position: fixed; bottom: 20px; right: 20px; background: var(--primary); color: white; padding: 15px 20px; border-radius: 50%; cursor: pointer; font-size: 1.2em; box-shadow: 0 5px 20px rgba(108,99,255,0.5); transition: all 0.3s ease; z-index: 999; }
-html[dir="rtl"] .top { right: auto; left: 20px; }
-.top:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(108,99,255,0.7); }
-.particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
-.particle { position: absolute; background: white; border-radius: 50%; opacity: 0.6; animation: float 15s infinite ease-in-out; }
-@keyframes float { 0%,100% { transform: translateY(0) translateX(0); } 25% { transform: translateY(-50px) translateX(30px); } 50% { transform: translateY(-100px) translateX(-30px); } 75% { transform: translateY(-50px) translateX(20px); } }
-.custom-alert { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) scale(0); background: white; padding: 40px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); z-index: 2000; text-align: center; animation: popIn 0.3s ease-out forwards; }
-body.dark .custom-alert { background: rgba(30,30,46,0.98); }
-@keyframes popIn { to { transform: translate(-50%,-50%) scale(1); } }
-.custom-alert.show { display: block; }
-.custom-alert h3 { color: var(--primary); margin-bottom: 15px; font-size: 1.8em; }
-.custom-alert p { color: #666; margin-bottom: 20px; font-size: 1.1em; }
-body.dark .custom-alert p { color: #ccc; }
-.overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1999; }
-.overlay.show { display: block; }
-html[dir="rtl"] nav a { direction: rtl; }
+
+.project-desc {
+    color: var(--light-gray);
+    line-height: 1.8;
+    margin-bottom: 25px;
+    font-size: 1.05em;
+}
+
+.project-btn {
+    padding: 12px 30px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--black);
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9em;
+}
+
+.project-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(212,175,55,0.4);
+}
+
+/* ═══ PRICING ═══ */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.pricing-card {
+    background: linear-gradient(135deg, var(--dark-gray), var(--gray));
+    padding: 50px 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(212,175,55,0.2);
+    text-align: center;
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.pricing-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(212,175,55,0.4);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.pricing-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    color: var(--cream);
+    margin-bottom: 20px;
+}
+
+.price {
+    font-family: 'Playfair Display', serif;
+    font-size: 3em;
+    font-weight: 700;
+    color: var(--gold);
+    margin: 20px 0;
+}
+
+.pricing-card ul {
+    list-style: none;
+    margin: 30px 0;
+    text-align: left;
+}
+
+.pricing-card li {
+    color: var(--light-gray);
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(212,175,55,0.1);
+}
+
+.pricing-card li:last-child {
+    border-bottom: none;
+}
+
+/* ═══ TESTIMONIALS ═══ */
+#testimonials {
+    background: linear-gradient(135deg, var(--dark-gray), var(--gray));
+}
+
+.testimonial-slider {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.testimonial {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.6;
+    margin-bottom: 30px;
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══ CONTACT ═══ */
+.contact-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+.contact-card {
+    background: linear-gradient(135deg, var(--dark-gray), var(--gray));
+    padding: 30px 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(212,175,55,0.2);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(212,175,55,0.5);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+.contact-icon {
+    font-size: 2em;
+    color: var(--gold);
+}
+
+.contact-text {
+    text-align: left;
+}
+
+.contact-label {
+    font-size: 0.85em;
+    color: var(--light-gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.contact-value {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--cream);
+}
+
+/* ═══ FOOTER ═══ */
+footer {
+    background: var(--black);
+    padding: 40px 60px;
+    border-top: 1px solid rgba(212,175,55,0.1);
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-logo {
+    height: 50px;
+    width: auto;
+    filter: drop-shadow(0 5px 15px rgba(212,175,55,0.2));
+}
+
+.copyright {
+    color: var(--light-gray);
+    font-size: 0.95em;
+}
+
+.footer-social {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icon {
+    color: var(--gold);
+    font-size: 1.5em;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-3px);
+    filter: drop-shadow(0 5px 15px rgba(212,175,55,0.5));
+}
+
+/* ═══ FLOATING ELEMENTS ═══ */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #25D366;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 30px rgba(37,211,102,0.4);
+    z-index: 999;
+    text-decoration: none;
+    font-size: 1.8em;
+    color: white;
+    transition: all 0.3s ease;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 40px rgba(37,211,102,0.6);
+}
+
+.scroll-top {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--black);
+    font-size: 1.5em;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+    box-shadow: 0 5px 20px rgba(212,175,55,0.3);
+}
+
+.scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(212,175,55,0.5);
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 1024px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 50px;
+        text-align: center;
+    }
+    
+    .hero-text h2 {
+        font-size: 3em;
+    }
+    
+    .hero-btns {
+        justify-content: center;
+    }
+}
+
 @media (max-width: 768px) {
-    header { padding: 6px 12px; } header h1 { font-size: 1.1em; margin-bottom: 3px; }
-    .dark-toggle-btn { padding: 4px 12px; font-size: 0.75em; } .lang-btn { padding: 3px 10px; font-size: 0.7em; }
-    nav a { padding: 4px 10px; font-size: 0.75em; } section h2 { font-size: 2em; }
-    .projects-grid { grid-template-columns: 1fr; } .contact-info { flex-direction: column; align-items: center; }
+    header {
+        padding: 15px 30px;
+    }
+    
+    nav {
+        display: none;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    section {
+        padding: 60px 30px;
+    }
+    
+    .hero {
+        padding: 100px 30px 60px;
+    }
+    
+    .hero-text h2 {
+        font-size: 2.5em;
+    }
+    
+    .section-title {
+        font-size: 2.5em;
+    }
+    
+    .services-grid,
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
 }
 </style>
 </head>
 <body>
 
+<!-- LOADER -->
 <div id="loader">
-    <div class="loader-spinner"></div>
-    <span data-en="Loading..." data-ar="جاري التحميل..." data-fr="Chargement...">Loading...</span>
+    <img src="logo.png" alt="Kriaa Service" class="loader-logo">
+    <div class="loader-text">KRIAA SERVICE</div>
 </div>
 
-<div class="particles" id="particles"></div>
-
-<div class="overlay" id="overlay" onclick="closeAlert()"></div>
-<div class="custom-alert" id="customAlert">
-    <h3 data-en="🚀 Coming Soon!" data-ar="🚀 قريباً!" data-fr="🚀 Bientôt disponible!">🚀 Coming Soon!</h3>
-    <p data-en="Project link will be available soon..." data-ar="رابط المشروع سيكون متاحاً قريباً..." data-fr="Le lien du projet sera bientôt disponible...">Project link will be available soon...</p>
-    <button onclick="closeAlert()" data-en="OK" data-ar="حسناً" data-fr="D'accord">OK</button>
-</div>
-
-<header>
-    <h1 data-en="✨ Kriaa Service Portfolio ✨" data-ar="✨ ملف قريعة سرفس ✨" data-fr="✨ Portfolio Kriaa Service ✨">✨ Kriaa Service Portfolio ✨</h1>
-    <div class="header-controls">
-        <button class="dark-toggle-btn" onclick="toggleDark()" data-en="🌙 Dark Mode" data-ar="🌙 الوضع الليلي" data-fr="🌙 Mode Sombre">🌙 Dark Mode</button>
+<!-- HEADER -->
+<header id="header">
+    <div class="nav-container">
+        <a href="#" class="logo-header">
+            <img src="logo.png" alt="Kriaa Service Logo" class="logo-img">
+            <div class="logo-text">
+                <h1>Kriaa Service</h1>
+                <span>Web Development</span>
+            </div>
+        </a>
+        
+        <nav id="mainNav">
+            <a href="#about" data-en="About" data-ar="من نحن" data-fr="À propos">About</a>
+            <a href="#services" data-en="Services" data-ar="الخدمات" data-fr="Services">Services</a>
+            <a href="#projects" data-en="Projects" data-ar="المشاريع" data-fr="Projets">Projects</a>
+            <a href="#pricing" data-en="Pricing" data-ar="الأسعار" data-fr="Tarifs">Pricing</a>
+            <a href="#contact" data-en="Contact" data-ar="تواصل" data-fr="Contact">Contact</a>
+        </nav>
+        
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="switchLang('en')">EN</button>
+            <button class="lang-btn" onclick="switchLang('ar')">AR</button>
+            <button class="lang-btn" onclick="switchLang('fr')">FR</button>
+        </div>
+        
+        <button class="mobile-menu-btn">☰</button>
     </div>
-    <div class="language-switcher">
-        <button class="lang-btn active" onclick="switchLanguage('en', event)">English 🇬🇧</button>
-        <button class="lang-btn" onclick="switchLanguage('ar', event)">العربية 🇸🇦</button>
-        <button class="lang-btn" onclick="switchLanguage('fr', event)">Français 🇫🇷</button>
-    </div>
-    <nav>
-        <a href="#about" data-en="About" data-ar="من أنا" data-fr="À propos">About</a>
-        <a href="#services" data-en="Services" data-ar="الخدمات" data-fr="Services">Services</a>
-        <a href="#projects" data-en="Projects" data-ar="المشاريع" data-fr="Projets">Projects</a>
-        <a href="#pricing" data-en="Pricing" data-ar="الأسعار" data-fr="Tarifs">Pricing</a>
-        <a href="#testimonials" data-en="Testimonials" data-ar="آراء العملاء" data-fr="Témoignages">Testimonials</a>
-        <a href="#contact" data-en="Contact" data-ar="تواصل معي" data-fr="Contact">Contact</a>
-    </nav>
 </header>
 
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-text">
+            <h2 data-en="Premium Web Development" data-ar="تطوير ويب فاخر" data-fr="Développement Web Premium">Premium Web Development</h2>
+            <div class="subtitle" data-en="Crafting Digital Excellence" data-ar="نصنع التميز الرقمي" data-fr="Créer l'Excellence Numérique">Crafting Digital Excellence</div>
+            <p data-en="We create powerful, elegant websites and applications that elevate your brand. Every project is crafted with precision, passion, and uncompromising quality."
+               data-ar="نصنع مواقع وتطبيقات قوية وأنيقة ترفع من مستوى علامتك التجارية. كل مشروع مصنوع بدقة وشغف وجودة لا تقبل المساومة."
+               data-fr="Nous créons des sites Web et des applications puissants et élégants qui rehaussent votre marque. Chaque projet est réalisé avec précision, passion et qualité sans compromis.">
+               We create powerful, elegant websites and applications that elevate your brand. Every project is crafted with precision, passion, and uncompromising quality.
+            </p>
+            <div class="hero-btns">
+                <a href="#projects" class="btn-primary" data-en="View Projects" data-ar="المشاريع" data-fr="Voir Projets">View Projects</a>
+                <a href="#contact" class="btn-secondary" data-en="Get in Touch" data-ar="تواصل معنا" data-fr="Contactez-nous">Get in Touch</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="logo.png" alt="Kriaa Service">
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
 <section id="about">
-    <h2 data-en="👨‍💻 About Me" data-ar="👨‍💻 من أنا" data-fr="👨‍💻 À Propos de Moi">👨‍💻 About Me</h2>
-    <p data-en="Hello! I'm a passionate web developer who creates distinctive digital experiences. I use the latest technologies to build professional websites and interactive applications that combine beauty with functionality."
-       data-ar="مرحباً! أنا مطور ويب شغوف بإنشاء تجارب رقمية مميزة. أستخدم أحدث التقنيات لبناء مواقع ويب احترافية وتطبيقات تفاعلية تجمع بين الجمال والأداء الوظيفي."
-       data-fr="Bonjour! Je suis un développeur web passionné qui crée des expériences numériques distinctives. J'utilise les dernières technologies pour créer des sites web professionnels et des applications interactives qui allient beauté et fonctionnalité.">
-       Hello! I'm a passionate web developer who creates distinctive digital experiences. I use the latest technologies to build professional websites and interactive applications that combine beauty with functionality.
-    </p>
-    <div class="skills">
-        <div class="skill">HTML5</div>
-        <div class="skill">CSS3</div>
-        <div class="skill">JavaScript</div>
-        <div class="skill">React</div>
-        <div class="skill">UI/UX</div>
+    <div class="section-header">
+        <div class="section-label" data-en="Who We Are" data-ar="من نحن" data-fr="Qui Sommes-Nous">Who We Are</div>
+        <h2 class="section-title" data-en="About Kriaa Service" data-ar="حول قريعة سرفس" data-fr="À Propos de Kriaa Service">About Kriaa Service</h2>
+    </div>
+    <div class="about-content">
+        <p data-en="A passionate team dedicated to transforming ideas into stunning digital experiences. We combine cutting-edge technology with timeless design principles to create websites that don't just look beautiful — they perform exceptionally."
+           data-ar="فريق شغوف مكرّس لتحويل الأفكار إلى تجارب رقمية مذهلة. نجمع بين التكنولوجيا المتقدمة ومبادئ التصميم الخالدة لإنشاء مواقع لا تبدو جميلة فحسب — بل تؤدي بشكل استثنائي."
+           data-fr="Une équipe passionnée dédiée à transformer les idées en expériences numériques époustouflantes. Nous combinons technologie de pointe et principes de conception intemporels pour créer des sites Web qui ne sont pas seulement beaux — ils performent exceptionnellement.">
+           A passionate team dedicated to transforming ideas into stunning digital experiences. We combine cutting-edge technology with timeless design principles to create websites that don't just look beautiful — they perform exceptionally.
+        </p>
+        <div class="skills-grid">
+            <div class="skill-tag">HTML5</div>
+            <div class="skill-tag">CSS3</div>
+            <div class="skill-tag">JavaScript</div>
+            <div class="skill-tag">React</div>
+            <div class="skill-tag">UI/UX Design</div>
+        </div>
     </div>
 </section>
 
+<!-- SERVICES -->
 <section id="services">
-    <h2 data-en="🔧 Services" data-ar="🔧 الخدمات" data-fr="🔧 Services">🔧 Services</h2>
-    <div class="services">
-        <div class="service" data-en="🌐 Website Design" data-ar="🌐 تصميم المواقع" data-fr="🌐 Conception Web">🌐 Website Design</div>
-        <div class="service" data-en="🛒 Online Stores" data-ar="🛒 المتاجر الإلكترونية" data-fr="🛒 Boutiques en ligne">🛒 Online Stores</div>
-        <div class="service" data-en="📊 Dashboards" data-ar="📊 لوحات التحكم" data-fr="📊 Tableaux de bord">📊 Dashboards</div>
+    <div class="section-header">
+        <div class="section-label" data-en="What We Offer" data-ar="ما نقدمه" data-fr="Ce Que Nous Offrons">What We Offer</div>
+        <h2 class="section-title" data-en="Our Services" data-ar="خدماتنا" data-fr="Nos Services">Our Services</h2>
+    </div>
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="service-icon">🌐</div>
+            <h3 data-en="Website Design" data-ar="تصميم المواقع" data-fr="Conception Web">Website Design</h3>
+            <p data-en="Custom, responsive websites that captivate your audience and drive results."
+               data-ar="مواقع مخصصة ومتجاوبة تأسر جمهورك وتحقق النتائج."
+               data-fr="Sites Web personnalisés et réactifs qui captivent votre public et génèrent des résultats.">
+               Custom, responsive websites that captivate your audience and drive results.
+            </p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">🛒</div>
+            <h3 data-en="E-Commerce Solutions" data-ar="حلول التجارة الإلكترونية" data-fr="Solutions E-Commerce">E-Commerce Solutions</h3>
+            <p data-en="Powerful online stores designed to maximize conversions and sales."
+               data-ar="متاجر إلكترونية قوية مصممة لتحقيق أقصى قدر من التحويلات والمبيعات."
+               data-fr="Boutiques en ligne puissantes conçues pour maximiser les conversions et les ventes.">
+               Powerful online stores designed to maximize conversions and sales.
+            </p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">📊</div>
+            <h3 data-en="Custom Dashboards" data-ar="لوحات تحكم مخصصة" data-fr="Tableaux de Bord">Custom Dashboards</h3>
+            <p data-en="Data visualization and management systems tailored to your business needs."
+               data-ar="أنظمة تصور وإدارة البيانات المصممة خصيصاً لاحتياجات عملك."
+               data-fr="Systèmes de visualisation et de gestion de données adaptés à vos besoins.">
+               Data visualization and management systems tailored to your business needs.
+            </p>
+        </div>
     </div>
 </section>
 
+<!-- PROJECTS -->
 <section id="projects">
-    <h2 data-en="💼 My Projects" data-ar="💼 مشاريعي" data-fr="💼 Mes Projets">💼 My Projects</h2>
+    <div class="section-header">
+        <div class="section-label" data-en="Our Work" data-ar="أعمالنا" data-fr="Notre Travail">Our Work</div>
+        <h2 class="section-title" data-en="Featured Projects" data-ar="المشاريع المميزة" data-fr="Projets Vedettes">Featured Projects</h2>
+    </div>
     <div class="projects-grid">
-
-        <div class="project">
-            <div class="project-icon">💪</div>
-            <h3 data-en="Gym Website" data-ar="موقع صالة رياضية" data-fr="Site Web de Gym">Gym Website</h3>
-            <p data-en="Professional gym website with modern design, membership plans, and interactive features"
-               data-ar="موقع صالة رياضية احترافي بتصميم عصري، خطط العضوية، ومميزات تفاعلية"
-               data-fr="Site web de gym professionnel avec un design moderne, plans d'adhésion et fonctionnalités interactives">
-               Professional gym website with modern design, membership plans, and interactive features
-            </p>
-            <button onclick="window.open('https://chi5444.github.io/world/', '_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir le Projet">View Project</button>
+        <div class="project-card">
+            <div class="project-content">
+                <div class="project-icon">💪</div>
+                <h3 class="project-title" data-en="Gym Website" data-ar="موقع صالة رياضية" data-fr="Site Web de Gym">Gym Website</h3>
+                <p class="project-desc" data-en="A modern fitness center website with membership management and class scheduling features."
+                   data-ar="موقع مركز لياقة بدنية عصري مع إدارة العضوية وجدولة الحصص."
+                   data-fr="Un site Web de centre de fitness moderne avec gestion des adhésions et planification des cours.">
+                   A modern fitness center website with membership management and class scheduling features.
+                </p>
+                <button class="project-btn" onclick="window.open('https://chi5444.github.io/world/', '_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir Projet">View Project</button>
+            </div>
         </div>
-
-        <div class="project">
-            <div class="project-icon">🏃</div>
-            <h3 data-en="Sports Store" data-ar="متجر رياضي" data-fr="Magasin de Sport">Sports Store</h3>
-            <p data-en="E-commerce sports store with product catalog, shopping cart, and secure payment system"
-               data-ar="متجر رياضي إلكتروني مع كتالوج منتجات، سلة تسوق، ونظام دفع آمن"
-               data-fr="Magasin de sport e-commerce avec catalogue de produits, panier d'achat et système de paiement sécurisé">
-               E-commerce sports store with product catalog, shopping cart, and secure payment system
-            </p>
-            <button onclick="window.open('https://chi5444.github.io/Shop/', '_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir le Projet">View Project</button>
+        
+        <div class="project-card">
+            <div class="project-content">
+                <div class="project-icon">🏃</div>
+                <h3 class="project-title" data-en="Sports Store" data-ar="متجر رياضي" data-fr="Magasin de Sport">Sports Store</h3>
+                <p class="project-desc" data-en="Complete e-commerce solution with cart, checkout, and inventory management."
+                   data-ar="حل تجارة إلكترونية متكامل مع السلة والدفع وإدارة المخزون."
+                   data-fr="Solution e-commerce complète avec panier, paiement et gestion des stocks.">
+                   Complete e-commerce solution with cart, checkout, and inventory management.
+                </p>
+                <button class="project-btn" onclick="window.open('https://chi5444.github.io/Shop/', '_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir Projet">View Project</button>
+            </div>
         </div>
-
-        <div class="project">
-            <div class="project-icon">🚀</div>
-            <h3 data-en="Pro Dashboard" data-ar="لوحة تحكم احترافية" data-fr="Tableau de Bord Pro">Pro Dashboard <span class="live-badge" data-en="LIVE" data-ar="مباشر" data-fr="LIVE">LIVE</span></h3>
-            <p data-en="Dark professional dashboard with animated counters, interactive charts, team performance tracking, and a full CMS system"
-               data-ar="لوحة تحكم داكنة احترافية مع عدادات متحركة، رسوم بيانية تفاعلية، تتبع أداء الفرق، ونظام إدارة محتوى متكامل"
-               data-fr="Tableau de bord sombre professionnel avec compteurs animés, graphiques interactifs, suivi des performances d'équipe et système CMS complet">
-               Dark professional dashboard with animated counters, interactive charts, team performance tracking, and a full CMS system
-            </p>
-            <button onclick="window.open('https://chi5444.github.io/dashboard/', '_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir le Projet">View Project</button>
+        
+        <div class="project-card">
+            <div class="project-content">
+                <div class="project-icon">🚀</div>
+                <h3 class="project-title">Pro Dashboard <span class="live-badge" data-en="LIVE" data-ar="مباشر" data-fr="LIVE">LIVE</span></h3>
+                <p class="project-desc" data-en="Real-time analytics dashboard with interactive charts and content management."
+                   data-ar="لوحة تحكم تحليلية فورية مع رسوم بيانية تفاعلية وإدارة محتوى."
+                   data-fr="Tableau de bord analytique en temps réel avec graphiques interactifs et gestion de contenu.">
+                   Real-time analytics dashboard with interactive charts and content management.
+                </p>
+                <button class="project-btn" onclick="window.open('https://chi5444.github.io/dashboard/', '_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir Projet">View Project</button>
+            </div>
         </div>
-
-        <div class="project">
-            <div class="project-icon">🎮</div>
-            <h3 data-en="Interactive Quiz App" data-ar="لعبة الأسئلة التفاعلية" data-fr="Application Quiz Interactif">Interactive Quiz App</h3>
-            <p data-en="Fun multilingual quiz game with timer, score tracking, and instant feedback — built with pure JavaScript"
-               data-ar="لعبة أسئلة ممتعة متعددة اللغات مع مؤقت وتتبع للنقاط وردود فعل فورية — مبنية بـ JavaScript خالص"
-               data-fr="Jeu quiz amusant multilingue avec minuteur, suivi des scores et retours instantanés — développé en JavaScript pur">
-               Fun multilingual quiz game with timer, score tracking, and instant feedback — built with pure JavaScript
-            </p>
-            <button onclick="window.open('https://chi5444.github.io/jeux/', '_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir le Projet">View Project</button>
+        
+        <div class="project-card">
+            <div class="project-content">
+                <div class="project-icon">🎮</div>
+                <h3 class="project-title" data-en="Interactive Quiz" data-ar="لعبة أسئلة تفاعلية" data-fr="Quiz Interactif">Interactive Quiz</h3>
+                <p class="project-desc" data-en="Engaging quiz application with timer, scoring, and multilingual support."
+                   data-ar="تطبيق أسئلة جذاب مع مؤقت ونظام نقاط ودعم متعدد اللغات."
+                   data-fr="Application quiz engageante avec minuteur, notation et support multilingue.">
+                   Engaging quiz application with timer, scoring, and multilingual support.
+                </p>
+                <button class="project-btn" onclick="window.open('https://chi5444.github.io/jeux/', '_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir Projet">View Project</button>
+            </div>
         </div>
-
     </div>
 </section>
 
+<!-- PRICING -->
 <section id="pricing">
-    <h2 data-en="💰 Pricing" data-ar="💰 الأسعار" data-fr="💰 Tarifs">💰 Pricing</h2>
-    <div class="pricing-item">
-        <span data-en="Basic Website" data-ar="موقع أساسي" data-fr="Site Web de Base">Basic Website</span>
-        <span class="price">300 DT</span>
+    <div class="section-header">
+        <div class="section-label" data-en="Investment" data-ar="الأسعار" data-fr="Investissement">Investment</div>
+        <h2 class="section-title" data-en="Pricing Plans" data-ar="خطط الأسعار" data-fr="Plans Tarifaires">Pricing Plans</h2>
     </div>
-    <div class="pricing-item">
-        <span data-en="Store Website" data-ar="موقع متجر" data-fr="Site E-commerce">Store Website</span>
-        <span class="price">600 DT</span>
+    <div class="pricing-grid">
+        <div class="pricing-card">
+            <h3 data-en="Basic Website" data-ar="موقع أساسي" data-fr="Site Web de Base">Basic Website</h3>
+            <div class="price">300 DT</div>
+            <ul>
+                <li data-en="✓ Responsive Design" data-ar="✓ تصميم متجاوب" data-fr="✓ Design Responsive">✓ Responsive Design</li>
+                <li data-en="✓ Up to 5 Pages" data-ar="✓ حتى 5 صفحات" data-fr="✓ Jusqu'à 5 Pages">✓ Up to 5 Pages</li>
+                <li data-en="✓ Contact Form" data-ar="✓ نموذج تواصل" data-fr="✓ Formulaire Contact">✓ Contact Form</li>
+                <li data-en="✓ Basic SEO" data-ar="✓ تحسين محركات البحث الأساسي" data-fr="✓ SEO Basique">✓ Basic SEO</li>
+            </ul>
+        </div>
+        
+        <div class="pricing-card">
+            <h3 data-en="E-Commerce Store" data-ar="متجر إلكتروني" data-fr="Boutique en Ligne">E-Commerce Store</h3>
+            <div class="price">600 DT</div>
+            <ul>
+                <li data-en="✓ Everything in Basic" data-ar="✓ كل ما في الباقة الأساسية" data-fr="✓ Tout en Base">✓ Everything in Basic</li>
+                <li data-en="✓ Shopping Cart" data-ar="✓ سلة تسوق" data-fr="✓ Panier d'Achat">✓ Shopping Cart</li>
+                <li data-en="✓ Payment Integration" data-ar="✓ تكامل الدفع" data-fr="✓ Intégration Paiement">✓ Payment Integration</li>
+                <li data-en="✓ Product Management" data-ar="✓ إدارة المنتجات" data-fr="✓ Gestion Produits">✓ Product Management</li>
+            </ul>
+        </div>
     </div>
 </section>
 
+<!-- TESTIMONIALS -->
 <section id="testimonials">
-    <h2 data-en="⭐ Testimonials" data-ar="⭐ آراء العملاء" data-fr="⭐ Témoignages">⭐ Testimonials</h2>
-    <div class="testimonial" id="testimonial">"Very professional developer 👍"</div>
-</section>
-
-<section id="contact">
-    <h2 data-en="📬 Contact Me" data-ar="📬 تواصل معي" data-fr="📬 Contactez-moi">📬 Contact Me</h2>
-    <p data-en="WhatsApp: +216 96 672 771" data-ar="واتساب: +216 96 672 771" data-fr="WhatsApp: +216 96 672 771" style="text-align:center;font-size:1.2em;margin-bottom:20px;color:white;">WhatsApp: +216 96 672 771</p>
-    <div class="contact-info">
-        <div class="contact-item"><a href="mailto:servicekriaa@gmail.com"><span data-en="📧 servicekriaa@gmail.com" data-ar="📧 servicekriaa@gmail.com" data-fr="📧 servicekriaa@gmail.com">📧 servicekriaa@gmail.com</span></a></div>
-        <div class="contact-item"><a href="https://wa.me/21696672771" target="_blank"><span data-en="💬 WhatsApp: +216 96 672 771" data-ar="💬 واتساب: +216 96 672 771" data-fr="💬 WhatsApp: +216 96 672 771">💬 WhatsApp: +216 96 672 771</span></a></div>
+    <div class="section-header">
+        <div class="section-label" data-en="Reviews" data-ar="آراء العملاء" data-fr="Avis">Reviews</div>
+        <h2 class="section-title" data-en="Client Testimonials" data-ar="شهادات العملاء" data-fr="Témoignages Clients">Client Testimonials</h2>
+    </div>
+    <div class="testimonial-slider">
+        <div class="testimonial" id="testimonial">"Very professional developer 👍"</div>
     </div>
 </section>
 
-<a class="whatsapp" href="https://wa.me/21696672771" data-en="💬 WhatsApp" data-ar="💬 واتساب" data-fr="💬 WhatsApp">💬 WhatsApp</a>
-<div class="top" onclick="scrollToTop()">↑</div>
+<!-- CONTACT -->
+<section id="contact">
+    <div class="section-header">
+        <div class="section-label" data-en="Get in Touch" data-ar="تواصل معنا" data-fr="Contactez-nous">Get in Touch</div>
+        <h2 class="section-title" data-en="Contact Us" data-ar="تواصل معنا" data-fr="Contactez-nous">Contact Us</h2>
+    </div>
+    <div class="contact-content">
+        <p style="font-size:1.2em;color:var(--light-gray);margin-bottom:40px;" 
+           data-en="Ready to start your project? Let's create something extraordinary together."
+           data-ar="جاهز لبدء مشروعك؟ دعنا نصنع شيئاً استثنائياً معاً."
+           data-fr="Prêt à démarrer votre projet ? Créons quelque chose d'extraordinaire ensemble.">
+           Ready to start your project? Let's create something extraordinary together.
+        </p>
+        <div class="contact-info">
+            <a href="mailto:servicekriaa@gmail.com" class="contact-card">
+                <div class="contact-icon">📧</div>
+                <div class="contact-text">
+                    <div class="contact-label" data-en="Email" data-ar="البريد الإلكتروني" data-fr="Email">Email</div>
+                    <div class="contact-value">servicekriaa@gmail.com</div>
+                </div>
+            </a>
+            <a href="https://wa.me/21696672771" target="_blank" class="contact-card">
+                <div class="contact-icon">💬</div>
+                <div class="contact-text">
+                    <div class="contact-label" data-en="WhatsApp" data-ar="واتساب" data-fr="WhatsApp">WhatsApp</div>
+                    <div class="contact-value">+216 96 672 771</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-window.onload = () => { document.getElementById("loader").style.display = "none"; };
+<!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+        <img src="logo.png" alt="Kriaa Service" class="footer-logo">
+        <div class="copyright">© 2026 Kriaa Service. All rights reserved.</div>
+        <div class="footer-social">
+            <a href="https://wa.me/21696672771" class="social-icon" target="_blank">💬</a>
+            <a href="mailto:servicekriaa@gmail.com" class="social-icon">📧</a>
+        </div>
+    </div>
+</footer>
 
-function toggleDark() {
-    document.body.classList.toggle("dark");
-    localStorage.setItem("dark", document.body.classList.contains("dark"));
+<!-- FLOATING BUTTONS -->
+<a href="https://wa.me/21696672771" target="_blank" class="whatsapp-float">💬</a>
+<div class="scroll-top" onclick="scrollToTop()">↑</div>
+
+<script>
+// ═══ LOADER ═══
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+    }, 1500);
+});
+
+// ═══ HEADER SCROLL ═══
+window.addEventListener('scroll', () => {
+    const header = document.getElementById('header');
+    const scrollTop = document.getElementById('scrollTop');
+    
+    if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+        document.querySelector('.scroll-top').classList.add('visible');
+    } else {
+        header.classList.remove('scrolled');
+        document.querySelector('.scroll-top').classList.remove('visible');
+    }
+});
+
+// ═══ SMOOTH SCROLL ═══
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+});
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-if (localStorage.getItem("dark") === "true") document.body.classList.add("dark");
 
+// ═══ TESTIMONIALS ═══
+const testimonials = [
+    { en: "Very professional developer 👍", ar: "مطور محترف جداً 👍", fr: "Développeur très professionnel 👍" },
+    { en: "Outstanding quality and service 🌟", ar: "جودة وخدمة متميزة 🌟", fr: "Qualité et service exceptionnels 🌟" },
+    { en: "Exceeded all expectations 💯", ar: "تجاوز كل التوقعات 💯", fr: "Dépassé toutes les attentes 💯" }
+];
+
+let testimonialIndex = 0;
 let currentLang = 'en';
 
-function switchLanguage(lang, event) {
-    currentLang = lang;
-    const html = document.documentElement;
-    if (lang === 'ar') { html.setAttribute('dir', 'rtl'); html.setAttribute('lang', 'ar'); }
-    else { html.setAttribute('dir', 'ltr'); html.setAttribute('lang', lang); }
-    document.querySelectorAll('[data-en]').forEach(el => {
-        if (el.hasAttribute(`data-${lang}`)) el.textContent = el.getAttribute(`data-${lang}`);
-    });
-    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-    if (event && event.target) event.target.classList.add('active');
-    localStorage.setItem('preferredLanguage', lang);
+function updateTestimonial() {
+    const t = testimonials[testimonialIndex];
+    document.getElementById('testimonial').textContent = t[currentLang] || t.en;
 }
 
-const savedLang = localStorage.getItem('preferredLanguage');
+setInterval(() => {
+    testimonialIndex = (testimonialIndex + 1) % testimonials.length;
+    updateTestimonial();
+}, 4000);
+
+// ═══ LANGUAGE SWITCHER ═══
+function switchLang(lang) {
+    currentLang = lang;
+    const html = document.documentElement;
+    
+    if (lang === 'ar') {
+        html.setAttribute('dir', 'rtl');
+        html.setAttribute('lang', 'ar');
+    } else {
+        html.setAttribute('dir', 'ltr');
+        html.setAttribute('lang', lang);
+    }
+    
+    document.querySelectorAll('[data-en]').forEach(el => {
+        if (el.hasAttribute(`data-${lang}`)) {
+            el.textContent = el.getAttribute(`data-${lang}`);
+        }
+    });
+    
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    updateTestimonial();
+    localStorage.setItem('preferredLang', lang);
+}
+
+// ═══ RESTORE SAVED LANGUAGE ═══
+const savedLang = localStorage.getItem('preferredLang');
 if (savedLang && savedLang !== 'en') {
     const langBtn = document.querySelector(`.lang-btn[onclick*="${savedLang}"]`);
     if (langBtn) setTimeout(() => langBtn.click(), 100);
 }
 
-function scrollToTop() { window.scrollTo({top: 0, behavior: 'smooth'}); }
-
-const testimonials = [
-    { en: "Very professional developer 👍", ar: "مطور محترف جداً 👍", fr: "Développeur très professionnel 👍" },
-    { en: "Fast delivery and great design 🔥", ar: "تسليم سريع وتصميم رائع 🔥", fr: "Livraison rapide et excellent design 🔥" },
-    { en: "Best website service 💯", ar: "أفضل خدمة مواقع 💯", fr: "Meilleur service de site web 💯" }
-];
-let testimonialIndex = 0;
-function updateTestimonial() {
-    const t = testimonials[testimonialIndex];
-    document.getElementById("testimonial").textContent = t[currentLang] || t.en;
-}
-setInterval(() => { testimonialIndex = (testimonialIndex + 1) % testimonials.length; updateTestimonial(); }, 3000);
-
-function createParticles() {
-    const container = document.getElementById('particles');
-    for (let i = 0; i < 30; i++) {
-        const p = document.createElement('div');
-        p.className = 'particle';
-        p.style.width = Math.random() * 5 + 2 + 'px';
-        p.style.height = p.style.width;
-        p.style.left = Math.random() * 100 + '%';
-        p.style.top = Math.random() * 100 + '%';
-        p.style.animationDelay = Math.random() * 15 + 's';
-        p.style.animationDuration = Math.random() * 10 + 10 + 's';
-        container.appendChild(p);
-    }
-}
-
-function showCustomAlert() {
-    document.getElementById('customAlert').classList.add('show');
-    document.getElementById('overlay').classList.add('show');
-}
-function closeAlert() {
-    document.getElementById('customAlert').classList.remove('show');
-    document.getElementById('overlay').classList.remove('show');
-}
-
-document.querySelectorAll('nav a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-});
-
+// ═══ SCROLL ANIMATIONS ═══
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.style.animation = 'fadeInUp 1s ease-out forwards';
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
     });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-document.querySelectorAll('section').forEach(s => observer.observe(s));
+}, { threshold: 0.1 });
 
-createParticles();
+document.querySelectorAll('.service-card, .project-card, .pricing-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'all 0.6s ease-out';
+    observer.observe(el);
+});
 </script>
 </body>
 </html>
