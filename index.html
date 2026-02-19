@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
@@ -183,6 +184,46 @@ nav a:hover::after { width: 100%; }
     border: none;
     color: var(--gold);
     font-size: 1.5em;
+    cursor: pointer;
+    padding: 5px;
+}
+.mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10,10,10,0.98);
+    z-index: 9999;
+    padding: 80px 30px 30px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+.mobile-nav.active {
+    opacity: 1;
+    visibility: visible;
+}
+.mobile-nav nav {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    text-align: center;
+}
+.mobile-nav nav a {
+    font-size: 1.3em;
+    padding: 15px;
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+}
+.mobile-nav .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background: none;
+    border: none;
+    color: var(--gold);
+    font-size: 2em;
     cursor: pointer;
     padding: 5px;
 }
@@ -741,6 +782,7 @@ footer {
     .logo-text span { font-size: 0.55em; }
     nav { display: none; }
     .mobile-menu-btn { display: block; }
+    .mobile-nav { display: block; }
     .lang-switcher { order: 3; width: 100%; justify-content: center; }
     .lang-btn { padding: 4px 10px; font-size: 0.75em; }
     .hero { padding: 120px 20px 60px; }
@@ -803,9 +845,19 @@ footer {
                 <button class="lang-btn" onclick="switchLang('fr')">FR</button>
             </div>
         </div>
-        <button class="mobile-menu-btn">☰</button>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
     </div>
 </header>
+<div class="mobile-nav" id="mobileNav">
+    <button class="close-btn" onclick="toggleMobileMenu()">✕</button>
+    <nav>
+        <a href="#about" onclick="toggleMobileMenu()" data-en="About" data-ar="من نحن" data-fr="À propos">About</a>
+        <a href="#services" onclick="toggleMobileMenu()" data-en="Services" data-ar="الخدمات" data-fr="Services">Services</a>
+        <a href="#projects" onclick="toggleMobileMenu()" data-en="Projects" data-ar="المشاريع" data-fr="Projets">Projects</a>
+        <a href="#pricing" onclick="toggleMobileMenu()" data-en="Pricing" data-ar="الأسعار" data-fr="Tarifs">Pricing</a>
+        <a href="#contact" onclick="toggleMobileMenu()" data-en="Contact" data-ar="تواصل" data-fr="Contact">Contact</a>
+    </nav>
+</div>
 <section class="hero">
     <div class="hero-content">
         <div class="hero-text">
@@ -987,11 +1039,11 @@ footer {
            Ready to start your project? Let's create something extraordinary together.
         </p>
         <div class="contact-info">
-            <a href="mailto:servicekriaa@gmail.com" class="contact-card">
+            <a href="/cdn-cgi/l/email-protection#a7d4c2d5d1cec4c2ccd5cec6c6e7c0cac6cecb89c4c8ca" class="contact-card">
                 <div class="contact-icon">📧</div>
                 <div class="contact-text">
                     <div class="contact-label" data-en="Email" data-ar="البريد الإلكتروني" data-fr="Email">Email</div>
-                    <div class="contact-value">servicekriaa@gmail.com</div>
+                    <div class="contact-value"><span class="__cf_email__" data-cfemail="bfccdacdc9d6dcdad4cdd6dedeffd8d2ded6d391dcd0d2">[email&#160;protected]</span></div>
                 </div>
             </a>
             <a href="https://wa.me/21696672771" target="_blank" class="contact-card">
@@ -1010,13 +1062,13 @@ footer {
         <div class="copyright">© 2026 Kriaa Service. All rights reserved.</div>
         <div class="footer-social">
             <a href="https://wa.me/21696672771" class="social-icon" target="_blank">💬</a>
-            <a href="mailto:servicekriaa@gmail.com" class="social-icon">📧</a>
+            <a href="/cdn-cgi/l/email-protection#cdbea8bfbba4aea8a6bfa4acac8daaa0aca4a1e3aea2a0" class="social-icon">📧</a>
         </div>
     </div>
 </footer>
 <a href="https://wa.me/21696672771" target="_blank" class="whatsapp-float">💬</a>
 <div class="scroll-top" onclick="scrollToTop()">↑</div>
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 window.addEventListener('load', () => {
     setTimeout(() => {
         document.getElementById('loader').classList.add('hidden');
@@ -1044,6 +1096,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function toggleMobileMenu() {
+    const mobileNav = document.getElementById('mobileNav');
+    mobileNav.classList.toggle('active');
+    document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
 }
 const testimonials = [
     { en: "Very professional developer 👍", ar: "مطور محترف جداً 👍", fr: "Développeur très professionnel 👍" },
