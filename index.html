@@ -108,52 +108,52 @@ section { padding: 80px 30px; position: relative; z-index: 1; }
 /* ====== PRICING ====== */
 .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: 22px; max-width: 1300px; margin: 0 auto; }
 .pricing-divider { grid-column: 1 / -1; display: flex; align-items: center; gap: 18px; margin: 18px 0 6px; }
-.pricing-divider::before, .pricing-divider::after { content: ‘’; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent); }
-.pricing-divider span { color: var(–gold); font-size: 0.8em; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; white-space: nowrap; padding: 6px 18px; border: 1px solid rgba(212,175,55,0.22); border-radius: 30px; background: rgba(212,175,55,0.06); }
-.pricing-card { background: linear-gradient(135deg, var(–dark-gray), var(–gray)); padding: 36px 26px 28px; border-radius: 20px; border: 1px solid rgba(212,175,55,0.2); text-align: center; transition: all 0.4s ease; position: relative; display: flex; flex-direction: column; align-items: center; }
-.pricing-card::before { content: ‘’; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(–gold), transparent); }
+.pricing-divider::before, .pricing-divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent); }
+.pricing-divider span { color: var(--gold); font-size: 0.8em; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; white-space: nowrap; padding: 6px 18px; border: 1px solid rgba(212,175,55,0.22); border-radius: 30px; background: rgba(212,175,55,0.06); }
+.pricing-card { background: linear-gradient(135deg, var(--dark-gray), var(--gray)); padding: 36px 26px 28px; border-radius: 20px; border: 1px solid rgba(212,175,55,0.2); text-align: center; transition: all 0.4s ease; position: relative; display: flex; flex-direction: column; align-items: center; }
+.pricing-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
 .pricing-card:hover { transform: translateY(-10px); border-color: rgba(212,175,55,0.4); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
-.pricing-card h3 { font-family: ‘Playfair Display’, serif; font-size: 1.55em; color: var(–cream); margin-bottom: 12px; }
-.price { font-family: ‘Playfair Display’, serif; font-size: 2.4em; font-weight: 700; color: var(–gold); margin: 8px 0; }
+.pricing-card h3 { font-family: 'Playfair Display', serif; font-size: 1.55em; color: var(--cream); margin-bottom: 12px; }
+.price { font-family: 'Playfair Display', serif; font-size: 2.4em; font-weight: 700; color: var(--gold); margin: 8px 0; }
 .pricing-card ul { list-style: none; margin: 18px 0; text-align: left; width: 100%; }
-.pricing-card li { color: var(–light-gray); padding: 8px 0; border-bottom: 1px solid rgba(212,175,55,0.1); font-size: 0.94em; }
+.pricing-card li { color: var(--light-gray); padding: 8px 0; border-bottom: 1px solid rgba(212,175,55,0.1); font-size: 0.94em; }
 .pricing-card li:last-child { border-bottom: none; }
-.mobile-pricing-label { font-size: 0.72em; font-weight: 700; color: var(–gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; opacity: 0.75; }
-.featured-badge { display: inline-block; background: linear-gradient(135deg, var(–gold), var(–gold-light)); color: var(–black); font-size: 0.75em; font-weight: 800; padding: 4px 16px; border-radius: 20px; margin-bottom: 8px; letter-spacing: 1px; animation: pulseBadge 2.5s ease-in-out infinite; }
+.mobile-pricing-label { font-size: 0.72em; font-weight: 700; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; opacity: 0.75; }
+.featured-badge { display: inline-block; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--black); font-size: 0.75em; font-weight: 800; padding: 4px 16px; border-radius: 20px; margin-bottom: 8px; letter-spacing: 1px; animation: pulseBadge 2.5s ease-in-out infinite; }
 .mobile-card { background: linear-gradient(135deg, #181806, #231e05) !important; border-color: rgba(212,175,55,0.28) !important; }
 .mobile-card-featured { background: linear-gradient(135deg, #1e1b04, #2b2505) !important; border-color: rgba(212,175,55,0.5) !important; transform: scale(1.025); box-shadow: 0 10px 40px rgba(212,175,55,0.12); }
 .mobile-card-featured:hover { transform: scale(1.025) translateY(-10px) !important; }
 .pricing-cta { margin-top: auto; padding-top: 16px; }
 
 /* ====== TESTIMONIALS ====== */
-#testimonials { background: linear-gradient(135deg, var(–dark-gray), var(–gray)); }
+#testimonials { background: linear-gradient(135deg, var(--dark-gray), var(--gray)); }
 .testimonial-slider { max-width: 900px; margin: 0 auto; text-align: center; }
-.testimonial { font-family: ‘Playfair Display’, serif; font-size: 1.6em; font-style: italic; color: var(–cream); line-height: 1.6; margin-bottom: 25px; animation: fadeIn 0.6s ease-out; }
+.testimonial { font-family: 'Playfair Display', serif; font-size: 1.6em; font-style: italic; color: var(--cream); line-height: 1.6; margin-bottom: 25px; animation: fadeIn 0.6s ease-out; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
 /* ====== CONTACT ====== */
 .contact-content { max-width: 800px; margin: 0 auto; text-align: center; }
 .contact-info { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; margin-top: 40px; }
-.contact-card { background: linear-gradient(135deg, var(–dark-gray), var(–gray)); padding: 25px 35px; border-radius: 20px; border: 1px solid rgba(212,175,55,0.2); transition: all 0.3s ease; text-decoration: none; color: var(–cream); display: flex; align-items: center; gap: 12px; }
+.contact-card { background: linear-gradient(135deg, var(--dark-gray), var(--gray)); padding: 25px 35px; border-radius: 20px; border: 1px solid rgba(212,175,55,0.2); transition: all 0.3s ease; text-decoration: none; color: var(--cream); display: flex; align-items: center; gap: 12px; }
 .contact-card:hover { transform: translateY(-5px); border-color: rgba(212,175,55,0.5); box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
-.contact-icon { font-size: 1.8em; color: var(–gold); }
+.contact-icon { font-size: 1.8em; color: var(--gold); }
 .contact-text { text-align: left; }
-.contact-label { font-size: 0.8em; color: var(–light-gray); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-.contact-value { font-size: 1em; font-weight: 600; color: var(–cream); direction: ltr; text-align: left; }
-html[dir=“rtl”] .contact-value { text-align: right; }
-footer { background: var(–black); padding: 35px 30px; border-top: 1px solid rgba(212,175,55,0.1); }
+.contact-label { font-size: 0.8em; color: var(--light-gray); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.contact-value { font-size: 1em; font-weight: 600; color: var(--cream); direction: ltr; text-align: left; }
+html[dir="rtl"] .contact-value { text-align: right; }
+footer { background: var(--black); padding: 35px 30px; border-top: 1px solid rgba(212,175,55,0.1); }
 .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
 .footer-logo-wrap { display: flex; align-items: center; gap: 12px; }
 .footer-logo-img { width: 35px; height: 35px; object-fit: contain; filter: drop-shadow(0 5px 15px rgba(212,175,55,0.3)); }
-.footer-logo-name { font-family: ‘Playfair Display’, serif; color: var(–gold); font-size: 1.1em; letter-spacing: 2px; }
-.copyright { color: var(–light-gray); font-size: 0.9em; }
+.footer-logo-name { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.1em; letter-spacing: 2px; }
+.copyright { color: var(--light-gray); font-size: 0.9em; }
 .footer-social { display: flex; gap: 15px; }
-.social-icon { color: var(–gold); font-size: 1.3em; text-decoration: none; transition: all 0.3s ease; }
+.social-icon { color: var(--gold); font-size: 1.3em; text-decoration: none; transition: all 0.3s ease; }
 .social-icon:hover { transform: translateY(-3px); filter: drop-shadow(0 5px 15px rgba(212,175,55,0.5)); }
 .whatsapp-float { position: fixed; bottom: 25px; right: 25px; background: #25D366; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 30px rgba(37,211,102,0.4); z-index: 999; text-decoration: none; font-size: 1.6em; color: white; transition: all 0.3s ease; animation: bounce 2s infinite; }
 @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 8px 40px rgba(37,211,102,0.6); }
-.scroll-top { position: fixed; bottom: 25px; left: 25px; background: linear-gradient(135deg, var(–gold), var(–gold-light)); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(–black); font-size: 1.3em; cursor: pointer; opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 999; box-shadow: 0 5px 20px rgba(212,175,55,0.3); }
+.scroll-top { position: fixed; bottom: 25px; left: 25px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--black); font-size: 1.3em; cursor: pointer; opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 999; box-shadow: 0 5px 20px rgba(212,175,55,0.3); }
 .scroll-top.visible { opacity: 1; visibility: visible; }
 .scroll-top:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(212,175,55,0.5); }
 @media (max-width: 1024px) { .hero-content { grid-template-columns: 1fr; gap: 40px; text-align: center; } .hero-text h2 { font-size: 2.8em; } .hero-btns { justify-content: center; } }
@@ -349,72 +349,86 @@ section { padding: 60px 20px; }
             </div>
         </div>
 
-    <div class="project-card">
-        <div class="project-content">
-            <div class="project-icon">👗</div>
-            <h3 class="project-title" data-en="Women's Fashion Store" data-ar="متجر ملابس نسائية" data-fr="Boutique Mode Femme">Women's Fashion Store</h3>
-            <p class="project-desc" data-en="Elegant e-commerce platform for women's clothing with beautiful UI."
-               data-ar="منصة تجارة إلكترونية أنيقة للملابس النسائية بواجهة جميلة."
-               data-fr="Plateforme e-commerce élégante pour vêtements féminins.">
-               Elegant e-commerce platform for women's clothing with beautiful UI.
-            </p>
-            <button class="project-btn" onclick="window.open('https://kriaaservice.github.io/Moynette/','_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir Projet">View Project</button>
+        <div class="project-card">
+            <div class="project-content">
+                <div class="project-icon">👗</div>
+                <h3 class="project-title" data-en="Women's Fashion Store" data-ar="متجر ملابس نسائية" data-fr="Boutique Mode Femme">Women's Fashion Store</h3>
+                <p class="project-desc" data-en="Elegant e-commerce platform for women's clothing with beautiful UI."
+                   data-ar="منصة تجارة إلكترونية أنيقة للملابس النسائية بواجهة جميلة."
+                   data-fr="Plateforme e-commerce élégante pour vêtements féminins.">
+                   Elegant e-commerce platform for women's clothing with beautiful UI.
+                </p>
+                <button class="project-btn" onclick="window.open('https://kriaaservice.github.io/Moynette/','_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir Projet">View Project</button>
+            </div>
         </div>
-    </div>
-    
-    <div class="project-card">
-        <div class="project-content">
-            <div class="project-icon">🛒</div>
-            <h3 class="project-title" data-en="Products Website" data-ar="موقع منتجات" data-fr="Site de Produits">Products Website</h3>
-            <p class="project-desc" data-en="Modern online products showcase with shopping features."
-               data-ar="عرض منتجات إلكتروني عصري مع ميزات التسوق."
-               data-fr="Vitrine de produits en ligne moderne avec fonctionnalités.">
-               Modern online products showcase with shopping features.
-            </p>
-            <button class="project-btn" onclick="window.open('https://kriaaservice.github.io/cosumed/','_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir Projet">View Project</button>
-        </div>
-    </div>
-    
-    <div class="project-card">
-        <div class="project-content">
-            <div class="project-icon">🚀</div>
-            <h3 class="project-title">Pro Dashboard <span class="live-badge" data-en="LIVE" data-ar="مباشر" data-fr="LIVE">LIVE</span></h3>
-            <p class="project-desc" data-en="Real-time analytics dashboard with interactive charts."
-               data-ar="لوحة تحكم تحليلية فورية مع رسوم بيانية تفاعلية."
-               data-fr="Tableau de bord analytique en temps réel.">
-               Real-time analytics dashboard with interactive charts.
-            </p>
-            <button class="project-btn" onclick="window.open('https://chi5444.github.io/dashboard/','_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir Projet">View Project</button>
-        </div>
-    </div>
-    
-    <div class="project-card">
-        <div class="project-content">
-            <div class="project-icon">💪</div>
-            <h3 class="project-title" data-en="Fitness Center" data-ar="موقع صالة رياضية" data-fr="Centre de Fitness">Fitness Center</h3>
-            <p class="project-desc" data-en="Complete gym website with membership and class scheduling."
-               data-ar="موقع صالة رياضية كامل مع العضوية وجدولة الحصص."
-               data-fr="Site web de gym complet avec adhésions et planning.">
-               Complete gym website with membership and class scheduling.
-            </p>
-            <button class="project-btn" onclick="window.open('https://chi5444.github.io/world/','_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir Projet">View Project</button>
-        </div>
-    </div>
-    
-    <div class="project-card">
-        <div class="project-content">
-            <div class="project-icon">🎮</div>
-            <h3 class="project-title" data-en="Interactive Quiz" data-ar="لعبة أسئلة تفاعلية" data-fr="Quiz Interactif">Interactive Quiz</h3>
-            <p class="project-desc" data-en="Engaging quiz application with timer and scoring system."
-               data-ar="تطبيق أسئلة جذاب مع مؤقت ونظام نقاط."
-               data-fr="Application quiz engageante avec minuteur.">
-               Engaging quiz application with timer and scoring system.
-            </p>
-            <button class="project-btn" onclick="window.open('https://chi5444.github.io/jeux/','_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir Projet">View Project</button>
-        </div>
-    </div>
-</div>
 
+        <div class="project-card">
+            <div class="project-content">
+                <div class="project-icon">🛒</div>
+                <h3 class="project-title" data-en="Products Website" data-ar="موقع منتجات" data-fr="Site de Produits">Products Website</h3>
+                <p class="project-desc" data-en="Modern online products showcase with shopping features."
+                   data-ar="عرض منتجات إلكتروني عصري مع ميزات التسوق."
+                   data-fr="Vitrine de produits en ligne moderne avec fonctionnalités.">
+                   Modern online products showcase with shopping features.
+                </p>
+                <button class="project-btn" onclick="window.open('https://kriaaservice.github.io/cosumed/','_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir Projet">View Project</button>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-content">
+                <div class="project-icon">🚀</div>
+                <h3 class="project-title">Pro Dashboard <span class="live-badge" data-en="LIVE" data-ar="مباشر" data-fr="LIVE">LIVE</span></h3>
+                <p class="project-desc" data-en="Real-time analytics dashboard with interactive charts."
+                   data-ar="لوحة تحكم تحليلية فورية مع رسوم بيانية تفاعلية."
+                   data-fr="Tableau de bord analytique en temps réel.">
+                   Real-time analytics dashboard with interactive charts.
+                </p>
+                <button class="project-btn" onclick="window.open('https://chi5444.github.io/dashboard/','_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir Projet">View Project</button>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-content">
+                <div class="project-icon">💪</div>
+                <h3 class="project-title" data-en="Fitness Center" data-ar="موقع صالة رياضية" data-fr="Centre de Fitness">Fitness Center</h3>
+                <p class="project-desc" data-en="Complete gym website with membership and class scheduling."
+                   data-ar="موقع صالة رياضية كامل مع العضوية وجدولة الحصص."
+                   data-fr="Site web de gym complet avec adhésions et planning.">
+                   Complete gym website with membership and class scheduling.
+                </p>
+                <button class="project-btn" onclick="window.open('https://chi5444.github.io/world/','_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir Projet">View Project</button>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-content">
+                <div class="project-icon">🎮</div>
+                <h3 class="project-title" data-en="Interactive Quiz" data-ar="لعبة أسئلة تفاعلية" data-fr="Quiz Interactif">Interactive Quiz</h3>
+                <p class="project-desc" data-en="Engaging quiz application with timer and scoring system."
+                   data-ar="تطبيق أسئلة جذاب مع مؤقت ونظام نقاط."
+                   data-fr="Application quiz engageante avec minuteur.">
+                   Engaging quiz application with timer and scoring system.
+                </p>
+                <button class="project-btn" onclick="window.open('https://chi5444.github.io/jeux/','_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir Projet">View Project</button>
+            </div>
+        </div>
+
+        <!-- ✅ NEW: Women's Hair Salon -->
+        <div class="project-card">
+            <div class="project-content">
+                <div class="project-icon">✂️</div>
+                <h3 class="project-title" data-en="Women's Hair Salon" data-ar="صالون حلاقة نسائية" data-fr="Salon de Coiffure Femme">Women's Hair Salon</h3>
+                <p class="project-desc" data-en="Elegant website for a women's hair salon with services, gallery and booking features."
+                   data-ar="موقع أنيق لصالون حلاقة نسائية مع عرض الخدمات والمعرض وميزات الحجز."
+                   data-fr="Site élégant pour salon de coiffure féminin avec services, galerie et réservation.">
+                   Elegant website for a women's hair salon with services, gallery and booking features.
+                </p>
+                <button class="project-btn" onclick="window.open('https://kriaaservice.github.io/mme/','_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir Projet">View Project</button>
+            </div>
+        </div>
+
+    </div>
 </section>
 
 <section id="pricing">
