@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
 <title>Kriaa Service - Premium Web & Mobile Development</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -108,6 +109,7 @@ section { padding: 80px 30px; position: relative; z-index: 1; }
 .pricing-card:hover { transform: translateY(-10px); border-color: rgba(212,175,55,0.4); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
 .pricing-card h3 { font-family: 'Playfair Display', serif; font-size: 1.55em; color: var(--cream); margin-bottom: 12px; }
 .price { font-family: 'Playfair Display', serif; font-size: 2.4em; font-weight: 700; color: var(--gold); margin: 8px 0; }
+.price a { color: var(--gold); text-decoration: none; pointer-events: none; }
 .pricing-card ul { list-style: none; margin: 18px 0; text-align: left; width: 100%; }
 .pricing-card li { color: var(--light-gray); padding: 8px 0; border-bottom: 1px solid rgba(212,175,55,0.1); font-size: 0.94em; }
 .pricing-card li:last-child { border-bottom: none; }
@@ -640,22 +642,39 @@ document.querySelectorAll('.service-card, .project-card, .pricing-card').forEach
 });
 
 // Mobile menu toggle
-document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+document.addEventListener('DOMContentLoaded', function() {
+    const menuBtn = document.querySelector('.mobile-menu-btn');
     const nav = document.getElementById('mainNav');
-    if (nav.style.display === 'flex') {
-        nav.style.display = 'none';
-    } else {
-        nav.style.display = 'flex';
-        nav.style.flexDirection = 'column';
-        nav.style.position = 'absolute';
-        nav.style.top = '70px';
-        nav.style.left = '0';
-        nav.style.right = '0';
-        nav.style.background = 'rgba(10,10,10,0.98)';
-        nav.style.padding = '20px 30px';
-        nav.style.borderBottom = '1px solid rgba(212,175,55,0.2)';
-        nav.style.zIndex = '999';
+    
+    if (menuBtn && nav) {
+        menuBtn.addEventListener('click', function() {
+            if (nav.style.display === 'flex') {
+                nav.style.display = 'none';
+            } else {
+                nav.style.display = 'flex';
+                nav.style.flexDirection = 'column';
+                nav.style.position = 'absolute';
+                nav.style.top = '70px';
+                nav.style.left = '0';
+                nav.style.right = '0';
+                nav.style.background = 'rgba(10,10,10,0.98)';
+                nav.style.padding = '20px 30px';
+                nav.style.borderBottom = '1px solid rgba(212,175,55,0.2)';
+                nav.style.zIndex = '999';
+            }
+        });
     }
 });
 
-// Close mobile
+// Close mobile menu on link click
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('#mainNav a').forEach(link => {
+        link.addEventListener('click', () => {
+            const nav = document.getElementById('mainNav');
+            if (nav) nav.style.display = 'none';
+        });
+    });
+});
+</script>
+</body>
+</html>
