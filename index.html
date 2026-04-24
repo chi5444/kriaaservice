@@ -7,7 +7,7 @@
 <title>Kriaa Service - Premium Web & Mobile Development</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <meta property="og:title" content="Kriaa Service Web Dev | Création Site Web & SEO en Tunisie - Sfax">
-<meta  property="og:image" content="https://ik.imagekit.io/598oq8jpn/WhatsApp%20Image%202026-04-15%20at%2012.05.56%20AM.jpeg">
+<meta property="og:image" content="https://ik.imagekit.io/598oq8jpn/WhatsApp%20Image%202026-04-15%20at%2012.05.56%20AM.jpeg">
 <meta property="og:description" content="Kriaa Service Web Dev agence spécialisée dans la création de sites web en Tunisie. Développement de sites modernes, e-commerce et optimisation SEO pour améliorer votre visibilité en ligne à Sfax et partout en Tunisie.">
 <meta name="keywords" content="création site web Tunisie, développeur web Tunisie, web design Tunisie, agence web Tunisie, création site web Sfax, développeur web Sfax, SEO Tunisie, création site internet professionnel, création site e-commerce Tunisie, développement site vitrine, création boutique en ligne, optimisation SEO site web, site web responsive design, maintenance site web, web development Tunisia, website design Tunisia, SEO services Tunisia, freelance web developer, ecommerce website development, responsive web design, agence web Sfax, développeur freelance Sfax, création site web Tunisie pas cher, création site web rapide Tunisie, combien coûte un site web en Tunisie, meilleur développeur web en Tunisie, création site e-commerce en Tunisie prix, agence création site web Sfax Tunisie, freelance web developer Tunisia affordable">
 <link rel="icon" type="image/png" href="https://ik.imagekit.io/598oq8jpn/WhatsApp%20Image%202026-04-15%20at%2012.05.56%20AM.jpeg">
@@ -90,17 +90,34 @@ section { padding: 80px 30px; position: relative; z-index: 1; }
 .service-card p { color: var(--light-gray); line-height: 1.8; font-size: 1em; }
 .mobile-features-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; justify-content: center; }
 .mobile-feat { background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.25); color: var(--gold); padding: 4px 12px; border-radius: 20px; font-size: 0.75em; font-weight: 600; }
+
+/* ====== PROJECTS ====== */
 #projects { background: linear-gradient(135deg, var(--dark-gray), var(--gray)); }
+#demo-projects { background: var(--black); }
+
+.projects-divider { display: flex; align-items: center; gap: 18px; margin: 0 auto 50px; max-width: 1400px; }
+.projects-divider::before, .projects-divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent); }
+.projects-divider span { color: var(--gold); font-size: 0.8em; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; white-space: nowrap; padding: 6px 18px; border: 1px solid rgba(212,175,55,0.22); border-radius: 30px; background: rgba(212,175,55,0.06); }
+
 .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1400px; margin: 0 auto; }
 .project-card { background: var(--gray); border-radius: 20px; overflow: hidden; border: 1px solid rgba(212,175,55,0.1); transition: all 0.4s ease; position: relative; }
 .project-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold)); }
 .project-card:hover { transform: translateY(-10px); box-shadow: 0 20px 60px rgba(0,0,0,0.5); border-color: rgba(212,175,55,0.3); }
+
+/* Real project card — slightly elevated style */
+.project-card.real-project { border-color: rgba(212,175,55,0.25); background: linear-gradient(135deg, #1c1a0a, #252106); }
+.project-card.real-project::before { background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light), var(--gold)); }
+
 .project-content { padding: 35px; }
 .project-icon { font-size: 2.5em; margin-bottom: 15px; }
 .project-title { font-family: 'Playfair Display', serif; font-size: 1.6em; color: var(--gold); margin-bottom: 12px; }
 .live-badge { display: inline-block; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--black); font-size: 0.45em; font-weight: 800; padding: 4px 12px; border-radius: 20px; vertical-align: middle; margin-left: 10px; letter-spacing: 1px; text-transform: uppercase; animation: pulseBadge 2s ease-in-out infinite; }
 @keyframes pulseBadge { 0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.5); } 50% { box-shadow: 0 0 0 8px rgba(212,175,55,0); } }
+.real-badge { display: inline-block; background: linear-gradient(135deg, #2ecc71, #27ae60); color: #fff; font-size: 0.42em; font-weight: 800; padding: 4px 12px; border-radius: 20px; vertical-align: middle; margin-left: 10px; letter-spacing: 1px; text-transform: uppercase; animation: pulseBadgeGreen 2s ease-in-out infinite; }
+@keyframes pulseBadgeGreen { 0%, 100% { box-shadow: 0 0 0 0 rgba(46,204,113,0.5); } 50% { box-shadow: 0 0 0 8px rgba(46,204,113,0); } }
 .project-desc { color: var(--light-gray); line-height: 1.7; margin-bottom: 20px; font-size: 1em; }
+.project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.project-tag { background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.25); color: var(--gold); padding: 3px 12px; border-radius: 20px; font-size: 0.72em; font-weight: 600; }
 .project-btn { padding: 10px 25px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--black); border: none; border-radius: 50px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease; font-size: 0.85em; }
 .project-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(212,175,55,0.4); }
 
@@ -325,11 +342,44 @@ footer { background: var(--black); padding: 35px 30px; border-top: 1px solid rgb
     </div>
 </section>
 
+<!-- ====== REAL PROJECTS ====== -->
 <section id="projects">
     <div class="section-header">
-        <div class="section-label" data-en="Our Work" data-ar="أعمالنا" data-fr="Notre Travail">Our Work</div>
-        <h2 class="section-title" data-en="Featured Projects" data-ar="المشاريع المميزة" data-fr="Projets Vedettes">Featured Projects</h2>
+        <div class="section-label" data-en="Real Client Work" data-ar="أعمال العملاء الحقيقية" data-fr="Travaux Clients Réels">Real Client Work</div>
+        <h2 class="section-title" data-en="Live Client Projects" data-ar="مشاريع العملاء المباشرة" data-fr="Projets Clients en Ligne">Live Client Projects</h2>
     </div>
+
+    <div class="projects-grid">
+        <!-- ODETTE -->
+        <div class="project-card real-project">
+            <div class="project-content">
+                <div class="project-icon">👗</div>
+                <h3 class="project-title">Odette <span class="real-badge" data-en="CLIENT" data-ar="عميل" data-fr="CLIENT">CLIENT</span> <span class="live-badge" data-en="LIVE" data-ar="مباشر" data-fr="LIVE">LIVE</span></h3>
+                <p class="project-desc"
+                   data-en="Elegant women's fashion brand website with a refined and luxurious design. Full e-commerce experience with a premium look and feel."
+                   data-ar="موقع علامة أزياء نسائية راقية بتصميم أنيق وفاخر. تجربة تجارة إلكترونية كاملة بمظهر متميز."
+                   data-fr="Site de marque de mode féminine élégante avec un design raffiné et luxueux. Expérience e-commerce complète avec un look premium.">
+                   Elegant women's fashion brand website with a refined and luxurious design. Full e-commerce experience with a premium look and feel.
+                </p>
+                <div class="project-tags">
+                    <span class="project-tag">E-Commerce</span>
+                    <span class="project-tag">Fashion</span>
+                    <span class="project-tag">UI/UX</span>
+                </div>
+                <button class="project-btn" onclick="window.open('https://odettee.net','_blank')"
+                        data-en="Visit Website" data-ar="زيارة الموقع" data-fr="Visiter le Site">Visit Website</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== DEMO PROJECTS ====== -->
+<section id="demo-projects">
+    <div class="section-header">
+        <div class="section-label" data-en="Our Work" data-ar="أعمالنا" data-fr="Notre Travail">Our Work</div>
+        <h2 class="section-title" data-en="Demo Projects" data-ar="مشاريع تجريبية" data-fr="Projets Démo">Demo Projects</h2>
+    </div>
+
     <div class="projects-grid">
         <div class="project-card">
             <div class="project-content">
@@ -444,7 +494,6 @@ footer { background: var(--black); padding: 35px 30px; border-top: 1px solid rgb
     </div>
     <div class="pricing-grid">
 
-        <!-- WEB DIVIDER -->
         <div class="pricing-divider">
             <span data-en="🌐 WEBSITES" data-ar="🌐 المواقع الإلكترونية" data-fr="🌐 SITES WEB">🌐 WEBSITES</span>
         </div>
@@ -495,7 +544,6 @@ footer { background: var(--black); padding: 35px 30px; border-top: 1px solid rgb
             </div>
         </div>
 
-        <!-- MOBILE DIVIDER -->
         <div class="pricing-divider">
             <span data-en="📱 MOBILE APPLICATIONS" data-ar="📱 تطبيقات الجوال" data-fr="📱 APPLICATIONS MOBILES">📱 MOBILE APPLICATIONS</span>
         </div>
@@ -576,7 +624,7 @@ footer { background: var(--black); padding: 35px 30px; border-top: 1px solid rgb
                 <div class="contact-icon">📧</div>
                 <div class="contact-text">
                     <div class="contact-label" data-en="Email" data-ar="البريد الإلكتروني" data-fr="Email">Email</div>
-                    <div class="contact-value"><span class="__cf_email__" data-cfemail="fd8e988f8b949e98968f949c9cbd9a909c9491d39e9290">[email&#160;protected]</span></div>
+                    <div class="contact-value">servicekriaa@gmail.com</div>
                 </div>
             </a>
             <a href="https://wa.me/21696672771" target="_blank" class="contact-card">
@@ -599,7 +647,7 @@ footer { background: var(--black); padding: 35px 30px; border-top: 1px solid rgb
         <div class="copyright">© 2026 Kriaa Service. All rights reserved.</div>
         <div class="footer-social">
             <a href="https://wa.me/21696672771" class="social-icon" target="_blank">💬</a>
-            <a href="/cdn-cgi/l/email-protection#8efdebfcf8e7edebe5fce7efefcee9e3efe7e2a0ede1e3" class="social-icon">📧</a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=servicekriaa@gmail.com" class="social-icon">📧</a>
         </div>
     </div>
 </footer>
@@ -676,7 +724,6 @@ document.querySelectorAll('.service-card, .project-card, .pricing-card').forEach
 document.addEventListener('DOMContentLoaded', function() {
     const menuBtn = document.querySelector('.mobile-menu-btn');
     const nav = document.getElementById('mainNav');
-    
     if (menuBtn && nav) {
         menuBtn.addEventListener('click', function() {
             if (nav.style.display === 'flex') {
@@ -697,7 +744,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Close mobile menu on link click
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('#mainNav a').forEach(link => {
         link.addEventListener('click', () => {
