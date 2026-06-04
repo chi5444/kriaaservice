@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sponsoring — Kriaa Service</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .page-hero { min-height:52vh;display:flex;align-items:flex-end;padding:calc(var(--nav-h) + 60px) var(--section-px) 60px;position:relative;overflow:hidden;border-bottom:1px solid var(--gold-border); }
+    .page-hero-bg { position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(201,168,76,0.10) 0%,transparent 70%); }
+    .page-hero-grid { position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.035) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 80% at 50% 0%,black 30%,transparent 100%); }
+    .page-hero-inner { position:relative;z-index:1;max-width:var(--max-w);margin:0 auto;width:100%; }
+    .breadcrumb { display:flex;align-items:center;gap:0.6rem;margin-bottom:1.5rem; }
+    .breadcrumb a,.breadcrumb span { font-size:0.68rem;color:var(--muted);text-decoration:none;letter-spacing:0.12em;text-transform:uppercase; }
+    .breadcrumb a:hover { color:var(--gold); }
+    .breadcrumb svg { width:12px;height:12px;color:var(--gold-dk); }
+
+    /* HOW SECTION */
+    .how-section { padding:80px var(--section-px);background:var(--black); }
+    .how-inner { max-width:var(--max-w);margin:0 auto; }
+    .how-steps { display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:3rem;position:relative; }
+    .how-steps::before { content:'';position:absolute;top:28px;left:12.5%;right:12.5%;height:1px;background:linear-gradient(90deg,transparent,var(--gold-border),transparent);z-index:0; }
+    .how-step { text-align:center;padding:0 1.5rem;position:relative;z-index:1; }
+    .how-step-num {
+      width:56px;height:56px;border-radius:50%;
+      background:var(--black3);border:1px solid var(--gold-border);
+      display:flex;align-items:center;justify-content:center;
+      margin:0 auto 1.5rem;
+      font-family:var(--font-display);font-size:1.1rem;color:var(--gold);
+      transition:background 0.3s,box-shadow 0.3s;
+    }
+    .how-step:hover .how-step-num { background:var(--gold-faint);box-shadow:0 0 24px rgba(201,168,76,0.2); }
+    .how-step h4 { font-family:var(--font-display);font-size:0.95rem;letter-spacing:0.08em;color:var(--white);margin-bottom:0.6rem; }
+    .how-step p { font-size:0.82rem;color:var(--muted2);line-height:1.8; }
+
+    /* PACKAGES */
+    .sponsor-packs { padding:80px var(--section-px);background:var(--black2);border-top:1px solid var(--gold-border); }
+    .sponsor-inner { max-width:var(--max-w);margin:0 auto; }
+    .sponsor-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem; }
+    .sponsor-card {
+      background:var(--black3);border:1px solid var(--border);
+      position:relative;overflow:hidden;
+      transition:transform 0.4s,box-shadow 0.4s,border-color 0.4s;
+      display:flex;flex-direction:column;
+    }
+    .sponsor-card:hover { transform:translateY(-8px);box-shadow:0 32px 80px rgba(0,0,0,0.6);border-color:var(--gold-border); }
+    .sponsor-card.featured { border-color:rgba(201,168,76,0.4);background:linear-gradient(160deg,rgba(201,168,76,0.06),var(--black3) 60%); }
+    .sponsor-card-top { padding:2.5rem 2rem 2rem;border-bottom:1px solid var(--border); }
+    .sponsor-badge { display:inline-block;padding:0.25rem 0.8rem;background:var(--gold-faint);border:1px solid var(--gold-border);font-size:0.58rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem; }
+    .sponsor-badge.pop { background:var(--gold);color:var(--black);border-color:var(--gold); }
+    .sponsor-views { font-family:var(--font-display);font-size:2.5rem;color:var(--gold);letter-spacing:0.03em;margin-bottom:0.3rem;line-height:1; }
+    .sponsor-label { font-size:0.68rem;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1rem; }
+    .sponsor-price { font-family:var(--font-display);font-size:2.8rem;color:var(--white);line-height:1; }
+    .sponsor-price small { font-size:1rem;color:var(--muted);font-family:var(--font-sans);font-weight:300; }
+    .sponsor-desc { font-size:0.84rem;color:var(--muted2);line-height:1.8;margin-top:1rem; }
+    .sponsor-card-features { padding:2rem;flex:1; }
+    .sponsor-card-features ul { list-style:none;display:flex;flex-direction:column;gap:0.9rem; }
+    .sponsor-card-features li { display:flex;align-items:flex-start;gap:0.8rem;font-size:0.85rem;color:var(--white); }
+    .sponsor-card-features li svg { width:16px;height:16px;flex-shrink:0;margin-top:2px;color:var(--gold); }
+    .sponsor-card-footer { padding:1.5rem 2rem 2rem; }
+    .btn-sponsor { display:flex;align-items:center;justify-content:center;gap:0.7rem;width:100%;padding:0.95rem;font-family:var(--font-sans);font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;transition:all 0.3s; }
+    .btn-sp-outline { background:transparent;color:var(--gold);border:1px solid var(--gold-border); }
+    .btn-sp-outline:hover { background:var(--gold-faint);border-color:var(--gold); }
+    .btn-sp-fill { background:var(--gold);color:var(--black); }
+    .btn-sp-fill:hover { background:var(--gold-lt);box-shadow:0 8px 32px rgba(201,168,76,0.4); }
+
+    /* DELIVERY */
+    .delivery-section { padding:80px var(--section-px);background:var(--black); }
+    .delivery-inner { max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center; }
+    .delivery-timeline { display:flex;flex-direction:column;gap:0; }
+    .tl-item { display:flex;gap:1.5rem; }
+    .tl-left { display:flex;flex-direction:column;align-items:center; }
+    .tl-dot { width:12px;height:12px;border-radius:50%;background:var(--gold);border:2px solid var(--gold-dk);flex-shrink:0;margin-top:4px; }
+    .tl-line { flex:1;width:1px;background:var(--border);margin:6px 0; min-height:40px; }
+    .tl-item:last-child .tl-line { display:none; }
+    .tl-content { padding-bottom:2rem; }
+    .tl-day { font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.3rem; }
+    .tl-content h4 { font-family:var(--font-display);font-size:0.95rem;letter-spacing:0.08em;color:var(--white);margin-bottom:0.4rem; }
+    .tl-content p { font-size:0.82rem;color:var(--muted2);line-height:1.7; }
+
+    @media (max-width:900px) { .how-steps{grid-template-columns:repeat(2,1fr);}.how-steps::before{display:none;} .sponsor-grid{grid-template-columns:1fr;} .delivery-inner{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+<nav id="nav">
+  <a class="nav-logo" href="index.html"><img src="logo.png" alt="Kriaa Service"/></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li><li><a href="web-development.html">Web Dev</a></li>
+    <li><a href="sponsoring.html">Sponsoring</a></li><li><a href="bundles.html">Bundles</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li><li><a href="about.html">About</a></li>
+    <li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="https://wa.me/96672771" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    WhatsApp
+  </a>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div><div class="page-hero-grid"></div>
+  <div class="page-hero-inner reveal">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      <span>Sponsoring</span>
+    </div>
+    <div class="section-eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Views &amp; Reach</span></div>
+    <h1 style="font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4.2rem);color:var(--white);margin-bottom:1rem;">Boost Your <em style="font-family:var(--font-serif);font-style:italic;color:var(--gold);font-weight:300;">Brand</em></h1>
+    <p style="max-width:520px;color:var(--muted2);line-height:1.8;">Real views. Genuine reach. We design and distribute targeted content campaigns that put your brand in front of the right audience — with guaranteed delivery and full reporting.</p>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="how-inner">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div><span class="eyebrow-text">The Process</span><div class="eyebrow-line" style="transform:rotate(180deg)"></div></div>
+      <h2 class="section-title">How We <em>Deliver</em> Views</h2>
+      <div class="section-divider center"></div>
+    </div>
+    <div class="how-steps reveal">
+      <div class="how-step" data-delay="0">
+        <div class="how-step-num">01</div>
+        <h4>Brand Analysis</h4>
+        <p>We study your brand, product, and target market to build a campaign strategy with maximum impact.</p>
+      </div>
+      <div class="how-step" data-delay="150">
+        <div class="how-step-num">02</div>
+        <h4>Content Creation</h4>
+        <p>Our team crafts platform-optimised content designed to capture attention and drive engagement.</p>
+      </div>
+      <div class="how-step" data-delay="300">
+        <div class="how-step-num">03</div>
+        <h4>Targeted Distribution</h4>
+        <p>Content is distributed across relevant platforms to your target demographic for real, organic-feeling reach.</p>
+      </div>
+      <div class="how-step" data-delay="450">
+        <div class="how-step-num">04</div>
+        <h4>Results Report</h4>
+        <p>Full delivery report with view counts, reach metrics, and engagement data at campaign close.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="sponsor-packs">
+  <div class="sponsor-inner">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div><span class="eyebrow-text">Choose Your Reach</span><div class="eyebrow-line" style="transform:rotate(180deg)"></div></div>
+      <h2 class="section-title">Sponsoring <em>Packages</em></h2>
+      <div class="section-divider center"></div>
+    </div>
+    <div class="sponsor-grid">
+      <div class="sponsor-card reveal" data-delay="0">
+        <div class="sponsor-card-top">
+          <div class="sponsor-badge">Starter Boost</div>
+          <div class="sponsor-views">30K – 60K</div>
+          <div class="sponsor-label">Guaranteed Views</div>
+          <div class="sponsor-price">200 <small>dt</small></div>
+          <p class="sponsor-desc">Perfect for product launches and growing brand awareness. Targeted distribution with full campaign setup.</p>
+        </div>
+        <div class="sponsor-card-features">
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 30K–60K Real Views</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Campaign Strategy</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Content Distribution</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Results Report</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 7–10 Day Delivery</li>
+          </ul>
+        </div>
+        <div class="sponsor-card-footer">
+          <a href="https://wa.me/96672771?text=Hi Kriaa Service! I want the Starter Boost (200dt - 30k-60k views)" target="_blank" class="btn-sponsor btn-sp-outline">
+            Get Starter Boost
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="sponsor-card featured reveal" data-delay="150">
+        <div class="sponsor-card-top">
+          <div class="sponsor-badge pop">Most Popular</div>
+          <div class="sponsor-views">60K – 120K</div>
+          <div class="sponsor-label">Guaranteed Views</div>
+          <div class="sponsor-price">400 <small>dt</small></div>
+          <p class="sponsor-desc">Double the reach. Ideal for established brands looking to dominate their niche and drive serious traffic.</p>
+        </div>
+        <div class="sponsor-card-features">
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 60K–120K Real Views</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Advanced Campaign Strategy</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Multi-Platform Distribution</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Full Results Report</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 10–15 Day Delivery</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Engagement Analytics</li>
+          </ul>
+        </div>
+        <div class="sponsor-card-footer">
+          <a href="https://wa.me/96672771?text=Hi Kriaa Service! I want the Growth Boost (400dt - 60k-120k views)" target="_blank" class="btn-sponsor btn-sp-fill">
+            Get Growth Boost
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="sponsor-card reveal" data-delay="300">
+        <div class="sponsor-card-top">
+          <div class="sponsor-badge">Enterprise</div>
+          <div class="sponsor-views">Custom</div>
+          <div class="sponsor-label">200K+ Views Available</div>
+          <div class="sponsor-price" style="font-size:2rem;">Talk to Us</div>
+          <p class="sponsor-desc">Need massive reach or a long-term campaign? We build fully custom plans for brands ready to go big.</p>
+        </div>
+        <div class="sponsor-card-features">
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 200K+ Views Available</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Custom Campaign Strategy</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Long-term Campaigns</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Dedicated Account Manager</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Full Performance Reporting</li>
+          </ul>
+        </div>
+        <div class="sponsor-card-footer">
+          <a href="https://wa.me/96672771?text=Hi Kriaa Service! I need a custom sponsor plan (200k+ views)" target="_blank" class="btn-sponsor btn-sp-outline">
+            Contact Us
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERY TIMELINE -->
+<section class="delivery-section">
+  <div class="delivery-inner inner">
+    <div class="reveal-left">
+      <div class="section-eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Delivery Timeline</span></div>
+      <h2 class="section-title">What Happens <em>After</em> You Order</h2>
+      <div class="section-divider"></div>
+      <div class="delivery-timeline">
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-content"><div class="tl-day">Day 1</div><h4>Onboarding Call</h4><p>We review your brand assets, target audience, and campaign goals. Strategy is finalised.</p></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-content"><div class="tl-day">Day 2–3</div><h4>Content Preparation</h4><p>Campaign content is created and optimised for platform distribution and target demographics.</p></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-content"><div class="tl-day">Day 4–14</div><h4>Campaign Live</h4><p>Distribution is active. Views accumulate steadily across platforms. You receive live progress updates.</p></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div></div>
+          <div class="tl-content"><div class="tl-day">Campaign Close</div><h4>Full Report Delivered</h4><p>You receive a complete performance report with total views, reach, and engagement breakdown.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal-right" style="background:var(--black3);border:1px solid var(--gold-border);padding:3rem;position:relative;">
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);"></div>
+      <h3 style="font-family:var(--font-display);font-size:1.5rem;color:var(--white);margin-bottom:2rem;letter-spacing:0.05em;">Campaign <em style="font-family:var(--font-serif);font-style:italic;color:var(--gold);">Results</em></h3>
+      <div style="display:flex;flex-direction:column;gap:2rem;">
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.6rem;">
+            <span style="font-size:0.78rem;color:var(--muted2);">Brand Awareness</span>
+            <span style="font-size:0.78rem;color:var(--gold);font-weight:700;">94%</span>
+          </div>
+          <div style="height:3px;background:var(--border);border-radius:2px;">
+            <div style="width:94%;height:100%;background:linear-gradient(90deg,var(--gold-dk),var(--gold));border-radius:2px;"></div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.6rem;">
+            <span style="font-size:0.78rem;color:var(--muted2);">Audience Engagement</span>
+            <span style="font-size:0.78rem;color:var(--gold);font-weight:700;">87%</span>
+          </div>
+          <div style="height:3px;background:var(--border);border-radius:2px;">
+            <div style="width:87%;height:100%;background:linear-gradient(90deg,var(--gold-dk),var(--gold));border-radius:2px;"></div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.6rem;">
+            <span style="font-size:0.78rem;color:var(--muted2);">Sales Increase (avg)</span>
+            <span style="font-size:0.78rem;color:var(--gold);font-weight:700;">3x</span>
+          </div>
+          <div style="height:3px;background:var(--border);border-radius:2px;">
+            <div style="width:75%;height:100%;background:linear-gradient(90deg,var(--gold-dk),var(--gold));border-radius:2px;"></div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.6rem;">
+            <span style="font-size:0.78rem;color:var(--muted2);">Client Satisfaction</span>
+            <span style="font-size:0.78rem;color:var(--gold);font-weight:700;">100%</span>
+          </div>
+          <div style="height:3px;background:var(--border);border-radius:2px;">
+            <div style="width:100%;height:100%;background:linear-gradient(90deg,var(--gold-dk),var(--gold));border-radius:2px;"></div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--border);">
+        <a href="https://wa.me/96672771?text=Hi Kriaa Service! I want to boost my brand with a sponsor campaign." target="_blank" class="btn btn-gold" style="width:100%;justify-content:center;">
+          Boost My Brand Now
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="footer">
+  <div class="footer-inner">
+    <a class="footer-logo" href="index.html"><img src="logo.png" alt="Kriaa Service"/></a>
+    <p class="footer-copy">© 2025 Kriaa Service. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="web-development.html">Web Dev</a><a href="sponsoring.html">Sponsoring</a>
+      <a href="bundles.html">Bundles</a><a href="portfolio.html">Portfolio</a>
+      <a href="about.html">About</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+<a class="wa-float" href="https://wa.me/96672771" target="_blank">
+  <svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<script src="main.js"></script>
+</body>
+</html>

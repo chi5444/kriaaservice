@@ -1,1791 +1,576 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="format-detection" content="telephone=no">
-<title>Kriaa Service - Premium Web & Mobile Development</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Josefin+Sans:wght@200;300;400;600;700&display=swap" rel="stylesheet">
-<meta property="og:title" content="Kriaa Service Web Dev | Création Site Web & SEO en Tunisie">
-<meta property="og:image" content="https://ik.imagekit.io/598oq8jpn/WhatsApp%20Image%202026-04-15%20at%2012.05.56%20AM.jpeg">
-<meta property="og:description" content="Kriaa Service Web Dev - agence spécialisée dans la création de sites web en Tunisie.">
-<link rel="icon" type="image/png" href="https://ik.imagekit.io/598oq8jpn/WhatsApp%20Image%202026-04-15%20at%2012.05.56%20AM.jpeg">
-<style>
-:root {
-  --gold: #C9A84C;
-  --gold-bright: #F2C94C;
-  --gold-dark: #8B6914;
-  --gold-muted: rgba(201,168,76,0.15);
-  --obsidian: #080808;
-  --charcoal: #111111;
-  --onyx: #181818;
-  --smoke: #222222;
-  --ash: #444444;
-  --silver: #999999;
-  --cream: #F5F0E8;
-  --white: #FFFFFF;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Josefin Sans', sans-serif;
-  background: var(--obsidian);
-  color: var(--cream);
-  overflow-x: hidden;
-  cursor: default;
-}
-
-/* ── GRAIN TEXTURE OVERLAY ── */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.35;
-}
-
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--obsidian); }
-::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 2px; }
-
-/* ══════════════════════════════
-   HEADER
-══════════════════════════════ */
-header {
-  position: fixed;
-  top: 0; width: 100%;
-  z-index: 1000;
-  padding: 16px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: rgba(8,8,8,0.92);
-  backdrop-filter: blur(24px);
-  border-bottom: 1px solid rgba(201,168,76,0.08);
-  transition: all 0.4s ease;
-}
-header.scrolled {
-  padding: 10px 40px;
-  border-bottom-color: rgba(201,168,76,0.18);
-  box-shadow: 0 8px 60px rgba(0,0,0,0.7);
-}
-
-.logo-wrap {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  text-decoration: none;
-}
-.logo-img {
-  width: 52px; height: 52px;
-  object-fit: contain;
-  filter: drop-shadow(0 4px 16px rgba(201,168,76,0.45));
-  transition: transform 0.4s ease;
-}
-.logo-wrap:hover .logo-img { transform: scale(1.1) rotate(5deg); }
-.logo-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.45em;
-  font-weight: 700;
-  color: var(--gold);
-  letter-spacing: 3px;
-  line-height: 1.1;
-}
-.logo-sub {
-  font-size: 0.55em;
-  color: var(--silver);
-  letter-spacing: 5px;
-  font-weight: 300;
-  text-transform: uppercase;
-  display: block;
-  font-family: 'Josefin Sans', sans-serif;
-}
-
-nav { display: flex; gap: 32px; align-items: center; }
-nav a {
-  font-size: 0.72em;
-  font-weight: 600;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--silver);
-  text-decoration: none;
-  position: relative;
-  transition: color 0.3s;
-}
-nav a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px; left: 50%;
-  transform: translateX(-50%);
-  width: 0; height: 1px;
-  background: var(--gold);
-  transition: width 0.3s;
-}
-nav a:hover { color: var(--gold); }
-nav a:hover::after { width: 100%; }
-
-.header-right { display: flex; align-items: center; gap: 20px; }
-.lang-switcher { display: flex; gap: 6px; }
-.lang-btn {
-  background: transparent;
-  border: 1px solid rgba(201,168,76,0.25);
-  color: var(--silver);
-  padding: 4px 12px;
-  border-radius: 2px;
-  cursor: pointer;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.7em;
-  font-weight: 700;
-  letter-spacing: 2px;
-  transition: all 0.3s;
-}
-.lang-btn:hover, .lang-btn.active {
-  background: var(--gold);
-  color: var(--obsidian);
-  border-color: var(--gold);
-}
-
-.mobile-menu-btn {
-  display: none;
-  background: none;
-  border: 1px solid rgba(201,168,76,0.3);
-  color: var(--gold);
-  width: 38px; height: 38px;
-  border-radius: 2px;
-  cursor: pointer;
-  font-size: 1.1em;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ══════════════════════════════
-   HERO
-══════════════════════════════ */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  padding: 120px 40px 80px;
-}
-
-/* Rotating ring background */
-.hero-ring {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid rgba(201,168,76,0.07);
-  animation: ringRotate var(--dur, 40s) linear infinite;
-  pointer-events: none;
-}
-.hero-ring:nth-child(1) { width: 600px; height: 600px; --dur: 50s; border-color: rgba(201,168,76,0.06); }
-.hero-ring:nth-child(2) { width: 800px; height: 800px; --dur: 70s; animation-direction: reverse; border-color: rgba(201,168,76,0.04); }
-.hero-ring:nth-child(3) { width: 1100px; height: 1100px; --dur: 100s; border-color: rgba(201,168,76,0.025); }
-.hero-ring:nth-child(4) { width: 1400px; height: 1400px; --dur: 130s; animation-direction: reverse; border-color: rgba(201,168,76,0.015); }
-
-@keyframes ringRotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* Radial glow */
-.hero::before {
-  content: '';
-  position: absolute;
-  width: 800px; height: 800px;
-  background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 65%);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.hero-inner {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-  max-width: 1200px;
-  width: 100%;
-}
-
-.hero-text { animation: fadeSlideLeft 1.2s cubic-bezier(.16,1,.3,1) both; }
-@keyframes fadeSlideLeft {
-  from { opacity: 0; transform: translateX(-40px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-.hero-eyebrow {
-  font-size: 0.7em;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 24px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  font-weight: 300;
-}
-.hero-eyebrow::before {
-  content: '';
-  width: 40px; height: 1px;
-  background: var(--gold);
-}
-
-.hero-h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.8em, 5vw, 4.5em);
-  font-weight: 600;
-  line-height: 1.05;
-  color: var(--cream);
-  margin-bottom: 10px;
-}
-.hero-h1 em {
-  font-style: italic;
-  background: linear-gradient(135deg, var(--gold), var(--gold-bright));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.hero-divider {
-  width: 60px; height: 2px;
-  background: linear-gradient(90deg, var(--gold), transparent);
-  margin: 28px 0;
-}
-
-.hero-p {
-  font-size: 0.92em;
-  color: var(--silver);
-  line-height: 2;
-  font-weight: 300;
-  letter-spacing: 0.5px;
-  max-width: 440px;
-  margin-bottom: 42px;
-}
-
-.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-
-.btn-gold {
-  padding: 14px 38px;
-  background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-bright));
-  background-size: 200%;
-  background-position: 0%;
-  color: var(--obsidian);
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.72em;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  border: none;
-  border-radius: 0;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
-}
-.btn-gold::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(255,255,255,0.1);
-  transform: translateX(-100%) skewX(-15deg);
-  transition: transform 0.4s ease;
-}
-.btn-gold:hover::before { transform: translateX(120%) skewX(-15deg); }
-.btn-gold:hover { background-position: 100%; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.35); }
-
-.btn-outline {
-  padding: 13px 38px;
-  background: transparent;
-  color: var(--gold);
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.72em;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  border: 1px solid rgba(201,168,76,0.5);
-  border-radius: 0;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.3s ease;
-}
-.btn-outline:hover {
-  background: rgba(201,168,76,0.08);
-  border-color: var(--gold);
-  transform: translateY(-2px);
-}
-
-/* ── Hero Visual: 360° Rotating Orb ── */
-.hero-visual {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: fadeSlideRight 1.2s cubic-bezier(.16,1,.3,1) 0.2s both;
-}
-@keyframes fadeSlideRight {
-  from { opacity: 0; transform: translateX(40px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-.orb-container {
-  position: relative;
-  width: 320px;
-  height: 320px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.orb-ring {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid rgba(201,168,76,0.2);
-  animation: orbSpin var(--s, 12s) linear infinite;
-}
-.orb-ring:nth-child(1) {
-  width: 320px; height: 320px;
-  --s: 15s;
-  border-color: rgba(201,168,76,0.15);
-}
-.orb-ring:nth-child(1)::before {
-  content: '';
-  position: absolute;
-  width: 8px; height: 8px;
-  background: var(--gold);
-  border-radius: 50%;
-  top: -4px; left: 50%;
-  transform: translateX(-50%);
-  box-shadow: 0 0 12px var(--gold);
-}
-.orb-ring:nth-child(2) {
-  width: 250px; height: 250px;
-  --s: 10s;
-  animation-direction: reverse;
-  border-color: rgba(201,168,76,0.12);
-}
-.orb-ring:nth-child(2)::before {
-  content: '';
-  position: absolute;
-  width: 6px; height: 6px;
-  background: var(--gold-bright);
-  border-radius: 50%;
-  top: -3px; left: 50%;
-  transform: translateX(-50%);
-  box-shadow: 0 0 8px var(--gold-bright);
-}
-.orb-ring:nth-child(3) {
-  width: 180px; height: 180px;
-  --s: 7s;
-  border-color: rgba(201,168,76,0.25);
-}
-.orb-ring:nth-child(3)::before {
-  content: '';
-  position: absolute;
-  width: 5px; height: 5px;
-  background: var(--gold);
-  border-radius: 50%;
-  top: -2.5px; left: 50%;
-  transform: translateX(-50%);
-  box-shadow: 0 0 6px var(--gold);
-}
-
-@keyframes orbSpin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.orb-core {
-  position: relative;
-  z-index: 2;
-  width: 120px; height: 120px;
-  background: radial-gradient(circle at 35% 35%, rgba(242,201,76,0.25), rgba(139,105,20,0.1));
-  border-radius: 50%;
-  border: 1px solid rgba(201,168,76,0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 40px rgba(201,168,76,0.15), inset 0 0 30px rgba(201,168,76,0.05);
-}
-
-.orb-logo {
-  width: 70px; height: 70px;
-  object-fit: contain;
-  filter: drop-shadow(0 0 20px rgba(201,168,76,0.6));
-  animation: logoBreath 4s ease-in-out infinite;
-}
-@keyframes logoBreath {
-  0%, 100% { filter: drop-shadow(0 0 20px rgba(201,168,76,0.6)); transform: scale(1); }
-  50% { filter: drop-shadow(0 0 35px rgba(201,168,76,0.9)); transform: scale(1.07); }
-}
-
-.hero-stats {
-  display: flex;
-  gap: 32px;
-  margin-top: 42px;
-  padding-top: 32px;
-  border-top: 1px solid rgba(201,168,76,0.1);
-}
-.stat-item { text-align: left; }
-.stat-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2em;
-  font-weight: 700;
-  color: var(--gold);
-  line-height: 1;
-}
-.stat-label {
-  font-size: 0.65em;
-  letter-spacing: 2px;
-  color: var(--ash);
-  text-transform: uppercase;
-  margin-top: 4px;
-  font-weight: 300;
-}
-
-/* ══════════════════════════════
-   SECTIONS COMMON
-══════════════════════════════ */
-section {
-  padding: 100px 40px;
-  position: relative;
-}
-
-.section-tag {
-  font-size: 0.65em;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  color: var(--gold);
-  font-weight: 300;
-  margin-bottom: 18px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.section-tag::before {
-  content: '';
-  width: 30px; height: 1px;
-  background: var(--gold);
-  flex-shrink: 0;
-}
-
-.section-h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2em, 4vw, 3.2em);
-  font-weight: 600;
-  color: var(--cream);
-  line-height: 1.1;
-  margin-bottom: 20px;
-}
-.section-h2 span {
-  background: linear-gradient(135deg, var(--gold), var(--gold-bright));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.section-head { margin-bottom: 64px; }
-.section-head.center { text-align: center; }
-.section-head.center .section-tag { justify-content: center; }
-.section-head.center .section-tag::before { display: none; }
-.section-head.center .section-h2::after {
-  content: '';
-  display: block;
-  width: 50px; height: 2px;
-  background: var(--gold);
-  margin: 20px auto 0;
-}
-
-/* ══════════════════════════════
-   ABOUT
-══════════════════════════════ */
-#about { background: var(--charcoal); }
-
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.about-text p {
-  font-size: 0.95em;
-  color: var(--silver);
-  line-height: 2.1;
-  font-weight: 300;
-  letter-spacing: 0.3px;
-  margin-bottom: 36px;
-}
-
-.skills-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.skill-chip {
-  padding: 8px 20px;
-  border: 1px solid rgba(201,168,76,0.2);
-  color: var(--gold);
-  font-size: 0.7em;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  font-weight: 600;
-  background: rgba(201,168,76,0.04);
-  transition: all 0.3s;
-  cursor: default;
-}
-.skill-chip:hover {
-  background: rgba(201,168,76,0.12);
-  border-color: rgba(201,168,76,0.5);
-  transform: translateY(-2px);
-}
-
-.about-visual {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-.about-stat-box {
-  padding: 30px 24px;
-  border: 1px solid rgba(201,168,76,0.12);
-  background: rgba(201,168,76,0.03);
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s;
-}
-.about-stat-box::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.about-stat-box:hover::before { opacity: 1; }
-.about-stat-box:hover { border-color: rgba(201,168,76,0.3); }
-.about-stat-box .num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.8em;
-  font-weight: 700;
-  color: var(--gold);
-  line-height: 1;
-}
-.about-stat-box .lbl {
-  font-size: 0.65em;
-  letter-spacing: 2px;
-  color: var(--ash);
-  text-transform: uppercase;
-  margin-top: 8px;
-  font-weight: 300;
-}
-
-/* ══════════════════════════════
-   SERVICES
-══════════════════════════════ */
-#services { background: var(--obsidian); }
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  gap: 2px;
-  max-width: 1200px;
-  margin: 0 auto;
-  background: rgba(201,168,76,0.06);
-}
-
-.service-card {
-  background: var(--obsidian);
-  padding: 48px 36px;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s ease;
-  cursor: default;
-}
-.service-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 0; height: 100%;
-  background: linear-gradient(180deg, rgba(201,168,76,0.06) 0%, transparent 100%);
-  transition: width 0.4s ease;
-}
-.service-card:hover::before { width: 100%; }
-.service-card:hover { transform: translateY(-4px); }
-
-.service-icon-wrap {
-  width: 56px; height: 56px;
-  border: 1px solid rgba(201,168,76,0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.6em;
-  margin-bottom: 28px;
-  transition: all 0.3s;
-  position: relative;
-}
-.service-card:hover .service-icon-wrap {
-  border-color: var(--gold);
-  box-shadow: 0 0 20px rgba(201,168,76,0.2);
-}
-
-.service-card h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5em;
-  font-weight: 600;
-  color: var(--cream);
-  margin-bottom: 14px;
-}
-.service-card p {
-  font-size: 0.85em;
-  color: var(--silver);
-  line-height: 1.9;
-  font-weight: 300;
-}
-.service-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-top: 20px;
-}
-.s-tag {
-  font-size: 0.65em;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--gold);
-  border: 1px solid rgba(201,168,76,0.2);
-  padding: 4px 10px;
-}
-
-/* ══════════════════════════════
-   PROJECTS
-══════════════════════════════ */
-#projects { background: var(--charcoal); }
-#demo-projects { background: var(--obsidian); }
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.project-card {
-  border: 1px solid rgba(201,168,76,0.1);
-  background: var(--onyx);
-  padding: 36px 30px;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s ease;
-}
-.project-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.project-card:hover::before { opacity: 1; }
-.project-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(201,168,76,0.3);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-}
-.project-card.real-project {
-  border-color: rgba(201,168,76,0.2);
-  background: linear-gradient(135deg, #111009, #1a1708);
-}
-
-.p-icon { font-size: 2em; margin-bottom: 18px; }
-.p-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5em;
-  font-weight: 600;
-  color: var(--gold);
-  margin-bottom: 12px;
-}
-.p-desc {
-  font-size: 0.85em;
-  color: var(--silver);
-  line-height: 1.8;
-  font-weight: 300;
-  margin-bottom: 22px;
-}
-.p-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-bottom: 24px;
-}
-.p-tag {
-  font-size: 0.65em;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: rgba(201,168,76,0.7);
-  border: 1px solid rgba(201,168,76,0.15);
-  padding: 3px 10px;
-}
-
-.badge-live, .badge-client {
-  display: inline-block;
-  font-size: 0.38em;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 3px 10px;
-  vertical-align: middle;
-  margin-left: 8px;
-}
-.badge-live {
-  background: var(--gold);
-  color: var(--obsidian);
-  animation: pulseBadge 2s ease-in-out infinite;
-}
-.badge-client {
-  background: #2ecc71;
-  color: #fff;
-  animation: pulseBadgeGreen 2s ease-in-out infinite;
-}
-@keyframes pulseBadge {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.5); }
-  50% { box-shadow: 0 0 0 6px rgba(201,168,76,0); }
-}
-@keyframes pulseBadgeGreen {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(46,204,113,0.5); }
-  50% { box-shadow: 0 0 0 6px rgba(46,204,113,0); }
-}
-
-.section-divider {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin: 0 auto 50px;
-  max-width: 1200px;
-}
-.section-divider::before, .section-divider::after {
-  content: ''; flex: 1; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.2), transparent);
-}
-.section-divider span {
-  font-size: 0.68em;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--gold);
-  white-space: nowrap;
-  border: 1px solid rgba(201,168,76,0.18);
-  padding: 6px 18px;
-  font-weight: 300;
-}
-
-/* ══════════════════════════════
-   PRICING
-══════════════════════════════ */
-#pricing { background: var(--charcoal); }
-
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.pricing-row-label {
-  grid-column: 1 / -1;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin: 20px 0 4px;
-}
-.pricing-row-label::before, .pricing-row-label::after {
-  content: ''; flex: 1; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.2), transparent);
-}
-.pricing-row-label span {
-  font-size: 0.67em;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--gold);
-  white-space: nowrap;
-  border: 1px solid rgba(201,168,76,0.18);
-  padding: 5px 16px;
-  font-weight: 300;
-}
-
-.pricing-card {
-  border: 1px solid rgba(201,168,76,0.12);
-  background: var(--onyx);
-  padding: 38px 28px 30px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  transition: all 0.4s ease;
-}
-.pricing-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  opacity: 0.5;
-}
-.pricing-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(201,168,76,0.35);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-}
-.pricing-card.featured {
-  border-color: rgba(201,168,76,0.4);
-  background: linear-gradient(160deg, #141206, #1c1909);
-}
-.pricing-card.featured::before { opacity: 1; }
-
-.pc-label {
-  font-size: 0.62em;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold);
-  font-weight: 300;
-  margin-bottom: 8px;
-}
-.pc-badge {
-  display: inline-block;
-  font-size: 0.65em;
-  letter-spacing: 2px;
-  background: linear-gradient(135deg, var(--gold), var(--gold-bright));
-  color: var(--obsidian);
-  font-weight: 800;
-  padding: 3px 14px;
-  margin-bottom: 10px;
-  width: fit-content;
-}
-.pricing-card h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.6em;
-  font-weight: 600;
-  color: var(--cream);
-  margin-bottom: 10px;
-}
-.pc-price {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.4em;
-  font-weight: 700;
-  color: var(--gold);
-  margin: 6px 0 20px;
-  line-height: 1;
-}
-.pricing-card ul {
-  list-style: none;
-  margin-bottom: 24px;
-  flex: 1;
-}
-.pricing-card li {
-  font-size: 0.83em;
-  color: var(--silver);
-  padding: 9px 0;
-  border-bottom: 1px solid rgba(201,168,76,0.07);
-  font-weight: 300;
-}
-.pricing-card li:last-child { border-bottom: none; }
-
-/* ══════════════════════════════
-   TESTIMONIALS
-══════════════════════════════ */
-#testimonials {
-  background: var(--obsidian);
-  text-align: center;
-  padding: 100px 40px;
-}
-.testimonial-wrap {
-  max-width: 750px;
-  margin: 0 auto;
-  padding: 60px 0;
-  position: relative;
-}
-.testimonial-wrap::before {
-  content: '"';
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 12em;
-  color: rgba(201,168,76,0.06);
-  position: absolute;
-  top: -20px; left: -20px;
-  line-height: 1;
-  pointer-events: none;
-}
-.testimonial-text {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.8em;
-  font-style: italic;
-  color: var(--cream);
-  line-height: 1.6;
-  position: relative;
-  z-index: 1;
-  animation: fadeIn 0.6s ease-out;
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.testimonial-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 36px;
-}
-.t-dot {
-  width: 24px; height: 2px;
-  background: rgba(201,168,76,0.25);
-  transition: all 0.3s;
-  cursor: pointer;
-}
-.t-dot.active {
-  background: var(--gold);
-  width: 40px;
-}
-
-/* ══════════════════════════════
-   CONTACT
-══════════════════════════════ */
-#contact { background: var(--charcoal); }
-
-.contact-inner {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-}
-.contact-inner > p {
-  font-size: 0.92em;
-  color: var(--silver);
-  line-height: 2;
-  font-weight: 300;
-  margin-bottom: 48px;
-}
-.contact-cards {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-.contact-card {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 28px 36px;
-  border: 1px solid rgba(201,168,76,0.15);
-  background: var(--onyx);
-  text-decoration: none;
-  color: var(--cream);
-  transition: all 0.3s ease;
-  min-width: 260px;
-}
-.contact-card:hover {
-  border-color: rgba(201,168,76,0.45);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-}
-.cc-icon { font-size: 1.8em; }
-.cc-label {
-  font-size: 0.62em;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold);
-  font-weight: 300;
-  margin-bottom: 4px;
-}
-.cc-value { font-size: 0.88em; font-weight: 600; letter-spacing: 0.5px; direction: ltr; unicode-bidi: embed; }
-
-/* ══════════════════════════════
-   FOOTER
-══════════════════════════════ */
-footer {
-  background: var(--obsidian);
-  padding: 36px 40px;
-  border-top: 1px solid rgba(201,168,76,0.08);
-}
-.footer-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-.footer-logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.footer-logo img {
-  width: 40px; height: 40px;
-  object-fit: contain;
-  filter: drop-shadow(0 4px 12px rgba(201,168,76,0.3));
-}
-.footer-logo-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1em;
-  font-weight: 700;
-  color: var(--gold);
-  letter-spacing: 2px;
-}
-.footer-copy {
-  font-size: 0.72em;
-  color: var(--ash);
-  letter-spacing: 1px;
-}
-.footer-socials { display: flex; gap: 16px; }
-.footer-socials a {
-  color: var(--silver);
-  font-size: 1.2em;
-  text-decoration: none;
-  transition: all 0.3s;
-}
-.footer-socials a:hover {
-  color: var(--gold);
-  transform: translateY(-3px);
-}
-
-/* ══════════════════════════════
-   FLOATING ELEMENTS
-══════════════════════════════ */
-.wa-float {
-  position: fixed;
-  bottom: 28px; right: 28px;
-  width: 54px; height: 54px;
-  background: #25D366;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5em;
-  color: white;
-  text-decoration: none;
-  box-shadow: 0 6px 28px rgba(37,211,102,0.4);
-  z-index: 998;
-  animation: floatBounce 2.5s ease-in-out infinite;
-}
-@keyframes floatBounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-.wa-float:hover { transform: scale(1.12); }
-
-.scroll-top {
-  position: fixed;
-  bottom: 28px; left: 28px;
-  width: 44px; height: 44px;
-  background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--obsidian);
-  font-size: 1.2em;
-  cursor: pointer;
-  opacity: 0;
-  visibility: hidden;
-  z-index: 998;
-  transition: all 0.3s;
-  box-shadow: 0 4px 20px rgba(201,168,76,0.3);
-}
-.scroll-top.visible { opacity: 1; visibility: visible; }
-.scroll-top:hover { transform: translateY(-4px); }
-
-/* ══════════════════════════════
-   RESPONSIVE - MOBILE
-══════════════════════════════ */
-@media (max-width: 1024px) {
-  .hero-inner { grid-template-columns: 1fr; gap: 60px; text-align: center; }
-  .hero-eyebrow { justify-content: center; }
-  .hero-eyebrow::before { display: none; }
-  .hero-divider { margin: 28px auto; }
-  .hero-p { margin: 0 auto 42px; }
-  .hero-btns { justify-content: center; }
-  .hero-stats { justify-content: center; }
-  .hero-visual { order: -1; }
-  .about-grid { grid-template-columns: 1fr; gap: 48px; }
-}
-
-@media (max-width: 768px) {
-  header { padding: 14px 20px; }
-  header.scrolled { padding: 10px 20px; }
-  nav { display: none; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: rgba(8,8,8,0.98); padding: 24px 20px; border-bottom: 1px solid rgba(201,168,76,0.12); z-index: 999; gap: 16px; }
-  nav.open { display: flex; }
-  .mobile-menu-btn { display: flex; }
-  .logo-img { width: 42px; height: 42px; }
-  .logo-name { font-size: 1.2em; }
-  section { padding: 70px 20px; }
-  .hero { padding: 100px 20px 60px; }
-  .hero-h1 { font-size: 2.4em; }
-  .orb-container { width: 240px; height: 240px; }
-  .orb-ring:nth-child(1) { width: 240px; height: 240px; }
-  .orb-ring:nth-child(2) { width: 190px; height: 190px; }
-  .orb-ring:nth-child(3) { width: 140px; height: 140px; }
-  .orb-core { width: 90px; height: 90px; }
-  .orb-logo { width: 55px; height: 55px; }
-  .hero-stats { flex-wrap: wrap; gap: 24px; }
-  .services-grid { gap: 1px; }
-  .projects-grid { grid-template-columns: 1fr; }
-  .pricing-grid { grid-template-columns: 1fr; }
-  .contact-cards { flex-direction: column; align-items: center; }
-  .contact-card { min-width: unset; width: 100%; max-width: 360px; }
-  .footer-inner { flex-direction: column; text-align: center; align-items: center; }
-  .hero-btns { flex-direction: column; width: 100%; }
-  .btn-gold, .btn-outline { width: 100%; text-align: center; }
-}
-
-@media (max-width: 480px) {
-  .hero-h1 { font-size: 2em; }
-  .section-h2 { font-size: 1.9em; }
-  .orb-container { width: 200px; height: 200px; }
-  .orb-ring:nth-child(1) { width: 200px; height: 200px; }
-  .orb-ring:nth-child(2) { width: 160px; height: 160px; }
-  .orb-ring:nth-child(3) { width: 118px; height: 118px; }
-  .orb-core { width: 76px; height: 76px; }
-  .hero-stats { gap: 16px; }
-  .about-visual { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .about-stat-box .num { font-size: 2.2em; }
-}
-
-
-/* ── TIER DOTS ── */
-.tier-dot {
-  display: inline-block;
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  margin-right: 10px;
-  vertical-align: middle;
-  position: relative;
-  top: -1px;
-}
-.tier-green { background: #2ecc71; box-shadow: 0 0 8px rgba(46,204,113,0.6); }
-.tier-blue { background: #3498db; box-shadow: 0 0 8px rgba(52,152,219,0.6); }
-
-/* ── SVG ICON COLORS ── */
-.service-icon-wrap svg { color: var(--gold); }
-.p-icon { margin-bottom: 18px; color: var(--gold); }
-.p-icon svg { color: var(--gold); }
-
-/* ── Scroll Reveal ── */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
-</style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kriaa Service — Web Development</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh; position: relative; overflow: hidden;
+      display: flex; align-items: center;
+      padding: var(--nav-h) var(--section-px) 0;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(201,168,76,0.10) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 40% at 90% 80%, rgba(201,168,76,0.06) 0%, transparent 60%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    }
+    .hero-inner {
+      position: relative; z-index: 1;
+      max-width: var(--max-w); margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+      padding: 80px 0 60px;
+    }
+    .hero-eyebrow { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.8rem; }
+    .hero-eyebrow-line { width: 32px; height: 1px; background: var(--gold); }
+    .hero-eyebrow-text {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.28em;
+      text-transform: uppercase; color: var(--gold);
+    }
+    .hero-title {
+      font-family: var(--font-display); font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 600; letter-spacing: 0.04em; line-height: 1.05;
+      color: var(--white); margin-bottom: 1.5rem;
+    }
+    .hero-title em {
+      font-family: var(--font-serif); font-style: italic;
+      color: var(--gold); font-weight: 300; font-size: 1.1em;
+    }
+    .hero-sub {
+      font-size: 0.92rem; color: var(--muted2); line-height: 1.9;
+      max-width: 440px; margin-bottom: 2.8rem;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
+    .hero-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+    .hero-stat {}
+    .hero-stat-num {
+      font-family: var(--font-display); font-size: 2.2rem; color: var(--gold);
+      letter-spacing: 0.02em; line-height: 1;
+    }
+    .hero-stat-label { font-size: 0.65rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 0.3rem; }
+    .hero-stat-sep { width: 1px; background: var(--border); align-self: stretch; }
+
+    /* Hero right — decorative */
+    .hero-visual {
+      position: relative; height: 480px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-logo-wrap {
+      position: relative; z-index: 2;
+      width: 340px; height: 340px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-logo-wrap img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 40px rgba(201,168,76,0.4)); }
+    .ring {
+      position: absolute; border-radius: 50%;
+      border: 1px solid var(--gold-border);
+    }
+    .ring-1 { width: 380px; height: 380px; animation: spin 25s linear infinite; }
+    .ring-1::before {
+      content: ''; position: absolute; top: -4px; left: 50%; transform: translateX(-50%);
+      width: 8px; height: 8px; background: var(--gold); border-radius: 50%;
+      box-shadow: 0 0 16px var(--gold);
+    }
+    .ring-2 { width: 460px; height: 460px; border-color: rgba(201,168,76,0.1); animation: spin 40s linear infinite reverse; }
+    @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+    .glow-center {
+      position: absolute; width: 300px; height: 300px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.1) 0%, transparent 70%);
+    }
+
+    /* ── SERVICES PREVIEW ── */
+    #services-preview {
+      background: var(--black2); padding: 80px var(--section-px);
+      border-top: 1px solid var(--gold-border);
+      border-bottom: 1px solid var(--gold-border);
+    }
+    .services-preview-inner { max-width: var(--max-w); margin: 0 auto; }
+    .services-strip { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .service-strip-item {
+      padding: 2.5rem 2rem; border-right: 1px solid var(--border);
+      transition: background 0.4s;
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .service-strip-item:last-child { border-right: none; }
+    .service-strip-item:hover { background: var(--gold-faint); }
+    .service-strip-num {
+      font-family: var(--font-display); font-size: 0.65rem;
+      color: var(--gold); letter-spacing: 0.2em;
+    }
+    .service-strip-icon { width: 44px; height: 44px; }
+    .service-strip-icon svg { width: 100%; height: 100%; color: var(--gold); }
+    .service-strip-item h3 {
+      font-family: var(--font-display); font-size: 1.1rem;
+      font-weight: 600; letter-spacing: 0.08em; color: var(--white);
+    }
+    .service-strip-item p { font-size: 0.84rem; color: var(--muted2); line-height: 1.8; }
+    .service-strip-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--gold); text-decoration: none;
+      transition: gap 0.3s;
+    }
+    .service-strip-link:hover { gap: 0.8rem; }
+    .service-strip-link svg { width: 14px; height: 14px; }
+
+    /* ── WHY ── */
+    #why { background: var(--black); padding: 100px var(--section-px); }
+    .why-inner { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
+    .why-card {
+      padding: 1.8rem; background: var(--black3); border: 1px solid var(--border);
+      transition: border-color 0.4s, transform 0.4s;
+    }
+    .why-card:hover { border-color: var(--gold-border); transform: translateY(-4px); }
+    .why-card-icon { width: 36px; height: 36px; margin-bottom: 1rem; color: var(--gold); }
+    .why-card-icon svg { width: 100%; height: 100%; }
+    .why-card h4 { font-family: var(--font-display); font-size: 0.9rem; font-weight: 600; letter-spacing: 0.1em; margin-bottom: 0.6rem; color: var(--white); }
+    .why-card p { font-size: 0.82rem; color: var(--muted2); line-height: 1.8; }
+    .why-visual-side {
+      position: relative; background: var(--black3);
+      border: 1px solid var(--gold-border); padding: 3rem;
+      display: flex; flex-direction: column; gap: 2rem;
+    }
+    .why-visual-side::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+    .why-visual-stat { text-align: center; }
+    .why-visual-stat-num { font-family: var(--font-display); font-size: 3.5rem; color: var(--gold); letter-spacing: 0.02em; }
+    .why-visual-stat-label { font-size: 0.68rem; color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 0.3rem; }
+    .why-sep { height: 1px; background: var(--border); }
+
+    /* ── PACKAGES PREVIEW ── */
+    #packages-prev { background: var(--black2); padding: 100px var(--section-px); border-top: 1px solid var(--gold-border); }
+    .packages-prev-inner { max-width: var(--max-w); margin: 0 auto; }
+    .packages-prev-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1.5rem; }
+    .packs-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .pack-prev-card {
+      background: var(--black3); border: 1px solid var(--border); padding: 2.5rem 2rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.4s, transform 0.4s, box-shadow 0.4s;
+    }
+    .pack-prev-card:hover { border-color: var(--gold-border); transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,0.6); }
+    .pack-prev-card.featured { border-color: var(--gold-dk); background: linear-gradient(160deg, rgba(201,168,76,0.07), var(--black3)); }
+    .pack-prev-card.featured::after {
+      content: 'MOST POPULAR'; position: absolute; top: 18px; right: -30px;
+      background: var(--gold); color: var(--black);
+      font-size: 0.55rem; font-weight: 800; letter-spacing: 0.15em;
+      padding: 0.3rem 2.8rem; transform: rotate(45deg);
+    }
+    .pack-tier { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+    .pack-name { font-family: var(--font-display); font-size: 1.6rem; color: var(--white); margin-bottom: 1rem; }
+    .pack-price { font-family: var(--font-display); font-size: 2.8rem; color: var(--gold); line-height: 1; }
+    .pack-price span { font-size: 1rem; color: var(--muted); font-family: var(--font-sans); font-weight: 300; }
+    .pack-desc { font-size: 0.82rem; color: var(--muted2); margin: 1rem 0 1.8rem; line-height: 1.8; }
+    .pack-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--gold); text-decoration: none;
+      border-bottom: 1px solid var(--gold-border); padding-bottom: 2px;
+      transition: gap 0.3s, border-color 0.3s;
+    }
+    .pack-link:hover { gap: 0.8rem; border-color: var(--gold); }
+    .pack-link svg { width: 14px; height: 14px; }
+
+    /* ── TESTIMONIALS ── */
+    #testi { background: var(--black); padding: 100px var(--section-px); }
+    .testi-inner { max-width: var(--max-w); margin: 0 auto; }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .testi-card {
+      background: var(--black3); border: 1px solid var(--border); padding: 2.5rem 2rem;
+      transition: border-color 0.4s, transform 0.4s;
+    }
+    .testi-card:hover { border-color: var(--gold-border); transform: translateY(-4px); }
+    .testi-stars { display: flex; gap: 3px; margin-bottom: 1.2rem; }
+    .testi-stars svg { width: 14px; height: 14px; color: var(--gold); }
+    .testi-quote-mark {
+      font-family: var(--font-serif); font-size: 4rem; color: var(--gold);
+      opacity: 0.2; line-height: 1; margin-bottom: 0.5rem;
+    }
+    .testi-text { font-size: 0.88rem; color: var(--muted2); line-height: 1.85; margin-bottom: 2rem; font-style: italic; font-family: var(--font-serif); font-size: 1rem; }
+    .testi-author { display: flex; align-items: center; gap: 1rem; }
+    .testi-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--gold-faint); border: 1px solid var(--gold-border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 0.9rem; color: var(--gold); font-weight: 600;
+      flex-shrink: 0;
+    }
+    .testi-name { font-family: var(--font-sans); font-size: 0.82rem; font-weight: 700; color: var(--white); }
+    .testi-role { font-size: 0.72rem; color: var(--muted); margin-top: 0.2rem; }
+
+    /* ── CTA BANNER ── */
+    #cta-banner {
+      background: var(--black2); border-top: 1px solid var(--gold-border); border-bottom: 1px solid var(--gold-border);
+      padding: 80px var(--section-px); text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-glow { position: absolute; width: 600px; height: 300px; top: 50%; left: 50%; transform: translate(-50%,-50%); background: radial-gradient(ellipse, rgba(201,168,76,0.07) 0%, transparent 70%); pointer-events: none; }
+    .cta-inner { max-width: 640px; margin: 0 auto; position: relative; z-index: 1; }
+    .cta-inner h2 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); color: var(--white); margin-bottom: 1rem; }
+    .cta-inner h2 em { font-family: var(--font-serif); font-style: italic; color: var(--gold); }
+    .cta-inner p { font-size: 0.92rem; color: var(--muted2); margin-bottom: 2.5rem; line-height: 1.8; }
+    .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .urgency-note {
+      margin-top: 1.5rem; font-size: 0.68rem; color: var(--muted);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+    }
+    .urgency-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: blink 1.5s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    @media (max-width: 1000px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .services-strip { grid-template-columns: 1fr; }
+      .service-strip-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .why-inner { grid-template-columns: 1fr; }
+      .packs-strip { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .why-grid { grid-template-columns: 1fr; }
+      .packages-prev-header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header id="header">
-  <a href="#" class="logo-wrap">
-    <img src="kriaa-logo.png" alt="Kriaa Service" class="logo-img" id="nav-logo">
-    <div>
-      <div class="logo-name">Kriaa Service</div>
-      <span class="logo-sub">Web Development</span>
-    </div>
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-logo" href="index.html"><img src="logo.png" alt="Kriaa Service"/></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="web-development.html">Web Dev</a></li>
+    <li><a href="sponsoring.html">Sponsoring</a></li>
+    <li><a href="bundles.html">Bundles</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="https://wa.me/96672771" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    WhatsApp
   </a>
-  <nav id="mainNav">
-    <a href="#about" data-en="About" data-ar="من نحن" data-fr="À propos">About</a>
-    <a href="#services" data-en="Services" data-ar="الخدمات" data-fr="Services">Services</a>
-    <a href="#projects" data-en="Projects" data-ar="المشاريع" data-fr="Projets">Projects</a>
-    <a href="#pricing" data-en="Pricing" data-ar="الأسعار" data-fr="Tarifs">Pricing</a>
-    <a href="#contact" data-en="Contact" data-ar="تواصل" data-fr="Contact">Contact</a>
-  </nav>
-  <div class="header-right">
-    <div class="lang-switcher">
-      <button class="lang-btn active" onclick="switchLang('en',event)">EN</button>
-      <button class="lang-btn" onclick="switchLang('ar',event)">AR</button>
-      <button class="lang-btn" onclick="switchLang('fr',event)">FR</button>
-    </div>
-    <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
-      </svg></button>
+  <div class="burger" id="burger">
+    <span></span><span></span><span></span>
   </div>
-</header>
+</nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-ring"></div>
-  <div class="hero-ring"></div>
-  <div class="hero-ring"></div>
-  <div class="hero-ring"></div>
-
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
   <div class="hero-inner">
-    <div class="hero-text">
-      <div class="hero-eyebrow" data-en="Kriaa Service — Sfax, Tunisia" data-ar="قريعة سرفس — صفاقس، تونس" data-fr="Kriaa Service — Sfax, Tunisie">Kriaa Service — Sfax, Tunisia</div>
-      <h1 class="hero-h1" data-en="<em>Web & Mobile</em><br>Development" data-ar="<em>تطوير ويب</em><br>وتطبيقات جوال" data-fr="<em>Web & Mobile</em><br>Premium"><em>Web & Mobile</em><br>Development</h1>
-      <div class="hero-divider"></div>
-      <p class="hero-p"
-         data-en="We craft powerful websites and professional mobile apps that elevate your business. Every project built with precision, passion, and uncompromising quality."
-         data-ar="نصنع مواقع قوية وتطبيقات جوال احترافية ترفع من مستوى أعمالك. كل مشروع مبني بدقة وشغف وجودة لا تقبل المساومة."
-         data-fr="Nous créons des sites Web puissants et des applications mobiles professionnelles qui valorisent votre entreprise avec précision et passion.">
-        We craft powerful websites and professional mobile apps that elevate your business. Every project built with precision, passion, and uncompromising quality.
+    <div class="hero-text reveal">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span class="hero-eyebrow-text">Limited Slots — June 2025</span>
+      </div>
+      <h1 class="hero-title">
+        We Build Websites<br>
+        That <em>Sell</em> &amp;<br>
+        Promote Your Brand
+      </h1>
+      <p class="hero-sub">
+        Kriaa Service delivers premium web development and targeted digital campaigns — designed to convert visitors into loyal customers.
       </p>
-      <div class="hero-btns">
-        <a href="#projects" class="btn-gold" data-en="View Projects" data-ar="استعرض المشاريع" data-fr="Voir Projets">View Projects</a>
-        <a href="#contact" class="btn-outline" data-en="Get in Touch" data-ar="تواصل معنا" data-fr="Contactez-nous">Get in Touch</a>
+      <div class="hero-actions">
+        <a href="https://wa.me/96672771" target="_blank" class="btn btn-gold">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Start on WhatsApp
+        </a>
+        <a href="web-development.html" class="btn btn-outline-gold">
+          View Packages
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
       </div>
       <div class="hero-stats">
-        <div class="stat-item">
-          <div class="stat-num">50+</div>
-          <div class="stat-label" data-en="Projects" data-ar="مشروع" data-fr="Projets">Projects</div>
+        <div class="hero-stat">
+          <div class="hero-stat-num"><span data-target="50" data-suffix="+">50+</span></div>
+          <div class="hero-stat-label">Projects Delivered</div>
         </div>
-        <div class="stat-item">
-          <div class="stat-num">100%</div>
-          <div class="stat-label" data-en="Satisfaction" data-ar="رضا العملاء" data-fr="Satisfaction">Satisfaction</div>
+        <div class="hero-stat-sep"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num"><span data-target="2" data-suffix="M+">2M+</span></div>
+          <div class="hero-stat-label">Views Generated</div>
         </div>
-        <div class="stat-item">
-          <div class="stat-num">3+</div>
-          <div class="stat-label" data-en="Years Exp." data-ar="سنوات خبرة" data-fr="Ans d'exp.">Years Exp.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero-visual">
-      <div class="orb-container">
-        <div class="orb-ring"></div>
-        <div class="orb-ring"></div>
-        <div class="orb-ring"></div>
-        <div class="orb-core">
-          <img src="kriaa-logo.png" alt="Kriaa" class="orb-logo">
+        <div class="hero-stat-sep"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num"><span data-target="100" data-suffix="%">100%</span></div>
+          <div class="hero-stat-label">Satisfaction Rate</div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="about-grid" style="max-width:1200px;margin:0 auto;">
-    <div class="about-text">
-      <div class="section-tag" data-en="Who We Are" data-ar="من نحن" data-fr="Qui Sommes-Nous">Who We Are</div>
-      <h2 class="section-h2" data-en="About <span>Kriaa Service</span>" data-ar="حول <span>قريعة سرفس</span>" data-fr="À Propos de <span>Kriaa Service</span>">About <span>Kriaa Service</span></h2>
-      <p data-en="A passionate team dedicated to transforming ideas into stunning digital experiences. We build websites and mobile apps combining cutting-edge technology with timeless design principles to deliver exceptional results for businesses across Tunisia and beyond."
-         data-ar="فريق شغوف مكرّس لتحويل الأفكار إلى تجارب رقمية مذهلة. نبني مواقع إلكترونية وتطبيقات جوال تجمع بين أحدث التقنيات ومبادئ التصميم الخالدة لتحقيق نتائج استثنائية."
-         data-fr="Une équipe passionnée dédiée à transformer les idées en expériences numériques — des sites web et applications alliant technologie de pointe et design intemporel pour des résultats exceptionnels.">
-        A passionate team dedicated to transforming ideas into stunning digital experiences. We build websites and mobile apps combining cutting-edge technology with timeless design principles to deliver exceptional results for businesses across Tunisia and beyond.
-      </p>
-      <div class="skills-list">
-        <div class="skill-chip">HTML5</div>
-        <div class="skill-chip">CSS3</div>
-        <div class="skill-chip">JavaScript</div>
-        <div class="skill-chip">React</div>
-        <div class="skill-chip">UI/UX Design</div>
-        <div class="skill-chip">Mobile Apps</div>
-        <div class="skill-chip">E-Commerce</div>
-        <div class="skill-chip">SEO</div>
-      </div>
-    </div>
-    <div class="about-visual reveal">
-      <div class="about-stat-box reveal reveal-delay-1">
-        <div class="num">50+</div>
-        <div class="lbl" data-en="Projects Done" data-ar="مشروع منجز" data-fr="Projets Réalisés">Projects Done</div>
-      </div>
-      <div class="about-stat-box reveal reveal-delay-2">
-        <div class="num">100%</div>
-        <div class="lbl" data-en="Client Satisfaction" data-ar="رضا العملاء" data-fr="Satisfaction Client">Client Satisfaction</div>
-      </div>
-      <div class="about-stat-box reveal reveal-delay-3">
-        <div class="num">3+</div>
-        <div class="lbl" data-en="Years Experience" data-ar="سنوات خبرة" data-fr="Ans d'Expérience">Years Experience</div>
-      </div>
-      <div class="about-stat-box reveal reveal-delay-4">
-        <div class="num">24h</div>
-        <div class="lbl" data-en="Fast Delivery" data-ar="تسليم سريع" data-fr="Livraison Rapide">Fast Delivery</div>
+    <div class="hero-visual reveal-right">
+      <div class="glow-center"></div>
+      <div class="ring ring-2"></div>
+      <div class="ring ring-1"></div>
+      <div class="hero-logo-wrap">
+        <img src="logo.png" alt="Kriaa Service"/>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services">
-  <div class="section-head center" style="max-width:1200px;margin:0 auto 64px;">
-    <div class="section-tag" data-en="What We Offer" data-ar="ما نقدمه" data-fr="Ce Que Nous Offrons">What We Offer</div>
-    <h2 class="section-h2" data-en="Our <span>Services</span>" data-ar="<span>خدماتنا</span>" data-fr="Nos <span>Services</span>">Our <span>Services</span></h2>
-  </div>
-  <div class="services-grid">
-    <div class="service-card reveal">
-      <div class="service-icon-wrap">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
-        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-      </svg></div>
-      <h3 data-en="Website Design" data-ar="تصميم المواقع" data-fr="Conception Web">Website Design</h3>
-      <p data-en="Custom, responsive websites that captivate your audience and drive measurable results for your business."
-         data-ar="مواقع مخصصة ومتجاوبة تأسر جمهورك وتحقق نتائج قابلة للقياس."
-         data-fr="Sites Web personnalisés et réactifs qui captivent votre audience et génèrent des résultats.">
-        Custom, responsive websites that captivate your audience and drive measurable results for your business.
-      </p>
-    </div>
-    <div class="service-card reveal reveal-delay-1">
-      <div class="service-icon-wrap">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
-        <path d="M16 10a4 4 0 0 1-8 0"/>
-      </svg></div>
-      <h3 data-en="E-Commerce" data-ar="التجارة الإلكترونية" data-fr="E-Commerce">E-Commerce</h3>
-      <p data-en="Powerful online stores built to maximize conversions, streamline operations, and grow your revenue."
-         data-ar="متاجر إلكترونية قوية مبنية لتحقيق أقصى قدر من المبيعات وتبسيط العمليات."
-         data-fr="Boutiques en ligne puissantes pour maximiser vos conversions et développer votre chiffre d'affaires.">
-        Powerful online stores built to maximize conversions, streamline operations, and grow your revenue.
-      </p>
-    </div>
-    <div class="service-card reveal reveal-delay-2">
-      <div class="service-icon-wrap">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/>
-        <line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
-      </svg></div>
-      <h3 data-en="Custom Dashboards" data-ar="لوحات تحكم مخصصة" data-fr="Tableaux de Bord">Custom Dashboards</h3>
-      <p data-en="Data visualization and management systems tailored precisely to your business needs and workflows."
-         data-ar="أنظمة تصور وإدارة بيانات مصممة بدقة لاحتياجات عملك وسير العمل."
-         data-fr="Systèmes de visualisation de données adaptés précisément à vos besoins et flux de travail.">
-        Data visualization and management systems tailored precisely to your business needs and workflows.
-      </p>
-    </div>
-    <div class="service-card reveal reveal-delay-3">
-      <div class="service-icon-wrap">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
-        <line x1="12" y1="18" x2="12.01" y2="18"/>
-      </svg></div>
-      <h3 data-en="Mobile Apps" data-ar="تطبيقات الجوال" data-fr="Applications Mobiles">Mobile Apps</h3>
-      <p data-en="Professional iOS & Android apps to grow your business — beautiful UI, powerful e-commerce, and seamless UX."
-         data-ar="تطبيقات iOS وAndroid احترافية لتنمية أعمالك — واجهة جميلة وميزات تجارية قوية."
-         data-fr="Applications iOS & Android professionnelles pour développer votre activité avec une belle interface.">
-        Professional iOS & Android apps to grow your business — beautiful UI, powerful e-commerce, and seamless UX.
-      </p>
-      <div class="service-tags">
-        <span class="s-tag" data-en="iOS" data-ar="iOS" data-fr="iOS">iOS</span>
-        <span class="s-tag" data-en="Android" data-ar="Android" data-fr="Android">Android</span>
-        <span class="s-tag" data-en="E-Commerce" data-ar="متجر" data-fr="E-Commerce">E-Commerce</span>
+<!-- SERVICES STRIP -->
+<section id="services-preview">
+  <div class="services-preview-inner">
+    <div class="services-strip">
+      <div class="service-strip-item reveal" data-delay="0">
+        <span class="service-strip-num">01</span>
+        <div class="service-strip-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h3>Web Development</h3>
+        <p>Modern, conversion-focused websites from landing pages to full e-commerce platforms with dashboards and multi-language support.</p>
+        <a class="service-strip-link" href="web-development.html">
+          Explore Packages
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="service-strip-item reveal" data-delay="150">
+        <span class="service-strip-num">02</span>
+        <div class="service-strip-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h3>Sponsoring &amp; Views</h3>
+        <p>Targeted content campaigns delivering 30K to 120K+ real views. Guaranteed reach with full performance reporting included.</p>
+        <a class="service-strip-link" href="sponsoring.html">
+          See View Packages
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="service-strip-item reveal" data-delay="300">
+        <span class="service-strip-num">03</span>
+        <div class="service-strip-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Full Marketing Bundles</h3>
+        <p>Website + Sponsoring + Video Editing in one powerful bundle. Designed for clothing brands, gyms, and product sellers ready to scale.</p>
+        <a class="service-strip-link" href="bundles.html">
+          See Bundles
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- REAL PROJECTS -->
-<section id="projects">
-  <div class="section-head center" style="max-width:1200px;margin:0 auto 64px;">
-    <div class="section-tag" data-en="Real Client Work" data-ar="أعمال العملاء" data-fr="Travaux Clients">Real Client Work</div>
-    <h2 class="section-h2" data-en="Live Client <span>Projects</span>" data-ar="مشاريع <span>العملاء</span> المباشرة" data-fr="Projets Clients <span>en Ligne</span>">Live Client <span>Projects</span></h2>
-  </div>
-  <div class="projects-grid" style="max-width:1200px;margin:0 auto;">
-    <div class="project-card real-project reveal">
-      <div class="p-icon">
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.86H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.86l.58-3.57a2 2 0 0 0-1.34-2.23z"/>
-      </svg></div>
-      <div class="p-title">Odette <span class="badge-client" data-en="CLIENT" data-ar="عميل" data-fr="CLIENT">CLIENT</span> <span class="badge-live" data-en="LIVE" data-ar="مباشر" data-fr="LIVE">LIVE</span></div>
-      <p class="p-desc"
-         data-en="Elegant women's fashion brand website with a refined and luxurious design. Full e-commerce experience with a premium look and feel."
-         data-ar="موقع علامة أزياء نسائية راقية بتصميم أنيق وفاخر. تجربة تجارة إلكترونية كاملة."
-         data-fr="Site de marque de mode féminine élégante avec un design raffiné et luxueux. Expérience e-commerce complète.">
-        Elegant women's fashion brand website with a refined and luxurious design. Full e-commerce experience with a premium look and feel.
-      </p>
-      <div class="p-tags">
-        <span class="p-tag">E-Commerce</span>
-        <span class="p-tag">Fashion</span>
-        <span class="p-tag">UI/UX</span>
+<!-- WHY US -->
+<section id="why">
+  <div class="why-inner inner">
+    <div class="reveal-left">
+      <div class="why-visual-side">
+        <div class="why-visual-stat">
+          <div class="why-visual-stat-num"><span data-target="48" data-suffix="H">48H</span></div>
+          <div class="why-visual-stat-label">Average Response Time</div>
+        </div>
+        <div class="why-sep"></div>
+        <div class="why-visual-stat">
+          <div class="why-visual-stat-num"><span data-target="5" data-suffix=" Days">5 Days</span></div>
+          <div class="why-visual-stat-label">Starter Pack Delivery</div>
+        </div>
+        <div class="why-sep"></div>
+        <div class="why-visual-stat">
+          <div class="why-visual-stat-num"><span data-target="2" data-suffix=" Months">2 Mo</span></div>
+          <div class="why-visual-stat-label">Max Support Included</div>
+        </div>
       </div>
-      <button class="btn-gold" onclick="window.open('https://odettee.net','_blank')"
-              data-en="Visit Website" data-ar="زيارة الموقع" data-fr="Visiter le Site">Visit Website</button>
+    </div>
+    <div class="reveal-right">
+      <div class="section-eyebrow">
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-text">Our Advantage</span>
+      </div>
+      <h2 class="section-title">Why Choose <em>Kriaa Service?</em></h2>
+      <div class="section-divider"></div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <h4>Fast Execution</h4>
+          <p>Clear milestones, on-time delivery. No endless back-and-forth. We move with urgency.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <h4>Premium UI/UX</h4>
+          <p>Every pixel is intentional. We craft interfaces that feel premium and convert visitors into buyers.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h4>Post-Sale Support</h4>
+          <p>We don't disappear after launch. Business and Pro packs include dedicated ongoing support.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h4>Ready to Sell</h4>
+          <p>Our solutions are engineered to generate revenue from day one, not just look good on a portfolio.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- DEMO PROJECTS -->
-<section id="demo-projects">
-  <div class="section-head center" style="max-width:1200px;margin:0 auto 64px;">
-    <div class="section-tag" data-en="Our Work" data-ar="أعمالنا" data-fr="Notre Travail">Our Work</div>
-    <h2 class="section-h2" data-en="Demo <span>Projects</span>" data-ar="<span>المشاريع</span> التجريبية" data-fr="Projets <span>Démo</span>">Demo <span>Projects</span></h2>
-  </div>
-  <div class="projects-grid" style="max-width:1200px;margin:0 auto;">
-    <div class="project-card reveal">
-      <div class="p-icon">
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
-        <line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
-      </svg></div>
-      <div class="p-title">Gym Pro Max <span class="badge-live" data-en="LIVE" data-ar="مباشر" data-fr="LIVE">LIVE</span></div>
-      <p class="p-desc" data-en="Premium fitness center website with advanced features and modern design."
-         data-ar="موقع مركز لياقة بدنية متميز بميزات متقدمة وتصميم عصري."
-         data-fr="Site web de centre de fitness premium avec des fonctionnalités avancées.">Premium fitness center website with advanced features and modern design.</p>
-      <button class="btn-gold" onclick="window.open('https://chi5444.github.io/gym/','_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir Projet">View Project</button>
+<!-- PACKAGES PREVIEW -->
+<section id="packages-prev">
+  <div class="packages-prev-inner">
+    <div class="packages-prev-header">
+      <div class="reveal">
+        <div class="section-eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Web Development</span></div>
+        <h2 class="section-title">Our <em>Packages</em></h2>
+      </div>
+      <a href="web-development.html" class="btn btn-outline-gold reveal">
+        Full Comparison
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
-    <div class="project-card reveal reveal-delay-1">
-      <div class="p-icon">
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.86H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.86l.58-3.57a2 2 0 0 0-1.34-2.23z"/>
-      </svg></div>
-      <div class="p-title" data-en="Women's Fashion Store" data-ar="متجر ملابس نسائية" data-fr="Boutique Mode Femme">Women's Fashion Store</div>
-      <p class="p-desc" data-en="Elegant e-commerce platform for women's clothing with beautiful UI."
-         data-ar="منصة تجارة إلكترونية أنيقة للملابس النسائية بواجهة جميلة."
-         data-fr="Plateforme e-commerce élégante pour vêtements féminins.">Elegant e-commerce platform for women's clothing with beautiful UI.</p>
-      <button class="btn-gold" onclick="window.open('https://kriaaservice.github.io/Moynette/','_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir Projet">View Project</button>
-    </div>
-    <div class="project-card reveal reveal-delay-2">
-      <div class="p-icon">
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-      </svg></div>
-      <div class="p-title" data-en="Products Website" data-ar="موقع منتجات" data-fr="Site de Produits">Products Website</div>
-      <p class="p-desc" data-en="Modern online products showcase with shopping features."
-         data-ar="عرض منتجات إلكتروني عصري مع ميزات التسوق."
-         data-fr="Vitrine de produits en ligne moderne avec fonctionnalités.">Modern online products showcase with shopping features.</p>
-      <button class="btn-gold" onclick="window.open('https://kriaaservice.github.io/cosumed/','_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir Projet">View Project</button>
-    </div>
-    <div class="project-card reveal">
-      <div class="p-icon">
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/>
-      </svg></div>
-      <div class="p-title">Pro Dashboard <span class="badge-live" data-en="LIVE" data-ar="مباشر" data-fr="LIVE">LIVE</span></div>
-      <p class="p-desc" data-en="Real-time analytics dashboard with interactive charts."
-         data-ar="لوحة تحكم تحليلية فورية مع رسوم بيانية تفاعلية."
-         data-fr="Tableau de bord analytique en temps réel.">Real-time analytics dashboard with interactive charts.</p>
-      <button class="btn-gold" onclick="window.open('https://chi5444.github.io/dashboard/','_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir Projet">View Project</button>
-    </div>
-    <div class="project-card reveal reveal-delay-1">
-      <div class="p-icon">
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
-        <line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
-      </svg></div>
-      <div class="p-title" data-en="Fitness Center" data-ar="موقع صالة رياضية" data-fr="Centre de Fitness">Fitness Center</div>
-      <p class="p-desc" data-en="Complete gym website with membership and class scheduling."
-         data-ar="موقع صالة رياضية كامل مع العضوية وجدولة الحصص."
-         data-fr="Site web de gym complet avec adhésions et planning.">Complete gym website with membership and class scheduling.</p>
-      <button class="btn-gold" onclick="window.open('https://chi5444.github.io/world/','_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir Projet">View Project</button>
-    </div>
-    <div class="project-card reveal reveal-delay-2">
-      <div class="p-icon">
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="2" y="6" width="20" height="12" rx="2"/>
-        <path d="M6 12h4m-2-2v4"/><circle cx="16" cy="10" r="1" fill="currentColor"/><circle cx="18" cy="12" r="1" fill="currentColor"/>
-      </svg></div>
-      <div class="p-title" data-en="Gaming Cards Store" data-ar="متجر كروت الألعاب" data-fr="Boutique Cartes Jeux">Gaming Cards Store</div>
-      <p class="p-desc" data-en="Complete e-commerce store for gaming cards with secure payment system."
-         data-ar="متجر إلكتروني كامل لكروت الألعاب مع نظام دفع آمن."
-         data-fr="Boutique e-commerce complète pour cartes de jeux avec paiement sécurisé.">Complete e-commerce store for gaming cards with secure payment system.</p>
-      <button class="btn-gold" onclick="window.open('https://kriaaservice.vercel.app/index.html','_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir Projet">View Project</button>
-    </div>
-    <div class="project-card reveal">
-      <div class="p-icon">
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"/><path d="M2 11v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H6v-2a2 2 0 0 0-4 0z"/>
-        <line x1="6" y1="18" x2="6" y2="22"/><line x1="18" y1="18" x2="18" y2="22"/>
-      </svg></div>
-      <div class="p-title" data-en="Luxury Furniture Store" data-ar="متجر أثاث راقي" data-fr="Mobilier de Luxe">Luxury Furniture Store</div>
-      <p class="p-desc" data-en="Premium furniture store with elegant design and bilingual interface."
-         data-ar="متجر أثاث فاخر بتصميم أنيق وواجهة ثنائية اللغة."
-         data-fr="Magasin de meubles premium avec design élégant et interface bilingue.">Premium furniture store with elegant design and bilingual interface.</p>
-      <button class="btn-gold" onclick="window.open('https://meuble-concept-design.vercel.app/','_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir Projet">View Project</button>
-    </div>
-    <div class="project-card reveal reveal-delay-1">
-      <div class="p-icon">
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-        <polyline points="9 22 9 12 15 12 15 22"/>
-      </svg></div>
-      <div class="p-title" data-en="Multi-Product Store" data-ar="متجر بيع كلشي" data-fr="Magasin Multi-Produits">Multi-Product Store</div>
-      <p class="p-desc" data-en="All-in-one online store with diverse product categories and shopping cart."
-         data-ar="متجر إلكتروني شامل مع فئات منتجات متنوعة وسلة تسوق."
-         data-fr="Boutique en ligne tout-en-un avec diverses catégories de produits.">All-in-one online store with diverse product categories and shopping cart.</p>
-      <button class="btn-gold" onclick="window.open('https://tajer-woad.vercel.app/','_blank')" data-en="View Project" data-ar="عرض المشروع" data-fr="Voir Projet">View Project</button>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section id="pricing">
-  <div class="section-head center" style="max-width:1200px;margin:0 auto 64px;">
-    <div class="section-tag" data-en="Investment" data-ar="الأسعار" data-fr="Investissement">Investment</div>
-    <h2 class="section-h2" data-en="Pricing <span>Plans</span>" data-ar="<span>خطط</span> الأسعار" data-fr="Plans <span>Tarifaires</span>">Pricing <span>Plans</span></h2>
-  </div>
-  <div class="pricing-grid">
-    <div class="pricing-row-label">
-      <span data-en="WEBSITES" data-ar="المواقع الإلكترونية" data-fr="SITES WEB">WEBSITES</span>
-    </div>
-
-    <div class="pricing-card reveal">
-      <h3 data-en="Starter" data-ar="Starter" data-fr="Starter">Starter</h3>
-      <div class="pc-price">350-550 DT</div>
-      <ul>
-        <li data-en="✓ 1 Page (Landing Page)" data-ar="✓ صفحة واحدة" data-fr="✓ 1 Page (Landing)">✓ 1 Page (Landing Page)</li>
-        <li data-en="✓ Modern Design" data-ar="✓ تصميم عصري" data-fr="✓ Design Moderne">✓ Modern Design</li>
-        <li data-en="✓ Mobile Responsive" data-ar="✓ متجاوب مع الموبايل" data-fr="✓ Mobile Responsive">✓ Mobile Responsive</li>
-        <li data-en="✓ WhatsApp Button" data-ar="✓ زر واتساب" data-fr="✓ Bouton WhatsApp">✓ WhatsApp Button</li>
-      </ul>
-      <div><a href="https://wa.me/21696672771" target="_blank" class="btn-gold" data-en="Get Started" data-ar="ابدأ الآن" data-fr="Commencer">Get Started</a></div>
-    </div>
-
-    <div class="pricing-card reveal reveal-delay-1">
-      <h3 data-en="Business" data-ar="Business" data-fr="Business">Business</h3>
-      <div class="pc-price">600-1000 DT</div>
-      <ul>
-        <li data-en="✓ 3-6 Pages" data-ar="✓ من 3 إلى 6 صفحات" data-fr="✓ 3-6 Pages">✓ 3-6 Pages</li>
-        <li data-en="✓ Professional UI/UX" data-ar="✓ تصميم احترافي" data-fr="✓ UI/UX Professionnel">✓ Professional UI/UX</li>
-        <li data-en="✓ Contact Form" data-ar="✓ نموذج تواصل" data-fr="✓ Formulaire Contact">✓ Contact Form</li>
-        <li data-en="✓ SEO Optimization" data-ar="✓ تحسين SEO" data-fr="✓ Optimisation SEO">✓ SEO Optimization</li>
-      </ul>
-      <div><a href="https://wa.me/21696672771" target="_blank" class="btn-gold" data-en="Get Started" data-ar="ابدأ الآن" data-fr="Commencer">Get Started</a></div>
-    </div>
-
-    <div class="pricing-card reveal reveal-delay-2">
-      <h3 data-en="Premium E-Shop" data-ar="متجر إلكتروني" data-fr="E-Shop Premium">Premium E-Shop</h3>
-      <div class="pc-price">1200+ DT</div>
-      <ul>
-        <li data-en="✓ Full E-Commerce" data-ar="✓ متجر إلكتروني كامل" data-fr="✓ E-Commerce Complet">✓ Full E-Commerce</li>
-        <li data-en="✓ Booking System" data-ar="✓ نظام حجز" data-fr="✓ Système Réservation">✓ Booking System</li>
-        <li data-en="✓ Advanced SEO" data-ar="✓ SEO متقدم" data-fr="✓ SEO Avancé">✓ Advanced SEO</li>
-        <li data-en="✓ 1 Month Support" data-ar="✓ دعم تقني شهر" data-fr="✓ Support 1 Mois">✓ 1 Month Support</li>
-      </ul>
-      <div><a href="https://wa.me/21696672771" target="_blank" class="btn-gold" data-en="Get Started" data-ar="ابدأ الآن" data-fr="Commencer">Get Started</a></div>
-    </div>
-
-    <div class="pricing-row-label">
-      <span data-en="MOBILE APPLICATIONS" data-ar="تطبيقات الجوال" data-fr="APPLICATIONS MOBILES">MOBILE APPLICATIONS</span>
-    </div>
-
-    <div class="pricing-card reveal">
-      <div class="pc-label" data-en="iOS & Android" data-ar="iOS وAndroid" data-fr="iOS & Android">iOS & Android</div>
-      <h3 data-en="Basic App" data-ar="تطبيق أساسي" data-fr="App de Base">Basic App</h3>
-      <div class="pc-price">400 DT</div>
-      <ul>
-        <li data-en="✓ Product Display" data-ar="✓ عرض منتجات" data-fr="✓ Affichage Produits">✓ Product Display</li>
-        <li data-en="✓ User Registration" data-ar="✓ تسجيل المستخدمين" data-fr="✓ Inscription Users">✓ User Registration</li>
-        <li data-en="✓ Modern Design" data-ar="✓ تصميم عصري" data-fr="✓ Design Moderne">✓ Modern Design</li>
-        <li data-en="✓ iOS & Android" data-ar="✓ iOS وAndroid" data-fr="✓ iOS & Android">✓ iOS & Android</li>
-      </ul>
-      <div><a href="https://wa.me/21696672771" target="_blank" class="btn-gold" data-en="Get Started" data-ar="ابدأ الآن" data-fr="Commencer">Get Started</a></div>
-    </div>
-
-    <div class="pricing-card reveal reveal-delay-1">
-      <div class="pc-label" data-en="iOS & Android" data-ar="iOS وAndroid" data-fr="iOS & Android">iOS & Android</div>
-      <h3 data-en="Store App" data-ar="تطبيق متجر" data-fr="App Boutique">Store App</h3>
-      <div class="pc-price">600 DT</div>
-      <ul>
-        <li data-en="✓ All Basic Features" data-ar="✓ كل ميزات الأساسي" data-fr="✓ Tout Basic">✓ All Basic Features</li>
-        <li data-en="✓ Cart & Orders" data-ar="✓ سلة وطلبات" data-fr="✓ Panier & Commandes">✓ Cart & Orders</li>
-        <li data-en="✓ Online Payment" data-ar="✓ دفع أونلاين" data-fr="✓ Paiement En Ligne">✓ Online Payment</li>
-        <li data-en="✓ Order Tracking" data-ar="✓ تتبع الطلب" data-fr="✓ Suivi Commande">✓ Order Tracking</li>
-      </ul>
-      <div><a href="https://wa.me/21696672771" target="_blank" class="btn-gold" data-en="Get Started" data-ar="ابدأ الآن" data-fr="Commencer">Get Started</a></div>
-    </div>
-
-    <div class="pricing-card featured reveal reveal-delay-2">
-      <div class="pc-label" data-en="iOS & Android" data-ar="iOS وAndroid" data-fr="iOS & Android">iOS & Android</div>
-      <div class="pc-badge" data-en="PREMIUM" data-ar="مميز" data-fr="PREMIUM">PREMIUM</div>
-      <h3 data-en="Pro App" data-ar="تطبيق احترافي" data-fr="App Pro">Pro App</h3>
-      <div class="pc-price">1000 DT</div>
-      <ul>
-        <li data-en="✓ All Store Features" data-ar="✓ كل ميزات المتجر" data-fr="✓ Tout Store">✓ All Store Features</li>
-        <li data-en="✓ Admin Dashboard" data-ar="✓ لوحة تحكم" data-fr="✓ Tableau Admin">✓ Admin Dashboard</li>
-        <li data-en="✓ Push Notifications" data-ar="✓ إشعارات فورية" data-fr="✓ Notifications Push">✓ Push Notifications</li>
-        <li data-en="✓ Full Customization" data-ar="✓ تخصيص كامل" data-fr="✓ Personnalisation">✓ Full Customization</li>
-      </ul>
-      <div><a href="https://wa.me/21696672771" target="_blank" class="btn-gold" data-en="Get Started" data-ar="ابدأ الآن" data-fr="Commencer">Get Started</a></div>
+    <div class="packs-strip">
+      <div class="pack-prev-card reveal" data-delay="0">
+        <p class="pack-tier">Pack 01</p>
+        <h3 class="pack-name">Starter</h3>
+        <div class="pack-price">300 <span>dt</span></div>
+        <p class="pack-desc">A single stunning landing page with modern UI/UX, domain, and hosting included. Launch your presence fast.</p>
+        <a href="web-development.html#starter" class="pack-link">Order Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="pack-prev-card featured reveal" data-delay="150">
+        <p class="pack-tier">Pack 02</p>
+        <h3 class="pack-name">Business</h3>
+        <div class="pack-price">600–1000 <span>dt</span></div>
+        <p class="pack-desc">3–6 pages, dashboard, client panel, cart, login system, multi-language, and 1 month support.</p>
+        <a href="web-development.html#business" class="pack-link">Order Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="pack-prev-card reveal" data-delay="300">
+        <p class="pack-tier">Pack 03</p>
+        <h3 class="pack-name">Pro</h3>
+        <div class="pack-price">1000–1500 <span>dt</span></div>
+        <p class="pack-desc">6–9 pages, advanced calculator, full dashboard, 2 months support, and priority development.</p>
+        <a href="web-development.html#pro" class="pack-link">Order Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- TESTIMONIALS -->
-<section id="testimonials">
-  <div class="section-head center" style="margin-bottom:0;">
-    <div class="section-tag" data-en="Reviews" data-ar="آراء العملاء" data-fr="Avis">Reviews</div>
-    <h2 class="section-h2" data-en="Client <span>Testimonials</span>" data-ar="<span>شهادات</span> العملاء" data-fr="<span>Témoignages</span> Clients">Client <span>Testimonials</span></h2>
-  </div>
-  <div class="testimonial-wrap">
-    <div class="testimonial-text" id="testimonial">"Very professional developer"</div>
-    <div class="testimonial-dots">
-      <div class="t-dot active" onclick="goTestimonial(0)"></div>
-      <div class="t-dot" onclick="goTestimonial(1)"></div>
-      <div class="t-dot" onclick="goTestimonial(2)"></div>
+<section id="testi">
+  <div class="testi-inner">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div><span class="eyebrow-text">Client Reviews</span><div class="eyebrow-line" style="background:linear-gradient(90deg,var(--gold),transparent);transform:rotate(180deg)"></div></div>
+      <h2 class="section-title">What Clients <em>Say</em></h2>
+      <div class="section-divider center"></div>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal" data-delay="0">
+        <div class="testi-stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="testi-quote-mark">"</div>
+        <p class="testi-text">Kriaa Service built our clothing store in under a week. The design surpassed anything we'd seen locally. Our online sales launched with 40K views in the first month thanks to their sponsor campaign.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">SA</div>
+          <div><div class="testi-name">Sara A.</div><div class="testi-role">Clothing Brand Owner, Tunis</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal" data-delay="150">
+        <div class="testi-stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="testi-quote-mark">"</div>
+        <p class="testi-text">We took the Gym Pack and couldn't be happier. The website looks premium, and the views campaign brought us 50+ new members in the first two weeks. Support after launch was excellent.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">KM</div>
+          <div><div class="testi-name">Karim M.</div><div class="testi-role">Gym Owner, Sfax</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal" data-delay="300">
+        <div class="testi-stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="testi-quote-mark">"</div>
+        <p class="testi-text">Chose the Pro Pack for our tech startup — dashboard, multilingual, advanced calculator. Everything was delivered perfectly on schedule. The team communicates precisely and understands what you need.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">RB</div>
+          <div><div class="testi-name">Rami B.</div><div class="testi-role">Startup Founder, Sousse</div></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-head center" style="max-width:800px;margin:0 auto 48px;">
-    <div class="section-tag" data-en="Get in Touch" data-ar="تواصل معنا" data-fr="Contactez-nous">Get in Touch</div>
-    <h2 class="section-h2" data-en="Contact <span>Us</span>" data-ar="<span>تواصل</span> معنا" data-fr="<span>Contactez</span>-nous">Contact <span>Us</span></h2>
-  </div>
-  <div class="contact-inner">
-    <p data-en="Ready to start your project? Website or Mobile App — let's create something extraordinary together."
-       data-ar="جاهز لبدء مشروعك؟ موقع أو تطبيق جوال — دعنا نصنع شيئاً استثنائياً معاً."
-       data-fr="Prêt à démarrer votre projet ? Site Web ou App Mobile — créons quelque chose d'extraordinaire.">
-      Ready to start your project? Website or Mobile App — let's create something extraordinary together.
-    </p>
-    <div class="contact-cards">
-      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=servicekriaa@gmail.com" class="contact-card reveal">
-        <div class="cc-icon">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-        <polyline points="22,6 12,13 2,6"/>
-      </svg></div>
-        <div>
-          <div class="cc-label" data-en="Email" data-ar="البريد الإلكتروني" data-fr="Email">Email</div>
-          <div class="cc-value">servicekriaa@gmail.com</div>
-        </div>
+<!-- CTA BANNER -->
+<section id="cta-banner">
+  <div class="cta-glow"></div>
+  <div class="cta-inner reveal">
+    <div class="section-eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div><span class="eyebrow-text">Ready to Scale?</span><div class="eyebrow-line" style="transform:rotate(180deg)"></div></div>
+    <h2>Start Your Project <em>Today</em></h2>
+    <p>Limited project slots available each month. We only take 5 new web projects at a time to ensure premium quality for every client.</p>
+    <div class="cta-actions">
+      <a href="https://wa.me/96672771" target="_blank" class="btn btn-gold">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp Us Now
       </a>
-      <a href="https://wa.me/21696672771" target="_blank" class="contact-card reveal reveal-delay-1">
-        <div class="cc-icon">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-      </svg></div>
-        <div>
-          <div class="cc-label" data-en="WhatsApp" data-ar="واتساب" data-fr="WhatsApp">WhatsApp</div>
-          <div class="cc-value">+216 96 672 771</div>
-        </div>
-      </a>
+      <a href="web-development.html" class="btn btn-outline-gold">View All Packages <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="urgency-note">
+      <span class="urgency-dot"></span>
+      Only 5 web project slots per month — act fast
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer>
+<footer id="footer">
   <div class="footer-inner">
-    <div class="footer-logo">
-      <img src="kriaa-logo.png" alt="Kriaa Service">
-      <span class="footer-logo-name">Kriaa Service</span>
-    </div>
-    <div class="footer-copy">© 2026 Kriaa Service. All rights reserved.</div>
-    <div class="footer-socials">
-      <a href="https://wa.me/21696672771" target="_blank" title="WhatsApp">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-      </svg></a>
-      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=servicekriaa@gmail.com" title="Email">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-        <polyline points="22,6 12,13 2,6"/>
-      </svg></a>
+    <a class="footer-logo" href="index.html"><img src="logo.png" alt="Kriaa Service"/></a>
+    <p class="footer-copy">© 2025 Kriaa Service. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="web-development.html">Web Dev</a>
+      <a href="sponsoring.html">Sponsoring</a>
+      <a href="bundles.html">Bundles</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
     </div>
   </div>
 </footer>
 
-<!-- FLOATING -->
-<a href="https://wa.me/21696672771" target="_blank" class="wa-float" title="WhatsApp">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
-      </svg></a>
-<div class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="18 15 12 9 6 15"/>
-      </svg></div>
+<!-- WA FLOAT -->
+<a class="wa-float" href="https://wa.me/96672771" target="_blank" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
-<script>
-// Header scroll
-const header = document.getElementById('header');
-const scrollTop = document.getElementById('scrollTop');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 80) { header.classList.add('scrolled'); scrollTop.classList.add('visible'); }
-  else { header.classList.remove('scrolled'); scrollTop.classList.remove('visible'); }
-});
-
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-  });
-});
-
-// Mobile menu
-const menuBtn = document.getElementById('menuBtn');
-const nav = document.getElementById('mainNav');
-menuBtn.addEventListener('click', () => nav.classList.toggle('open'));
-nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
-
-// Testimonials
-const testimonials = [
-  { en: "Very professional developer", ar: "مطور محترف جداً", fr: "Développeur très professionnel" },
-  { en: "Outstanding quality and service", ar: "جودة وخدمة متميزة", fr: "Qualité et service exceptionnels" },
-  { en: "Exceeded all expectations", ar: "تجاوز كل التوقعات", fr: "Dépassé toutes les attentes" }
-];
-let tIdx = 0;
-let lang = 'en';
-const dots = document.querySelectorAll('.t-dot');
-
-function showTestimonial(idx) {
-  tIdx = idx;
-  const el = document.getElementById('testimonial');
-  el.style.opacity = '0';
-  setTimeout(() => {
-    el.textContent = '"' + (testimonials[tIdx][lang] || testimonials[tIdx].en) + '"';
-    el.style.opacity = '1';
-    el.style.transition = 'opacity 0.4s ease';
-  }, 200);
-  dots.forEach((d, i) => d.classList.toggle('active', i === tIdx));
-}
-function goTestimonial(idx) { showTestimonial(idx); }
-setInterval(() => showTestimonial((tIdx + 1) % testimonials.length), 4000);
-
-// Language switcher
-function switchLang(l, e) {
-  lang = l;
-  const html = document.documentElement;
-  if (l === 'ar') { html.setAttribute('dir', 'rtl'); html.setAttribute('lang', 'ar'); }
-  else { html.setAttribute('dir', 'ltr'); html.setAttribute('lang', l); }
-  document.querySelectorAll('[data-en]').forEach(el => {
-    const val = el.getAttribute('data-' + l) || el.getAttribute('data-en');
-    if (val && el.tagName !== 'INPUT' && el.tagName !== 'BUTTON' && !el.classList.contains('badge-live') && !el.classList.contains('badge-client')) {
-      // If value contains HTML tags use innerHTML
-      if (val.includes('<')) { el.innerHTML = val; }
-      else { el.textContent = val; }
-    } else if (val && (el.classList.contains('badge-live') || el.classList.contains('badge-client'))) {
-      el.textContent = val;
-    } else if (val && el.tagName === 'BUTTON') {
-      el.textContent = val;
-    }
-  });
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-  if (e && e.target) e.target.classList.add('active');
-  showTestimonial(tIdx);
-  localStorage.setItem('preferredLang', l);
-}
-
-const saved = localStorage.getItem('preferredLang');
-if (saved && saved !== 'en') {
-  const btn = document.querySelector('.lang-btn[onclick*="' + saved + '"]');
-  if (btn) setTimeout(() => btn.click(), 150);
-}
-
-// Scroll reveal
-const revealEls = document.querySelectorAll('.reveal');
-const revealObs = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) { entry.target.classList.add('visible'); }
-  });
-}, { threshold: 0.1 });
-revealEls.forEach(el => revealObs.observe(el));
-</script>
+<script src="main.js"></script>
 </body>
 </html>

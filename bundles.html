@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Full Marketing Bundles — Kriaa Service</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .page-hero{min-height:52vh;display:flex;align-items:flex-end;padding:calc(var(--nav-h) + 60px) var(--section-px) 60px;position:relative;overflow:hidden;border-bottom:1px solid var(--gold-border);}
+    .page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(201,168,76,0.10) 0%,transparent 70%);}
+    .page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.035) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 80% at 50% 0%,black 30%,transparent 100%);}
+    .page-hero-inner{position:relative;z-index:1;max-width:var(--max-w);margin:0 auto;width:100%;}
+    .breadcrumb{display:flex;align-items:center;gap:0.6rem;margin-bottom:1.5rem;}
+    .breadcrumb a,.breadcrumb span{font-size:0.68rem;color:var(--muted);text-decoration:none;letter-spacing:0.12em;text-transform:uppercase;}
+    .breadcrumb a:hover{color:var(--gold);}
+    .breadcrumb svg{width:12px;height:12px;color:var(--gold-dk);}
+
+    /* BUNDLES */
+    .bundles-section{padding:80px var(--section-px);background:var(--black);}
+    .bundles-inner{max-width:var(--max-w);margin:0 auto;}
+    .bundles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem;}
+    .bundle-card{background:var(--black3);border:1px solid var(--border);position:relative;overflow:hidden;display:flex;flex-direction:column;transition:transform 0.4s,box-shadow 0.4s,border-color 0.4s;}
+    .bundle-card:hover{transform:translateY(-8px);box-shadow:0 32px 80px rgba(0,0,0,0.6);border-color:var(--gold-border);}
+    .bundle-card-accent{position:absolute;top:0;left:0;right:0;height:3px;}
+    .bundle-card:nth-child(1) .bundle-card-accent{background:linear-gradient(90deg,var(--gold-dk),var(--gold));}
+    .bundle-card:nth-child(2) .bundle-card-accent{background:linear-gradient(90deg,#a08020,var(--gold-lt));}
+    .bundle-card:nth-child(3) .bundle-card-accent{background:linear-gradient(90deg,var(--gold),var(--gold-lt));}
+    .bundle-card-top{padding:2.5rem 2rem 2rem;border-bottom:1px solid var(--border);}
+    .bundle-icon{width:52px;height:52px;margin-bottom:1.2rem;color:var(--gold);}
+    .bundle-icon svg{width:100%;height:100%;}
+    .bundle-for{font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:0.4rem;}
+    .bundle-name{font-family:var(--font-display);font-size:1.8rem;letter-spacing:0.05em;color:var(--white);margin-bottom:1rem;}
+    .bundle-price{font-family:var(--font-display);font-size:3rem;color:var(--gold);line-height:1;}
+    .bundle-price small{font-size:1rem;color:var(--muted);font-family:var(--font-sans);font-weight:300;}
+    .bundle-card-breakdown{padding:1.2rem 2rem;background:rgba(201,168,76,0.04);border-bottom:1px solid var(--border);}
+    .breakdown-title{font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:0.8rem;}
+    .breakdown-items{display:flex;flex-direction:column;gap:0.4rem;}
+    .breakdown-item{display:flex;justify-content:space-between;align-items:center;}
+    .breakdown-item span:first-child{font-size:0.8rem;color:var(--muted2);}
+    .breakdown-item span:last-child{font-size:0.8rem;color:var(--gold);font-weight:600;}
+    .bundle-card-features{padding:1.8rem 2rem;flex:1;}
+    .bundle-card-features ul{list-style:none;display:flex;flex-direction:column;gap:0.8rem;}
+    .bundle-card-features li{display:flex;align-items:flex-start;gap:0.8rem;font-size:0.84rem;color:var(--white);}
+    .bundle-card-features li svg{width:15px;height:15px;flex-shrink:0;margin-top:2px;color:var(--gold);}
+    .bundle-card-footer{padding:1.5rem 2rem 2rem;}
+    .btn-bundle{display:flex;align-items:center;justify-content:center;gap:0.7rem;width:100%;padding:0.95rem;background:var(--gold);color:var(--black);font-family:var(--font-sans);font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;}
+    .btn-bundle:hover{background:var(--gold-lt);box-shadow:0 8px 32px rgba(201,168,76,0.4);}
+    .bundle-save{display:inline-block;margin-top:0.8rem;font-size:0.68rem;color:var(--gold);letter-spacing:0.1em;text-align:center;width:100%;}
+    @media(max-width:900px){.bundles-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<nav id="nav">
+  <a class="nav-logo" href="index.html"><img src="logo.png" alt="Kriaa Service"/></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li><li><a href="web-development.html">Web Dev</a></li>
+    <li><a href="sponsoring.html">Sponsoring</a></li><li><a href="bundles.html">Bundles</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li><li><a href="about.html">About</a></li>
+    <li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="https://wa.me/96672771" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    WhatsApp
+  </a>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div><div class="page-hero-grid"></div>
+  <div class="page-hero-inner reveal">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      <span>Full Bundles</span>
+    </div>
+    <div class="section-eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Best Value</span></div>
+    <h1 style="font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4.2rem);color:var(--white);margin-bottom:1rem;">Full Marketing <em style="font-family:var(--font-serif);font-style:italic;color:var(--gold);font-weight:300;">Bundles</em></h1>
+    <p style="max-width:560px;color:var(--muted2);line-height:1.8;">Our most powerful offering. Website + Sponsoring + Video Editing — everything your business needs in one complete package. Designed specifically for your industry with bundle savings built in.</p>
+  </div>
+</div>
+
+<section class="bundles-section">
+  <div class="bundles-inner">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div><span class="eyebrow-text">All-in-One Packages</span><div class="eyebrow-line" style="transform:rotate(180deg)"></div></div>
+      <h2 class="section-title">Choose Your <em>Bundle</em></h2>
+      <div class="section-divider center"></div>
+    </div>
+    <div class="bundles-grid">
+
+      <!-- CLOTHING -->
+      <div class="bundle-card reveal" data-delay="0">
+        <div class="bundle-card-accent"></div>
+        <div class="bundle-card-top">
+          <div class="bundle-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.57a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.57a2 2 0 00-1.34-2.23z"/></svg>
+          </div>
+          <div class="bundle-for">Best for Clothing Brands</div>
+          <h3 class="bundle-name">Clothing Pack</h3>
+          <div class="bundle-price">1000 <small>dt</small></div>
+        </div>
+        <div class="bundle-card-breakdown">
+          <div class="breakdown-title">What's Included</div>
+          <div class="breakdown-items">
+            <div class="breakdown-item"><span>Business Website</span><span>600–1000dt</span></div>
+            <div class="breakdown-item"><span>Sponsor Campaign</span><span>200dt</span></div>
+            <div class="breakdown-item"><span>Video Editing</span><span>100dt</span></div>
+          </div>
+        </div>
+        <div class="bundle-card-features">
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Full E-commerce Website (3–6 pages)</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Cart, Checkout + Client Panel</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 30K–60K Sponsor Views</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Professional Video Editing</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Domain + Hosting Included</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 1 Month Post-launch Support</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Priority Delivery</li>
+          </ul>
+        </div>
+        <div class="bundle-card-footer">
+          <a href="https://wa.me/96672771?text=Hi Kriaa Service! I'm interested in the Clothing Bundle (1000dt)" target="_blank" class="btn-bundle">
+            Get Clothing Pack
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <div class="bundle-save">Save 300dt+ vs individual services</div>
+        </div>
+      </div>
+
+      <!-- GYM -->
+      <div class="bundle-card reveal" data-delay="150">
+        <div class="bundle-card-accent"></div>
+        <div class="bundle-card-top">
+          <div class="bundle-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6.5 6.5h11M6.5 17.5h11M3 9.5h3M3 14.5h3M18 9.5h3M18 14.5h3"/><rect x="5" y="9" width="1.5" height="6" rx="0.5"/><rect x="17.5" y="9" width="1.5" height="6" rx="0.5"/><rect x="7" y="7" width="10" height="10" rx="1"/></svg>
+          </div>
+          <div class="bundle-for">Best for Gyms &amp; Fitness</div>
+          <h3 class="bundle-name">Gym Pack</h3>
+          <div class="bundle-price">600 <small>dt</small></div>
+        </div>
+        <div class="bundle-card-breakdown">
+          <div class="breakdown-title">What's Included</div>
+          <div class="breakdown-items">
+            <div class="breakdown-item"><span>Starter Website</span><span>300dt</span></div>
+            <div class="breakdown-item"><span>Sponsor Campaign</span><span>200dt</span></div>
+            <div class="breakdown-item"><span>Video Editing</span><span>100dt</span></div>
+          </div>
+        </div>
+        <div class="bundle-card-features">
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Modern Gym Landing Page</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Classes, Pricing + Contact</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 30K–60K Sponsor Views</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Gym Promo Video Editing</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Domain + Hosting Included</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> WhatsApp Booking Integration</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Fast 5-Day Delivery</li>
+          </ul>
+        </div>
+        <div class="bundle-card-footer">
+          <a href="https://wa.me/96672771?text=Hi Kriaa Service! I'm interested in the Gym Bundle (600dt)" target="_blank" class="btn-bundle">
+            Get Gym Pack
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <div class="bundle-save">Save 100dt vs individual services</div>
+        </div>
+      </div>
+
+      <!-- PRODUCT SALES -->
+      <div class="bundle-card reveal" data-delay="300">
+        <div class="bundle-card-accent"></div>
+        <div class="bundle-card-top">
+          <div class="bundle-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          </div>
+          <div class="bundle-for">Best for Product Sellers</div>
+          <h3 class="bundle-name">Product Sales</h3>
+          <div class="bundle-price">1000 <small>dt</small></div>
+        </div>
+        <div class="bundle-card-breakdown">
+          <div class="breakdown-title">What's Included</div>
+          <div class="breakdown-items">
+            <div class="breakdown-item"><span>E-commerce Website</span><span>700dt</span></div>
+            <div class="breakdown-item"><span>Sponsor Campaign</span><span>200dt</span></div>
+            <div class="breakdown-item"><span>Product Video Editing</span><span>100dt</span></div>
+          </div>
+        </div>
+        <div class="bundle-card-features">
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Full E-commerce Store</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Product Catalog + Cart</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 30K–60K Sponsor Views</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Product Showcase Video</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Domain + Hosting Included</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Checkout + Order Management</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 1 Month Support</li>
+          </ul>
+        </div>
+        <div class="bundle-card-footer">
+          <a href="https://wa.me/96672771?text=Hi Kriaa Service! I'm interested in the Product Sales Bundle (1000dt)" target="_blank" class="btn-bundle">
+            Get Product Pack
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <div class="bundle-save">Complete solution — maximum ROI</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- URGENCY -->
+    <div class="reveal" style="margin-top:3rem;padding:1.5rem 2rem;border:1px solid var(--gold-border);background:var(--gold-faint);display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:0.6rem;">
+        <div style="width:8px;height:8px;border-radius:50%;background:var(--gold);animation:blink 1.5s infinite;flex-shrink:0;"></div>
+        <span style="font-size:0.72rem;color:var(--gold);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">Bundle clients get FREE 30-day post-launch support + Priority delivery</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="footer">
+  <div class="footer-inner">
+    <a class="footer-logo" href="index.html"><img src="logo.png" alt="Kriaa Service"/></a>
+    <p class="footer-copy">© 2025 Kriaa Service. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="web-development.html">Web Dev</a><a href="sponsoring.html">Sponsoring</a>
+      <a href="bundles.html">Bundles</a><a href="portfolio.html">Portfolio</a>
+      <a href="about.html">About</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+<a class="wa-float" href="https://wa.me/96672771" target="_blank">
+  <svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<style>@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}</style>
+<script src="main.js"></script>
+</body>
+</html>
+
+
+

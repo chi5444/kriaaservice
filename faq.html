@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FAQ — Kriaa Service</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .page-hero{min-height:45vh;display:flex;align-items:flex-end;padding:calc(var(--nav-h)+60px) var(--section-px) 60px;position:relative;overflow:hidden;border-bottom:1px solid var(--gold-border);}
+    .page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(201,168,76,.10) 0%,transparent 70%);}
+    .page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.035) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 80% at 50% 0%,black 30%,transparent 100%);}
+    .page-hero-inner{position:relative;z-index:1;max-width:var(--max-w);margin:0 auto;width:100%;}
+    .breadcrumb{display:flex;align-items:center;gap:.6rem;margin-bottom:1.5rem;}
+    .breadcrumb a,.breadcrumb span{font-size:.68rem;color:var(--muted);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;}
+    .breadcrumb a:hover{color:var(--gold);}
+    .breadcrumb svg{width:12px;height:12px;color:var(--gold-dk);}
+
+    .faq-section{padding:80px var(--section-px);background:var(--black);}
+    .faq-section-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:5rem;align-items:start;}
+
+    .faq-sidebar{position:sticky;top:calc(var(--nav-h) + 2rem);}
+    .faq-sidebar h3{font-family:var(--font-display);font-size:1.1rem;letter-spacing:.08em;color:var(--white);margin-bottom:1.5rem;}
+    .faq-cats{display:flex;flex-direction:column;gap:.4rem;}
+    .faq-cat{padding:.7rem 1rem;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--font-sans);font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;text-align:left;transition:all .3s;}
+    .faq-cat.active,.faq-cat:hover{border-color:var(--gold-border);color:var(--gold);background:var(--gold-faint);}
+    .faq-sidebar-cta{margin-top:2.5rem;padding:1.5rem;background:var(--black3);border:1px solid var(--gold-border);position:relative;overflow:hidden;}
+    .faq-sidebar-cta::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);}
+    .faq-sidebar-cta p{font-size:.82rem;color:var(--muted2);line-height:1.7;margin-bottom:1.2rem;}
+    .faq-sidebar-cta a{display:flex;align-items:center;gap:.6rem;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);text-decoration:none;transition:gap .3s;}
+    .faq-sidebar-cta a:hover{gap:.9rem;}
+    .faq-sidebar-cta a svg{width:14px;height:14px;}
+
+    .faq-list{display:flex;flex-direction:column;gap:.8rem;}
+    .faq-group{margin-bottom:2.5rem;}
+    .faq-group-label{font-size:.6rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:.8rem;}
+    .faq-group-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--gold-border),transparent);}
+
+    .faq-item{background:var(--black3);border:1px solid var(--border);overflow:hidden;transition:border-color .3s;}
+    .faq-item.open{border-color:var(--gold-border);}
+    .faq-q{width:100%;background:none;border:none;color:var(--white);padding:1.4rem 1.5rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-family:var(--font-sans);font-size:.88rem;font-weight:600;transition:color .2s;text-align:left;gap:1rem;}
+    .faq-q:hover{color:var(--gold);}
+    .faq-item.open .faq-q{color:var(--gold);}
+    .faq-icon{width:20px;height:20px;flex-shrink:0;color:var(--gold);transition:transform .35s;}
+    .faq-item.open .faq-icon{transform:rotate(45deg);}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+    .faq-item.open .faq-a{max-height:400px;}
+    .faq-a-inner{padding:0 1.5rem 1.4rem;font-size:.85rem;color:var(--muted2);line-height:1.85;border-top:1px solid var(--border);}
+    .faq-a-inner p{padding-top:1rem;}
+
+    .faq-cta-bottom{padding:80px var(--section-px);background:var(--black2);border-top:1px solid var(--gold-border);text-align:center;}
+    .faq-cta-bottom-inner{max-width:600px;margin:0 auto;}
+    .faq-cta-bottom h2{font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.5rem);color:var(--white);margin-bottom:1rem;}
+    .faq-cta-bottom h2 em{font-family:var(--font-serif);font-style:italic;color:var(--gold);}
+    .faq-cta-bottom p{font-size:.9rem;color:var(--muted2);line-height:1.8;margin-bottom:2rem;}
+    .faq-cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+
+    @media(max-width:900px){.faq-section-inner{grid-template-columns:1fr;}.faq-sidebar{position:static;}.faq-cats{flex-direction:row;flex-wrap:wrap;}}
+  </style>
+</head>
+<body>
+<nav id="nav">
+  <a class="nav-logo" href="index.html"><img src="logo.png" alt="Kriaa Service"/></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li><li><a href="web-development.html">Web Dev</a></li>
+    <li><a href="sponsoring.html">Sponsoring</a></li><li><a href="bundles.html">Bundles</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li><li><a href="about.html">About</a></li>
+    <li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="https://wa.me/96672771" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    WhatsApp
+  </a>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div><div class="page-hero-grid"></div>
+  <div class="page-hero-inner reveal">
+    <div class="breadcrumb"><a href="index.html">Home</a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg><span>FAQ</span></div>
+    <div class="section-eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Got Questions?</span></div>
+    <h1 style="font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4.2rem);color:var(--white);margin-bottom:1rem;">Frequently <em style="font-family:var(--font-serif);font-style:italic;color:var(--gold);font-weight:300;">Asked</em></h1>
+    <p style="max-width:520px;color:var(--muted2);line-height:1.8;">Everything you need to know before working with us. Can't find your answer? Message us directly on WhatsApp.</p>
+  </div>
+</div>
+
+<section class="faq-section">
+  <div class="faq-section-inner inner">
+    <!-- SIDEBAR -->
+    <div class="faq-sidebar reveal-left">
+      <h3>Categories</h3>
+      <div class="faq-cats">
+        <button class="faq-cat active">All Questions</button>
+        <button class="faq-cat">Web Development</button>
+        <button class="faq-cat">Sponsoring</button>
+        <button class="faq-cat">Payment</button>
+        <button class="faq-cat">Support</button>
+      </div>
+      <div class="faq-sidebar-cta">
+        <p>Still have questions? We respond on WhatsApp within a few hours.</p>
+        <a href="https://wa.me/96672771?text=Hi Kriaa Service! I have a question." target="_blank">
+          Ask on WhatsApp
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- FAQ LIST -->
+    <div class="faq-list reveal-right">
+
+      <!-- WEB DEV GROUP -->
+      <div class="faq-group">
+        <div class="faq-group-label">Web Development</div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            How long does a website take to build?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Timelines depend on the package: Starter Pack (1 page) typically takes 2–5 days. Business Pack (3–6 pages) takes 7–14 days. Pro Pack (6–9 pages with advanced features) takes 14–21 days. These timelines assume prompt feedback and content from your side. We send a detailed project timeline on day one.</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Is domain and hosting really included in the price?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Yes — all web development packages include domain registration and 1 year of hosting at no extra cost. After the first year, hosting renewal is at standard market rates (approximately 50–100dt per year depending on the plan). We'll notify you 30 days before renewal.</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            What do I need to provide to get started?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner"><p>To get started, we need: your logo (or we can help create one), a brief description of your business and services, your brand colors and any visual references you like, and any specific content you want on the site (text, photos, etc.). We handle everything else — structure, design, images, and all technical setup.</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Can I upgrade my package later?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Absolutely. Many clients start with the Starter Pack to launch quickly, then upgrade to Business or Pro as their business grows. Existing clients receive a preferential upgrade rate — you only pay the difference plus a small migration and restructuring fee. Contact us anytime to discuss an upgrade.</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Will my website be mobile-friendly?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Yes, every website we build is fully responsive across all devices — desktop, tablet, and mobile. Mobile performance is a priority, not an afterthought. We test on multiple screen sizes before delivery.</p></div></div>
+        </div>
+      </div>
+
+      <!-- SPONSORING GROUP -->
+      <div class="faq-group">
+        <div class="faq-group-label">Sponsoring</div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            How are sponsor views delivered?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner"><p>We create and distribute content across relevant social platforms targeting your specific audience demographic. All views are from real, engaged users — not bots. You receive live progress updates during the campaign and a full delivery report at the end including view counts, reach, and engagement metrics.</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            How long does a sponsor campaign take?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Starter Boost (30K–60K views): 7–10 days from campaign launch. Growth Boost (60K–120K views): 10–15 days. Custom enterprise campaigns vary based on scope. We begin content preparation within 1–2 days of order confirmation and payment.</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            What platforms do you use for distribution?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Distribution is tailored to where your target audience is most active. We typically use a combination of social media platforms popular in your target market. During onboarding, we discuss your audience and select the best channels for your campaign goals.</p></div></div>
+        </div>
+      </div>
+
+      <!-- PAYMENT GROUP -->
+      <div class="faq-group">
+        <div class="faq-group-label">Payment</div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            How does payment work?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner"><p>We require 50% upfront to begin work and 50% upon delivery. This applies to all web development packages. For sponsor campaigns, full payment is required upfront before the campaign launches. For bundles, the same 50/50 structure applies. Payment is accepted via bank transfer or cash.</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Are there any hidden fees?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner"><p>No. The price you see is the price you pay. The only additional cost after the first year is hosting renewal (approximately 50–100dt/year, standard market rate). We discuss all costs upfront before any work begins — no surprises, ever.</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            What if I'm not satisfied with the result?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner"><p>We work collaboratively throughout the project with regular check-ins and revisions. If you're not satisfied at delivery, we revise until you are — this is included in the price. We don't release the final 50% until you've approved the work. Our 100% client satisfaction rate reflects our commitment to getting it right.</p></div></div>
+        </div>
+      </div>
+
+      <!-- SUPPORT GROUP -->
+      <div class="faq-group">
+        <div class="faq-group-label">Support</div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Do you offer support after the website launches?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Yes. Business Pack includes 1 month of post-launch support. Pro Pack includes 2 months. Starter Pack clients receive 2 weeks of free support. Bundle clients receive FREE 30-day post-launch support. After the included support period, we offer affordable monthly maintenance plans — ask us for details.</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            How quickly do you respond to messages?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Our average response time is under 24 hours, and for active clients it's typically within a few hours during working hours. The fastest way to reach us is always WhatsApp. For new project inquiries, we aim to respond the same day.</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Can I update the website content myself after launch?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner"><p>It depends on the package. Business and Pro pack websites include admin dashboards that allow you to manage content, products, and orders independently. For Starter pack sites, content updates are handled by us — minor text and image changes are included during the support period at no extra charge.</p></div></div>
+        </div>
+      </div>
+
+    </div><!-- /faq-list -->
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="faq-cta-bottom">
+  <div class="faq-cta-bottom-inner reveal">
+    <div class="section-eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div><span class="eyebrow-text">Still Unsure?</span><div class="eyebrow-line" style="transform:rotate(180deg)"></div></div>
+    <h2>We're Here to <em>Help</em></h2>
+    <p>Our team answers every question personally. Reach out on WhatsApp or email and we'll guide you to the right solution for your business.</p>
+    <div class="faq-cta-actions">
+      <a href="https://wa.me/96672771?text=Hi Kriaa Service! I have a question about your services." target="_blank" class="btn btn-gold">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Chat on WhatsApp
+      </a>
+      <a href="contact.html" class="btn btn-outline-gold">Send a Message <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<footer id="footer">
+  <div class="footer-inner">
+    <a class="footer-logo" href="index.html"><img src="logo.png" alt="Kriaa Service"/></a>
+    <p class="footer-copy">© 2025 Kriaa Service. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="web-development.html">Web Dev</a><a href="sponsoring.html">Sponsoring</a>
+      <a href="bundles.html">Bundles</a><a href="portfolio.html">Portfolio</a>
+      <a href="about.html">About</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+<a class="wa-float" href="https://wa.me/96672771" target="_blank">
+  <svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<script src="main.js"></script>
+</body>
+</html>

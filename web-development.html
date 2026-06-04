@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Web Development — Kriaa Service</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* PAGE HERO */
+    .page-hero {
+      min-height: 52vh; display: flex; align-items: flex-end;
+      padding: calc(var(--nav-h) + 60px) var(--section-px) 60px;
+      position: relative; overflow: hidden;
+      border-bottom: 1px solid var(--gold-border);
+    }
+    .page-hero-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(201,168,76,0.10) 0%, transparent 70%);
+    }
+    .page-hero-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(201,168,76,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.035) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, black 30%, transparent 100%);
+    }
+    .page-hero-inner { position: relative; z-index: 1; max-width: var(--max-w); margin: 0 auto; width: 100%; }
+    .page-hero-inner h1 { font-family: var(--font-display); font-size: clamp(2.5rem,5vw,4.2rem); color: var(--white); margin-bottom: 1rem; }
+    .page-hero-inner h1 em { font-family: var(--font-serif); font-style: italic; color: var(--gold); font-weight: 300; }
+    .page-hero-inner p { max-width: 520px; color: var(--muted2); line-height: 1.8; }
+    .breadcrumb { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.5rem; }
+    .breadcrumb a, .breadcrumb span { font-size: 0.68rem; color: var(--muted); text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase; }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb svg { width: 12px; height: 12px; color: var(--gold-dk); }
+
+    /* PACKAGES */
+    .packages-section { padding: 80px var(--section-px); background: var(--black); }
+    .packages-inner { max-width: var(--max-w); margin: 0 auto; }
+    .packages-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 3rem; }
+
+    .pack-card {
+      background: var(--black3); border: 1px solid var(--border);
+      position: relative; overflow: hidden;
+      transition: transform 0.4s, box-shadow 0.4s, border-color 0.4s;
+      display: flex; flex-direction: column;
+    }
+    .pack-card:hover { transform: translateY(-8px); box-shadow: 0 32px 80px rgba(0,0,0,0.6); border-color: var(--gold-border); }
+    .pack-card.featured { border-color: rgba(201,168,76,0.4); background: linear-gradient(160deg, rgba(201,168,76,0.06), var(--black3) 60%); }
+    .pack-card.featured:hover { box-shadow: 0 32px 80px rgba(201,168,76,0.15); }
+
+    .pack-card-top { padding: 2.5rem 2rem 2rem; border-bottom: 1px solid var(--border); }
+    .pack-badge {
+      display: inline-block; padding: 0.25rem 0.8rem;
+      background: var(--gold-faint); border: 1px solid var(--gold-border);
+      font-size: 0.58rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
+    }
+    .pack-badge.pop { background: var(--gold); color: var(--black); border-color: var(--gold); }
+    .pack-card-name { font-family: var(--font-display); font-size: 1.8rem; letter-spacing: 0.05em; color: var(--white); margin-bottom: 0.8rem; }
+    .pack-card-price { font-family: var(--font-display); font-size: 3rem; color: var(--gold); line-height: 1; }
+    .pack-card-price small { font-size: 1rem; color: var(--muted); font-family: var(--font-sans); font-weight: 300; }
+    .pack-card-desc { font-size: 0.84rem; color: var(--muted2); line-height: 1.8; margin-top: 1rem; }
+
+    .pack-card-features { padding: 2rem; flex: 1; }
+    .pack-card-features ul { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
+    .pack-card-features li { display: flex; align-items: flex-start; gap: 0.8rem; font-size: 0.85rem; color: var(--white); }
+    .pack-card-features li svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; }
+    .feat-yes { color: var(--gold); }
+    .feat-no { color: var(--muted); }
+    .pack-card-features li.no { color: var(--muted); }
+
+    .pack-card-footer { padding: 1.5rem 2rem 2rem; }
+    .btn-pack {
+      display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+      width: 100%; padding: 0.95rem;
+      font-family: var(--font-sans); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-pack svg { width: 16px; height: 16px; }
+    .btn-pack-outline { background: transparent; color: var(--gold); border: 1px solid var(--gold-border); }
+    .btn-pack-outline:hover { background: var(--gold-faint); border-color: var(--gold); }
+    .btn-pack-fill { background: var(--gold); color: var(--black); }
+    .btn-pack-fill:hover { background: var(--gold-lt); box-shadow: 0 8px 32px rgba(201,168,76,0.4); }
+
+    /* COMPARISON TABLE */
+    .compare-section { padding: 80px var(--section-px); background: var(--black2); border-top: 1px solid var(--gold-border); }
+    .compare-inner { max-width: var(--max-w); margin: 0 auto; }
+    .table-scroll { overflow-x: auto; margin-top: 3rem; }
+    table { width: 100%; border-collapse: collapse; min-width: 600px; }
+    thead th {
+      padding: 1.2rem 1.5rem; text-align: center;
+      font-family: var(--font-display); font-size: 0.95rem; letter-spacing: 0.08em;
+      color: var(--white); background: var(--black3);
+      border-bottom: 1px solid var(--gold-border);
+    }
+    thead th:first-child { text-align: left; }
+    thead th.th-feat { color: var(--gold); background: rgba(201,168,76,0.07); }
+    .th-tier { font-family: var(--font-sans); font-size: 0.6rem; font-weight: 500; color: var(--muted); letter-spacing: 0.1em; display: block; margin-top: 0.2rem; }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.2s; }
+    tbody tr:hover { background: rgba(255,255,255,0.02); }
+    tbody td { padding: 1rem 1.5rem; text-align: center; color: var(--muted2); font-size: 0.85rem; }
+    tbody td:first-child { text-align: left; color: var(--white); font-weight: 500; font-size: 0.88rem; }
+    .td-feat { background: rgba(201,168,76,0.04); }
+    .chk { display: inline-flex; align-items: center; justify-content: center; }
+    .chk svg { width: 18px; height: 18px; }
+    .chk-yes svg { color: var(--gold); }
+    .chk-no svg { color: var(--muted); opacity: 0.4; }
+    .chk-partial { font-size: 0.75rem; color: var(--gold); font-weight: 700; letter-spacing: 0.05em; }
+
+    @media (max-width:900px) { .packages-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="nav-logo" href="index.html"><img src="logo.png" alt="Kriaa Service"/></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="web-development.html">Web Dev</a></li>
+    <li><a href="sponsoring.html">Sponsoring</a></li>
+    <li><a href="bundles.html">Bundles</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="https://wa.me/96672771" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    WhatsApp
+  </a>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-inner reveal">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      <span>Web Development</span>
+    </div>
+    <div class="section-eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Our Packages</span></div>
+    <h1>Web <em>Development</em></h1>
+    <p>Three carefully crafted packages for every stage of your business — from a powerful landing page to a full-scale digital platform. All include domain, hosting, and premium UI/UX design.</p>
+  </div>
+</div>
+
+<!-- PACKAGES -->
+<section class="packages-section">
+  <div class="packages-inner">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div><span class="eyebrow-text">Select Your Plan</span><div class="eyebrow-line" style="transform:rotate(180deg)"></div></div>
+      <h2 class="section-title">Choose Your <em>Package</em></h2>
+      <div class="section-divider center"></div>
+    </div>
+    <div class="packages-grid">
+
+      <!-- STARTER -->
+      <div class="pack-card reveal" id="starter" data-delay="0">
+        <div class="pack-card-top">
+          <div class="pack-badge">Pack 01</div>
+          <h3 class="pack-card-name">Starter</h3>
+          <div class="pack-card-price">300 <small>dt</small></div>
+          <p class="pack-card-desc">Launch your online presence fast. One stunning, conversion-focused page that represents your brand at its best.</p>
+        </div>
+        <div class="pack-card-features">
+          <ul>
+            <li><svg class="feat-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 1 Modern Landing Page</li>
+            <li><svg class="feat-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Premium UI/UX Design</li>
+            <li><svg class="feat-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Mobile Responsive</li>
+            <li><svg class="feat-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Domain + Hosting Included</li>
+            <li><svg class="feat-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> WhatsApp Integration</li>
+            <li class="no"><svg class="feat-no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Admin Dashboard</li>
+            <li class="no"><svg class="feat-no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Cart + Checkout</li>
+            <li class="no"><svg class="feat-no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Multi-language</li>
+            <li class="no"><svg class="feat-no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Post-launch Support</li>
+          </ul>
+        </div>
+        <div class="pack-card-footer">
+          <a href="https://wa.me/96672771?text=Hi Kriaa Service! I'm interested in the Starter Pack (300dt)" target="_blank" class="btn-pack btn-pack-outline">
+            Order Starter
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- BUSINESS -->
+      <div class="pack-card featured reveal" id="business" data-delay="150">
+        <div class="pack-card-top">
+          <div class="pack-badge pop">Most Popular</div>
+          <h3 class="pack-card-name">Business</h3>
+          <div class="pack-card-price">600–1000 <small>dt</small></div>
+          <p class="pack-card-desc">A full online platform for growing businesses — with e-commerce, user management, and a complete admin suite.</p>
+        </div>
+        <div class="pack-card-features">
+          <ul>
+            <li><svg class="feat-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 3–6 Pages</li>
+            <li><svg class="feat-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Admin Dashboard</li>
+            <li><svg class="feat-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Client Panel</li>
+            <li><svg class="feat-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Cart + Checkout</li>
+            <li><svg class="feat-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Login / Register System</li>
+            <li><svg class="feat-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Multi-language Support</li>
+            <li><svg class="feat-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 1 Month Post-launch Support</li>
+            <li><svg class="feat-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Domain + Hosting Included</li>
+            <li class="no"><svg class="feat-no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Advanced Calculator</li>
+          </ul>
+        </div>
+        <div class="pack-card-footer">
+          <a href="https://wa.me/96672771?text=Hi Kriaa Service! I'm interested in the Business Pack (600-1000dt)" target="_blank" class="btn-pack btn-pack-fill">
+            Order Business
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- PRO -->
+      <div class="pack-card reveal" id="pro" data-delay="300">
+        <div class="pack-card-top">
+          <div class="pack-badge">Pack 03</div>
+          <h3 class="pack-card-name">Pro</h3>
+          <div class="pack-card-price">1000–1500 <small>dt</small></div>
+          <p class="pack-card-desc">Full-scale digital platform for ambitious brands. Every feature, maximum support, priority development.</p>
+        </div>
+        <div class="pack-card-features">
+          <ul>
+            <li><svg class="feat-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 6–9 Pages</li>
+            <li><svg class="feat-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Dashboard + Client Panel</li>
+            <li><svg class="feat-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Cart + Checkout</li>
+            <li><svg class="feat-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Advanced Calculator Tool</li>
+            <li><svg class="feat-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Multi-language Support</li>
+            <li><svg class="feat-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Login / Register System</li>
+            <li><svg class="feat-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 2 Months Post-launch Support</li>
+            <li><svg class="feat-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Domain + Hosting Included</li>
+            <li><svg class="feat-yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Priority Development</li>
+          </ul>
+        </div>
+        <div class="pack-card-footer">
+          <a href="https://wa.me/96672771?text=Hi Kriaa Service! I'm interested in the Pro Pack (1000-1500dt)" target="_blank" class="btn-pack btn-pack-outline">
+            Order Pro
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="compare-section">
+  <div class="compare-inner">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div><span class="eyebrow-text">Side by Side</span><div class="eyebrow-line" style="transform:rotate(180deg)"></div></div>
+      <h2 class="section-title">Package <em>Comparison</em></h2>
+      <div class="section-divider center"></div>
+    </div>
+    <div class="table-scroll reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Starter<span class="th-tier">300 dt</span></th>
+            <th class="th-feat">Business<span class="th-tier">600–1000 dt</span></th>
+            <th>Pro<span class="th-tier">1000–1500 dt</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Number of Pages</td><td>1</td><td class="td-feat">3–6</td><td>6–9</td></tr>
+          <tr><td>Mobile Responsive</td><td><span class="chk chk-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td><td class="td-feat"><span class="chk chk-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td><td><span class="chk chk-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td></tr>
+          <tr><td>Domain + Hosting</td><td><span class="chk chk-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td><td class="td-feat"><span class="chk chk-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td><td><span class="chk chk-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td></tr>
+          <tr><td>WhatsApp Integration</td><td><span class="chk chk-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td><td class="td-feat"><span class="chk chk-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td><td><span class="chk chk-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td></tr>
+          <tr><td>Admin Dashboard</td><td><span class="chk chk-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td><td class="td-feat"><span class="chk chk-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td><td><span class="chk chk-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td></tr>
+          <tr><td>Client Panel</td><td><span class="chk chk-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td><td class="td-feat"><span class="chk chk-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td><td><span class="chk chk-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td></tr>
+          <tr><td>Cart + Checkout</td><td><span class="chk chk-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td><td class="td-feat"><span class="chk chk-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td><td><span class="chk chk-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td></tr>
+          <tr><td>Login / Register</td><td><span class="chk chk-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td><td class="td-feat"><span class="chk chk-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td><td><span class="chk chk-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td></tr>
+          <tr><td>Multi-language</td><td><span class="chk chk-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td><td class="td-feat"><span class="chk chk-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td><td><span class="chk chk-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td></tr>
+          <tr><td>Advanced Calculator</td><td><span class="chk chk-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td><td class="td-feat"><span class="chk chk-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td><td><span class="chk chk-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td></tr>
+          <tr><td>Post-launch Support</td><td><span class="chk chk-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td><td class="td-feat"><span class="chk-partial">1 Month</span></td><td><span class="chk-partial">2 Months</span></td></tr>
+          <tr><td>Priority Development</td><td><span class="chk chk-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td><td class="td-feat"><span class="chk chk-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td><td><span class="chk chk-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="text-align:center;margin-top:3rem;" class="reveal">
+      <p style="color:var(--muted);font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1.5rem;">Not sure which pack fits? Message us — we'll guide you.</p>
+      <a href="https://wa.me/96672771?text=Hi Kriaa Service! I need help choosing the right web package." target="_blank" class="btn btn-gold">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Ask on WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer id="footer">
+  <div class="footer-inner">
+    <a class="footer-logo" href="index.html"><img src="logo.png" alt="Kriaa Service"/></a>
+    <p class="footer-copy">© 2025 Kriaa Service. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="web-development.html">Web Dev</a><a href="sponsoring.html">Sponsoring</a>
+      <a href="bundles.html">Bundles</a><a href="portfolio.html">Portfolio</a>
+      <a href="about.html">About</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/96672771" target="_blank">
+  <svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<script src="main.js"></script>
+</body>
+</html>
